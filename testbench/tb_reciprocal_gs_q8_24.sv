@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module tb_reciprocal_nr_q8_24;
+module tb_reciprocal_gs_q8_24;
 
     localparam int N = 1_000_001;
     localparam int WARMUP_SAMPLES = 30;
@@ -17,7 +17,7 @@ module tb_reciprocal_nr_q8_24;
     logic        valid_out;
     logic [31:0] recip_out;
 
-    reciprocal_nr_q8_24 #(
+    reciprocal_gs_q8_24 #(
         .IDX_BITS(8),
         .SHIFT(17)
     ) dut (
@@ -90,7 +90,7 @@ module tb_reciprocal_nr_q8_24;
 
     initial begin
         $display("==============================================================");
-        $display(" Q8.24 CANONICAL 1,000,001-POINT TEST");
+        $display(" Q8.24 GOLDSCHMIDT 1,000,001-POINT TEST");
         $display("==============================================================");
         $display("Warm-up samples excluded from statistics: %0d", WARMUP_SAMPLES);
         $display("Loading q8_24_input.mem...");
@@ -104,10 +104,10 @@ module tb_reciprocal_nr_q8_24;
         $display("Memory loading complete.");
         $display("==============================================================");
 
-        csv_fd = $fopen("q8_24_nr_results.csv", "w");
+        csv_fd = $fopen("q8_24_gs_results.csv", "w");
 
         if (csv_fd == 0) begin
-            $fatal(1, "ERROR: Could not create q8_24_nr_results.csv");
+            $fatal(1, "ERROR: Could not create q8_24_gs_results.csv");
         end
 
         $fwrite(
@@ -130,6 +130,7 @@ module tb_reciprocal_nr_q8_24;
         $display("");
 
         for (int i = 0; i < N; i++) begin
+
             @(negedge clk);
 
             valid_in = 1'b1;
@@ -177,6 +178,7 @@ module tb_reciprocal_nr_q8_24;
         first_input_cycle = -1;
         first_output_cycle = -1;
         latency_cycles = -1;
+
         latency_ns = 0.0;
         throughput_mhz = 1000.0 / CLK_PERIOD_NS;
 
@@ -194,6 +196,7 @@ module tb_reciprocal_nr_q8_24;
             if (valid_out) begin
 
                 if (first_output_cycle == -1) begin
+
                     first_output_cycle = cycle_count;
 
                     latency_cycles =
@@ -201,6 +204,7 @@ module tb_reciprocal_nr_q8_24;
 
                     latency_ns =
                         latency_cycles * CLK_PERIOD_NS;
+
                 end
 
                 error_lsb =
@@ -356,7 +360,7 @@ module tb_reciprocal_nr_q8_24;
 
         $display("");
         $display("==============================================================");
-        $display(" FINAL 1,000,001-POINT RESULTS");
+        $display(" FINAL 1,000,001-POINT RESULTS (GOLDSCHMIDT)");
         $display("==============================================================");
 
         $display(
@@ -547,7 +551,7 @@ module tb_reciprocal_nr_q8_24;
 
         $display("");
         $display(
-            "CSV                  : q8_24_nr_results.csv"
+            "CSV                  : q8_24_gs_results.csv"
         );
 
         $display("==============================================================");
