@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex acmmanuscript"] 1789895999.30741 "acmmanuscript.aux" "acmmanuscript.bbl" "acmmanuscript" 1789896502.87398 0
+["bibtex acmmanuscript"] 0 "acmmanuscript.aux" "acmmanuscript.bbl" "acmmanuscript" 1789904483.30888 -1
   "./ACM-Reference-Format.bst" 1789895488 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   "./sample-base.bib" 1789895541 49366 df98e6764e8a8591af3f06cf54d52d06 ""
-  "acmmanuscript.aux" 1789896501 8007 696c60693d52887eaec430f286fee18d "pdflatex"
+  "acmmanuscript.aux" 1789904482 8007 141d162bddc1c277217ad40138392c81 "pdflatex"
   (generated)
   "acmmanuscript.bbl"
   "acmmanuscript.blg"
   (rewritten before read)
-["pdflatex"] 1789896499.30698 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1789896502.88075 0
+["pdflatex"] 1789904480.43302 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1789904483.30988 0
   "C:/Users/knith/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789895479 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/knith/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1788071591 13367606 93afbb73f75e83143d69eca9db59a6d0 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1557958141 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
@@ -94,6 +94,7 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf" 1732620847 1768 b3bfd8ed1fe2dce5fd19610abe4c3dbe ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxexx.vf" 1736607166 1716 73c8d39d4c3ace9ec98a8f066bb3b494 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxsy.vf" 1736607166 1792 7cf99effbd74f7851ca7683a6d12b685 ""
+  "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxsy5.vf" 1736607166 1856 05afd1fb7a543fb973348907ffdabf53 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxsy7.vf" 1736607166 1940 bf4bac1135a7513fb45cfd9280176019 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmi.vf" 1736607166 2744 3e5ba39e1559219ae379b7645e2f9524 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmi7.vf" 1736607166 2740 2574d1692bc06933fa73eb18c93daedb ""
@@ -216,12 +217,12 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "acmart.cls" 1789895492 121737 e553f62fc9642f9010f9c29ba27de8d5 ""
-  "acmmanuscript.aux" 1789896501 8007 696c60693d52887eaec430f286fee18d "pdflatex"
-  "acmmanuscript.bbl" 1789895999 21414 d9ba34877f69c24b03ed43991abba3ba "bibtex acmmanuscript"
-  "acmmanuscript.out" 1789896501 4234 287c256ef53f28ef63123d462bb58d89 "pdflatex"
-  "acmmanuscript.tex" 1789896498 31170 0b76dff139d7634df6565af32ac495dd ""
-  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1789896498 31170 0b76dff139d7634df6565af32ac495dd ""
-  "comment.cut" 1789896501 64 0754424945249fbfae64d8991d811e64 "pdflatex"
+  "acmmanuscript.aux" 1789904482 8007 141d162bddc1c277217ad40138392c81 "pdflatex"
+  "acmmanuscript.bbl" 1789904009 21414 d9ba34877f69c24b03ed43991abba3ba "bibtex acmmanuscript"
+  "acmmanuscript.out" 1789904482 4234 287c256ef53f28ef63123d462bb58d89 "pdflatex"
+  "acmmanuscript.tex" 1789904479 32391 b359b1b8fde9bce7d28efd6853726bfe ""
+  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1789904479 32391 b359b1b8fde9bce7d28efd6853726bfe ""
+  "comment.cut" 1789904481 64 0754424945249fbfae64d8991d811e64 "pdflatex"
   "sample-franklin.png" 1789895545 95030 b5b117690b64777baa16f25a8c628f74 ""
   (generated)
   "acmmanuscript.aux"

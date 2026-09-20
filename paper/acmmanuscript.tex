@@ -61,15 +61,15 @@
 \acmYear{2018}
 \acmDOI{XXXXXXX.XXXXXXX}
 %% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-  conference title from your rights confirmation email}{June 03--05,
-  2018}{Woodstock, NY}
+% \acmConference[Conference acronym 'XX]{Make sure to enter the correct
+%   conference title from your rights confirmation email}{June 03--05,
+%   2018}{Woodstock, NY}
 %%
 %%  Uncomment \acmBooktitle if the title of the proceedings is different
 %%  from ``Proceedings of ...''!
 %%
-%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
-%%  June 03--05, 2018, Woodstock, NY}
+\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+ June 03--05, 2018, Woodstock, NY}
 \acmISBN{978-1-4503-XXXX-X/2018/06}
 
 
@@ -112,7 +112,7 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{The Name of the Title Is Hope}
+\title{Quantization-Aware Design Space Exploration of Fixed Point Reciprocal Approximation Architectures on Artix-7 FPGAs}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -121,27 +121,25 @@
 %% "authornote" and "authornotemark" commands
 %% used to denote shared contribution to the research.
 \author{Navaneeth Kutty}
-\authornote{Both authors contributed equally to this research.}
+\authornote{All authors contributed equally to this research.}
 \email{navaneeth2310165@ssn.edu.in}
 \orcid{0009-0007-9552-1034}
 \author{Anish Murali}
+\orcid{0009-0007-9552-1034}
 \correspondingauthor
 \authornotemark[1]
-\email{anishmurali@example.com}
+\email{anish23@ssn.edu.in}
+\author{Priyan M S K}
+\orcid{0009-0007-9552-1034}
+\correspondingauthor
+\authornotemark[1]
+\email{priyanm23@ssn.edu.in}
 \affiliation{%
-  \institution{SSN College of Engineering}
+  \institution{Department of Electronics \& Communication Engineering, SSN College of Engineering}
   \city{Chennai}
   \state{Tamil Nadu}
   \country{India}
 }
-
-\author{Priyan M S K}
-\affiliation{%
-  \institution{SSN College of Engineering}
-  \city{Chennai}
-  \state{Tamil Nadu}
-  \country{India}}
-\email{priyanmSK@ssn.edu.in}
 
 
 %%
@@ -150,18 +148,29 @@
 %% other information printed in the page headers. This command allows
 %% the author to define a more concise list
 %% of authors' names for this purpose.
-\renewcommand{\shortauthors}{Navaneeth et al.}
+\renewcommand{\shortauthors}{Navaneeth K et al.}
 
 %%
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  A clear and well-documented \LaTeX\ document is presented as an
-  article formatted for publication by ACM in a conference proceedings
-  or journal publication. Based on the ``acmart'' document class, this
-  article presents and explains many of the common variations, as well
-  as many of the formatting elements an author may use in the
-  preparation of the documentation of their work.
+  Fixed-point reciprocal computation is a common operation in most FPGA-based arithmetic pipelines, 
+  where division is often replaced by dedicated approximation methods to reduce computational cost. 
+  This work presents a comparative evaluation of five reciprocal approximation architectures-
+  Direct Lookup Table (LUT), LUT with Linear Interpolation, Newton-Raphson iteration, Goldschmidt iteration,
+   and a hybrid LUT-Interpolation/Newton-Raphson design combining linear interpolation with a single Newton-Raphson 
+   refinement iteration - implemented in Q16.16 and Q8.24 fixed-point formats and validated on a Xilinx Artix-7 FPGA 
+   (Nexys A7-100T) over the input range $[0.5, 2.5]$ using one million verification vectors. A Pareto analysis based 
+   on maximum relative error, latency, and energy per operation is used to characterize the trade-offs among the 
+   evaluated architectures. In Q8.24, the Direct LUT provides the lowest latency (\textasciitilde12.9 ns) and energy per operation 
+   (0.33~nJ/op), with a maximum relative error of 0.098\%, while Newton-Raphson provides the lowest error 
+   ($1.5 \times 10^{-5}$\%) at a latency of 178~ns and an energy consumption of 1.19~nJ/op. Goldschmidt achieves 
+   comparable numerical accuracy with a 22\% reduction in latency relative to Newton-Raphson at a marginally higher
+    energy consumption, while the hybrid architecture provides an intermediate trade-off between numerical accuracy, 
+    latency, and energy consumption. The resulting hardware measurements provide a unified basis for evaluating fixed-point
+     reciprocal architectures across varying precision, latency, and energy constraints, thereby supporting architectural 
+     selection for FPGA-based division-free arithmetic.
+
 \end{abstract}
 
 %%
@@ -170,39 +179,32 @@
 %%
 \begin{CCSXML}
 <ccs2012>
- <concept>
-  <concept_id>00000000.0000000.0000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>500</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>300</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
-</ccs2012>
+   <concept>
+       <concept_id>10010583.10010600.10010628.10010629</concept_id>
+       <concept_desc>Hardware~Hardware accelerators</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010583.10010600.10010615.10010616</concept_id>
+       <concept_desc>Hardware~Arithmetic and datapath circuits</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010583.10010600.10010628.10011716</concept_id>
+       <concept_desc>Hardware~Reconfigurable logic applications</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc[300]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc[100]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+\ccsdesc[300]{Hardware~Hardware accelerators}
+\ccsdesc[500]{Hardware~Arithmetic and datapath circuits}
+\ccsdesc[500]{Hardware~Reconfigurable logic applications}
 
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Do, Not, Use, This, Code, Put, the, Correct, Terms, for,
-  Your, Paper}
+\keywords{Reciprocal approximation, FPGA , Fixed-point arithmetic, Quantization, Newton-Raphson method, Goldschmidt algorithm, Interpolation, Pareto Analysis}
 
 \received{20 February 2007}
 \received[revised]{12 March 2009}
