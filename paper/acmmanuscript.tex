@@ -45,6 +45,7 @@
 %%
 %%
 \documentclass[manuscript,screen,review]{acmart}
+\usepackage{booktabs}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -62,14 +63,14 @@
 \acmDOI{XXXXXXX.XXXXXXX}
 %% These commands are for a PROCEEDINGS abstract or paper.
 % \acmConference[Conference acronym 'XX]{Make sure to enter the correct
-%   conference title from your rights confirmation email}{June 03--05,
+%   conference title from your rights confirmation email}{June 03-05,
 %   2018}{Woodstock, NY}
 %%
 %%  Uncomment \acmBooktitle if the title of the proceedings is different
 %%  from ``Proceedings of ...''!
 %%
 \acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
- June 03--05, 2018, Woodstock, NY}
+ June 03-05, 2018, Woodstock, NY}
 \acmISBN{978-1-4503-XXXX-X/2018/06}
 
 
@@ -125,15 +126,13 @@
 \email{navaneeth2310165@ssn.edu.in}
 \orcid{0009-0007-9552-1034}
 \author{Anish Murali}
-\orcid{0009-0007-9552-1034}
-\correspondingauthor
+\orcid{0009-0006-0900-3381}
 \authornotemark[1]
-\email{anish23@ssn.edu.in}
+\email{anish2310158@ssn.edu.in}
 \author{Priyan M S K}
-\orcid{0009-0007-9552-1034}
-\correspondingauthor
+\orcid{0009-0005-1938-3800}
 \authornotemark[1]
-\email{priyanm23@ssn.edu.in}
+\email{priyan2310182@ssn.edu.in}
 \affiliation{%
   \institution{Department of Electronics \& Communication Engineering, SSN College of Engineering}
   \city{Chennai}
@@ -154,22 +153,24 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Fixed-point reciprocal computation is a common operation in most FPGA-based arithmetic pipelines, 
-  where division is often replaced by dedicated approximation methods to reduce computational cost. 
-  This work presents a comparative evaluation of five reciprocal approximation architectures-
-  Direct Lookup Table (LUT), LUT with Linear Interpolation, Newton-Raphson iteration, Goldschmidt iteration,
-   and a hybrid LUT-Interpolation/Newton-Raphson design combining linear interpolation with a single Newton-Raphson 
-   refinement iteration - implemented in Q16.16 and Q8.24 fixed-point formats and validated on a Xilinx Artix-7 FPGA 
-   (Nexys A7-100T) over the input range $[0.5, 2.5]$ using one million verification vectors. A Pareto analysis based 
-   on maximum relative error, latency, and energy per operation is used to characterize the trade-offs among the 
-   evaluated architectures. In Q8.24, the Direct LUT provides the lowest latency (\textasciitilde12.9 ns) and energy per operation 
-   (0.33~nJ/op), with a maximum relative error of 0.098\%, while Newton-Raphson provides the lowest error 
-   ($1.5 \times 10^{-5}$\%) at a latency of 178~ns and an energy consumption of 1.19~nJ/op. Goldschmidt achieves 
+
+Fixed-point reciprocal computation is an important operation in FPGA-based arithmetic pipelines, 
+where division is often replaced by dedicated approximation methods to reduce computational cost. 
+This work presents a comparative evaluation of five reciprocal approximation architectures - Direct Lookup
+ Table (LUT), LUT with Linear Interpolation, Newton - Raphson iteration, Goldschmidt iteration, and a hybrid
+  LUT-Interpolation/Newton - Raphson design combining linear interpolation with a single Newton-Raphson refinement
+   iteration - implemented in Q16.16 and Q8.24 fixed-point formats for a Xilinx Artix-7 FPGA (Nexys A7-100T) 
+   over the input range $[0.5,2.5]$ using one million verification vectors. A Pareto analysis based on maximum 
+   relative error, latency, and energy per operation is used to characterize the trade-offs among the evaluated 
+   architectures. In Q8.24, the Direct LUT provides the lowest latency (12.9~ns) and energy per operation 
+   (0.346~nJ/op), with a maximum relative error of 0.098\%, while Newton-Raphson provides the lowest error 
+   ($1.5\times10^{-5}$\%) at a latency of 178.0~ns and an energy consumption of 1.190~nJ/op. Goldschmidt achieves 
    comparable numerical accuracy with a 22\% reduction in latency relative to Newton-Raphson at a marginally higher
     energy consumption, while the hybrid architecture provides an intermediate trade-off between numerical accuracy, 
-    latency, and energy consumption. The resulting hardware measurements provide a unified basis for evaluating fixed-point
-     reciprocal architectures across varying precision, latency, and energy constraints, thereby supporting architectural 
-     selection for FPGA-based division-free arithmetic.
+    latency, and energy consumption. The resulting hardware measurements provide a unified reference for evaluating 
+    fixed-point reciprocal architectures under different precision, latency, and energy constraints, with relevance
+     to FPGA-based signal processing, normalization, coordinate transformation, and other division-free arithmetic 
+     pipelines.
 
 \end{abstract}
 
@@ -206,597 +207,814 @@
 %% the work being presented. Separate the keywords with commas.
 \keywords{Reciprocal approximation, FPGA , Fixed-point arithmetic, Quantization, Newton-Raphson method, Goldschmidt algorithm, Interpolation, Pareto Analysis}
 
-\received{20 February 2007}
-\received[revised]{12 March 2009}
-\received[accepted]{5 June 2009}
+\received{XX October 2026}
+\received[revised]{XX October 2026}
+\received[accepted]{XX January 2027}
 
 %%
 %% This command processes the author and affiliation and title
 %% information and builds the first part of the formatted document.
 \maketitle
 
-
 \section{Introduction}
-ACM's consolidated article template, introduced in 2017, provides a
-consistent \LaTeX\ style for use across ACM publications, and
-incorporates accessibility and metadata-extraction functionality
-necessary for future Digital Library endeavors. Numerous ACM and
-SIG-specific \LaTeX\ templates have been examined, and their unique
-features incorporated into this single new template.
 
-If you are new to publishing with ACM, this document is a valuable
-guide to the process of preparing your work for publication. If you
-have published with ACM before, this document provides insight and
-instruction into more recent changes to the article template.
+Division and reciprocal computation are comparatively expensive arithmetic operations to implement efficiently on field-programmable gate arrays (FPGAs). Unlike addition and multiplication, which map efficiently onto dedicated FPGA arithmetic resources, division typically has no equivalent dedicated hardware unit for efficient acceleration. Consequently, hardware architectures often avoid direct division or replace it with reciprocal approximation followed by multiplication \cite{Oberman97}. Efficient reciprocal computation is therefore important in applications where division occurs frequently or lies within an iterative processing path.
 
-The ``\verb|acmart|'' document class can be used to prepare articles
-for any ACM publication --- conference or journal, and for any stage
-of publication, from review to final ``camera-ready'' copy, to the
-author's own version, with {\itshape very} few changes to the source.
+Beyond direct division, digit-recurrence, table-lookup, and functional-iteration methods together form the standard toolkit for hardware division and reciprocal computation \cite{ErcegovacLang04}. Three broad families of reciprocal approximation are commonly considered in hardware implementations. The first relies on direct table lookup, in which the reciprocal of a quantized input is pre-computed offline and stored in on-chip memory, typically block RAM. The second improves upon direct lookup by combining a coarser table with a linear or higher-order interpolation stage, trading additional arithmetic logic for reduced table size and approximation error. The third uses iterative multiplicative refinement, most commonly Newton-Raphson or Goldschmidt iteration, seeded from a coarse initial estimate and refined over one or more pipeline stages. Lookup-based and iterative approaches, as well as combinations of the two, have been widely explored for FPGA-based reciprocal and division computation \cite{Oberman97}. Each family occupies a different point in the design space spanned by numerical accuracy, latency, hardware resource cost, and energy consumption, and no single architecture necessarily dominates across all of these dimensions.
 
-\section{Template Overview}
-As noted in the introduction, the ``\verb|acmart|'' document class can
-be used to prepare many different kinds of documentation --- a
-double-anonymous initial submission of a full-length technical paper, a
-two-page SIGGRAPH Emerging Technologies abstract, a ``camera-ready''
-journal article, a SIGCHI Extended Abstract, and more --- all by
-selecting the appropriate {\itshape template style} and {\itshape
-  template parameters}.
+A recurring difficulty in comparing these architectures, both in published studies and in practical implementations, is that results are often obtained under different evaluation conditions. Differences in fixed-point format, input range, verification methodology, target device, and reported metrics can make direct architecture-to-architecture comparison difficult. A design that exhibits favorable accuracy or resource utilization under one precision or input distribution may exhibit different behavior under another. Furthermore, synthesis-only estimates may not accurately reflect the timing and resource characteristics obtained after place-and-route.
 
-This document will explain the major features of the document
-class. For further information, the {\itshape \LaTeX\ User's Guide} is
-available from
-\url{https://www.acm.org/publications/proceedings-template}.
+This work addresses the difficulty of making such comparisons by evaluating five reciprocal approximation architectures--Direct LUT, LUT with Linear Interpolation, Newton-Raphson iteration, Goldschmidt iteration, and a hybrid LUT-Interpolation/Newton-Raphson design--under an identical verification methodology, input range, and target platform. All five architectures are implemented in both Q8.24 and Q16.16 fixed-point formats, synthesized and implemented for a Xilinx Artix-7 FPGA (Nexys A7-100T), and validated against one million test vectors uniformly swept over the input domain $[0.5, 2.5]$. Architecture-specific clock targets are imposed during implementation, with a 2.58-ns target period for the Direct LUT, LUT with Linear Interpolation, Newton-Raphson, and Goldschmidt architectures, and a 3.33-ns target period for the hybrid architecture. Timing closure is treated as a primary design objective. Resource, timing, and power results are derived from post-implementation analysis, while numerical accuracy is evaluated through bit-accurate RTL simulation against a double-precision reference model. The hardware implementations are optimized with timing closure as a primary design objective, with each datapath pipelined and restructured according to its timing-critical paths. Although latency is also evaluated, greater emphasis is placed on achievable clock frequency and timing closure to provide a consistent basis for comparing the architectures.
 
-\subsection{Template Styles}
+The remainder of this paper is organized as follows. Section~\ref{sec:background} reviews the mathematical background of fixed-point reciprocal approximation and the table-based and iterative approaches that motivate the architectures evaluated in this work. Section~\ref{sec:design} describes the design of each of the five evaluated architectures in detail, including the hybrid design's combination of interpolation and iterative refinement. Section~\ref{sec:methodology} describes the experimental methodology, covering functional verification, timing closure, and power and energy measurement. Section~\ref{sec:results} presents the experimental results across resource utilization, timing, numerical accuracy, and power and energy, along with a cross-format comparison between Q8.24 and Q16.16. Section~\ref{sec:pareto} presents a three-objective Pareto trade-off analysis over numerical error, latency, and energy per operation. Section~\ref{sec:discussion} discusses the practical implications, applicability, and limitations of the results, and Section~\ref{sec:conclusion} concludes the paper.
 
-The primary parameter given to the ``\verb|acmart|'' document class is
-the {\itshape template style} which corresponds to the kind of publication
-or SIG publishing the work. This parameter is enclosed in square
-brackets and is a part of the {\verb|documentclass|} command:
-\begin{verbatim}
-  \documentclass[STYLE]{acmart}
-\end{verbatim}
+\subsection{Previous Work and Contributions}
 
-Journals use one of three template styles. All but three ACM journals
-use the {\verb|acmsmall|} template style:
-\begin{itemize}
-\item {\texttt{acmsmall}}: The default journal template style.
-\item {\texttt{acmlarge}}: Used by JOCCH and TAP.
-\item {\texttt{acmtog}}: Used by TOG.
-\end{itemize}
+Reciprocal computation is a fundamental operation in hardware division and numerical processing. Established hardware approaches include digit-recurrence, table-lookup, functional-iteration, and hybrid architectures, as surveyed in the standard computer-arithmetic textbooks of Ercegovac and Lang \cite{ErcegovacLang94,ErcegovacLang04}, Parhami \cite{Parhami00}, and Muller \cite{Muller97}, and in Soderquist and Leeser's area/performance survey of divide and square-root implementations \cite{Soderquist96}. Oberman and Flynn provide a widely used classification of these approaches and show that practical implementations often combine multiple algorithmic classes to balance latency, cycle time, and area \cite{Oberman97}. Convergence (multiplicative-refinement) division traces to Anderson \textit{et al.}'s IBM System/360 Model 91 floating-point unit \cite{AndersonEarleGoldschmidtPowers67} and to Flynn's general treatment of division by functional iteration \cite{Flynn70}, both of which predate and motivate the Newton-Raphson and Goldschmidt formulations evaluated in this work.
 
-The majority of conference proceedings documentation will use the {\verb|acmconf|} template style.
-\begin{itemize}
-\item {\texttt{sigconf}}: The default proceedings template style.
-\item{\texttt{sigchi}}: Used for SIGCHI conference articles.
-\item{\texttt{sigplan}}: Used for SIGPLAN conference articles.
-\end{itemize}
+Goldschmidt's original division-by-convergence method \cite{Goldschmidt64} and the classical bipartite ROM reciprocal-table construction of Das Sarma and Matula \cite{DasSarmaMatula95} established, respectively, the iterative-refinement and table-compression foundations on which much of the subsequent hardware reciprocal literature builds, including the LUT-based and Goldschmidt-family architectures evaluated in this work. Subsequent table-lookup-and-addition methods generalized the bipartite idea: Schulte and Stine's symmetric bipartite tables \cite{SchulteStine99} and de Dinechin and Tisserand's multipartite table framework \cite{DeDinechinTisserand05} unify and extend bipartite table construction to a wider range of elementary functions, while Ercegovac \textit{et al.} \cite{ErcegovacLangMullerTisserand00} and Beuchat and Tisserand \cite{BeuchatTisserand02} propose small-multiplier-based reciprocal, square-root, and division architectures that trade a modest increase in multiplier count for substantially smaller seed tables than a pure LUT approach. Ito \textit{et al.} address the complementary problem of generating a more accurate initial seed for multiplicative refinement through operand modification, reducing the number of refinement iterations required for a given target precision \cite{Ito97}. Piñeiro and Bruguera \cite{PineiroBruguera02} and Piñeiro \textit{et al.} \cite{PineiroObermanMullerBruguera05} further develop minimax quadratic table-based interpolation for double-precision reciprocal, square-root, and related elementary-function evaluation, representing a higher-order generalization of the linear interpolation stage used by the LUT-with-interpolation architecture evaluated in this work. Table-based reciprocal computation reduces arithmetic complexity by storing precomputed approximations, but memory requirements increase with precision. Chen \textit{et al.} addressed this trade-off through a compact Taylor-based lookup structure followed by two Newton-Raphson iterations for double-precision reciprocal computation \cite{Chen05}. Their design uses a $2^{7} \times 16$-bit ROM and requires ten clock cycles; an FPGA implementation on a Xilinx Virtex XCV1000E was also reported. Kucukkabak and Akkas similarly combined a lookup-table initial approximation with two Newton-Raphson iterations, demonstrating the established use of table-based seeding to reduce iterative computation \cite{Kucukkabak04}.
 
-\subsection{Template Parameters}
+Fixed-point implementations have subsequently explored more hardware-efficient forms of approximation and iteration. Rodr\'{i}guez-Garc\'{i}a \textit{et al.} proposed a fixed-point divider based on reciprocal computation using a six-segment second-order polynomial approximation for the initial seed and one Newton-Raphson iteration. Scaling and de-scaling allow the reciprocal calculation to operate over a normalized interval while supporting different fixed-point formats \cite{Rodriguez13}. Libessart \textit{et al.} investigated a pipelined fixed-point reciprocal operator based on Newton-Raphson, further demonstrating the importance of fixed-point representation and hardware pipeline organization \cite{Libessart17}. Lunglmayr proposed an FPGA-oriented non-sequential reciprocal approximation based on piecewise linearization with power-of-two node points and a polynomial correction stage, targeting scaling-free, LUT-free implementation for large data-processing pipelines rather than the BRAM-seeded architectures evaluated here \cite{Lunglmayr21}.
 
-In addition to specifying the {\itshape template style} to be used in
-formatting your work, there are a number of {\itshape template parameters}
-which modify some part of the applied template style. A complete list
-of these parameters can be found in the {\itshape \LaTeX\ User's Guide.}
+FPGA-oriented comparative work is also available. Kumar, Saha, and Dandapat implemented fixed-point reciprocal and division using both digit-recurrence and multiplicative methods, including Newton-Raphson and Goldschmidt algorithms. Their designs were implemented in Verilog and synthesized on a Xilinx Virtex-4 FPGA, with frequency, slice utilization, latency, and power evaluated for several operand lengths \cite{Kumar17}. Kasim \textit{et al.} investigated another memory-oriented approach in which a precomputed reciprocal value is selected using a reduced number of denominator bits. Their results explicitly demonstrate the exponential trade-off between lookup-table size and approximation error, and the work compares the resulting divider with Goldschmidt and non-restoring implementations \cite{Kasim13}. In the floating-point domain, Wang and Nelson compared digit-recurrence and multiplicative division and square-root architectures on Virtex FPGAs \cite{WangNelson03}, Sorokin evaluated high-speed fixed-point dividers against a vendor IP core baseline \cite{Sorokin06}, and Mu\~{n}oz \textit{et al.} reported an analogous area/latency/power tradeoff study of Goldschmidt- and Newton-Raphson-based floating-point division and square-root cores \cite{MunozEtAl10}; the present work follows a similar comparative methodology but holds the fixed-point format, input domain, and target device fixed across five reciprocal-only architectures rather than varying operator type. Nannarelli and Lang additionally show that power and delay trade off differently across divider radices \cite{NannarelliLang98}, reinforcing the need for the explicit power/energy characterization performed in Section~\ref{sec:power} of this work.
 
-Frequently-used parameters, or combinations of parameters, include:
-\begin{itemize}
-\item {\texttt{anonymous,review}}: Suitable for a ``double-anonymous''
-  conference submission. Anonymizes the work and includes line
-  numbers. Use with the \texttt{\string\acmSubmissionID} command to print the
-  submission's unique ID on each page of the work.
-\item{\texttt{authorversion}}: Produces a version of the work suitable
-  for posting by the author.
-\item{\texttt{screen}}: Produces colored hyperlinks.
-\end{itemize}
+Goldschmidt-based fixed-point designs have also been studied specifically for speed and energy efficiency. Kong and Swartzlander proposed a modified Goldschmidt update that achieves faster-than-quadratic (near-cubic) convergence by reusing an intermediate squaring result, reducing the number of refinement iterations needed for a given target precision relative to the standard quadratically convergent formulation used in this work \cite{KongSwartzlander11}. Ercegovac \textit{et al.} similarly improve Goldschmidt division, square-root, and square-root-reciprocal computation by replacing the final iteration with a looked-up correcting term \cite{ErcegovacImbertMatulaMullerWei00}, while Gallagher and Swartzlander address fault tolerance in time-shared triple-modular-redundant Newton-Raphson and Goldschmidt dividers \cite{GallagherSwartzlander00}. Paim \textit{et al.} proposed a modified Goldschmidt divider using a suitable denominator approximation and evaluated its convergence and energy characteristics for Q7.8 arithmetic \cite{Paim17}. More recently, Guti\'{e}rrez-Ramos \textit{et al.} presented a multifunctional fixed-point architecture combining piecewise-polynomial seed generation with Newton-Raphson iterations for reciprocal, division, square-root, and reciprocal-square-root operations \cite{Gutierrez26}. Their verified hardware configuration uses unsigned Q(16,5,u) and was synthesized on an Intel Stratix-V FPGA.
 
-This document uses the following string as the first command in the
-source file:
-\begin{verbatim}
-\documentclass[manuscript,screen,review]{acmart}
-\end{verbatim}
+These studies establish the individual techniques considered in this work, but their implementation conditions vary substantially. Differences in numerical format, precision, input normalization, FPGA family, synthesis tools, architecture, and reported metrics make direct cross-study comparison difficult. Existing comparative work is valuable but generally evaluates a narrower set of methods or focuses on a particular implementation objective rather than examining the combined effects of reciprocal algorithm and fixed-point precision within one common FPGA framework.
 
-\section{Modifications}
+\subsection{Contributions of This Work}
 
-Modifying the template --- including but not limited to: adjusting
-margins, typeface sizes, line spacing, paragraph and list definitions,
-and the use of the \verb|\vspace| command to manually adjust the
-vertical spacing between elements of your work --- is not allowed.
+This work presents a systematic post-implementation hardware evaluation of five established reciprocal architectures: \textbf{Direct LUT, LUT-based linear interpolation, Newton-Raphson, Goldschmidt, and a hybrid LUT-interpolation/Newton-Raphson approach}. Each architecture is implemented in both \textbf{Q8.24 and Q16.16} fixed-point formats, resulting in ten architecture/format configurations evaluated over a common reciprocal input domain.
 
-{\bfseries Your document will be returned to you for revision if
-  modifications are discovered.}
+All implementations are evaluated on the \textbf{Xilinx Artix-7 XC7A100T} using architecture-specific clock targets selected according to the timing requirements of each datapath. The Direct LUT, LUT-interpolation, Newton-Raphson, and Goldschmidt architectures are targeted at \textbf{2.58~ns (387.6~MHz)}, while the hybrid architecture is targeted at \textbf{3.33~ns (300.3~MHz)}. The evaluation considers \textbf{numerical accuracy, FPGA resource utilization, timing closure, latency, throughput, post-implementation power, and energy per operation}. Timing closure is assessed independently for each architecture/format combination using post-place-and-route timing analysis. All ten configurations achieve \textbf{positive WNS at their respective target periods}, providing a consistent basis for comparing the implementation effects of reciprocal architecture and fixed-point precision.
 
-\section{Typefaces}
+The hardware implementations are pipelined according to their respective datapath structures, with \textbf{FPGA BRAM, LUT/FF, and DSP resources} utilized according to the requirements of each architecture. The resulting pipeline depths and achieved clock frequencies are used to characterize the latency and throughput of each configuration. Particular emphasis is placed on the interaction between \textbf{arithmetic precision, pipeline structure, resource utilization, and achievable timing}, allowing the comparison to distinguish the effects of fixed-point format from those of the underlying reciprocal architecture.
 
-The ``\verb|acmart|'' document class requires the use of the
-``Libertine'' typeface family. Your \TeX\ installation should include
-this set of packages. Please do not substitute other typefaces. The
-``\verb|lmodern|'' and ``\verb|ltimes|'' packages should not be used,
-as they will override the built-in typeface families.
+The contribution is therefore \textbf{not the introduction of a new reciprocal algorithm}, but a controlled comparative study of established approaches under a common FPGA implementation environment and two fixed-point precisions. By evaluating \textbf{accuracy, resource utilization, timing, latency, power, and energy} under consistent experimental conditions, the study establishes quantitative design points spanning \textbf{memory-based approximation, interpolation-based approximation, iterative reciprocal computation, and hybrid architectures}. The resulting comparison provides a common hardware-level basis for examining the trade-offs among these approaches and for understanding how fixed-point precision influences their implementation characteristics.
 
-\section{Title Information}
+\section{Background}
+\label{sec:background}
 
-The title of your work should use capital letters appropriately -
-\url{https://capitalizemytitle.com/} has useful rules for
-capitalization. Use the {\verb|title|} command to define the title of
-your work. If your work has a subtitle, define it with the
-{\verb|subtitle|} command.  Do not insert line breaks in your title.
+\subsection{Fixed-Point Reciprocal Computation}
 
-If your title is lengthy, you must define a short version to be used
-in the page headers, to prevent overlapping text. The \verb|title|
-command has a ``short title'' parameter:
-\begin{verbatim}
-  \title[short title]{full title}
-\end{verbatim}
+A signed fixed-point number in Q$I$.$F$ format represents a real value $v$ using $I$ integer bits and $F$ fractional bits. Given a stored two's-complement integer representation $r$, the represented value is
+\begin{equation}
+v = r \times 2^{-F}
+\label{eq:qformat}
+\end{equation}
+where the exponent $-F$ corresponds to the implicit binary point positioned $F$ bits from the least-significant bit. This work evaluates two 32-bit fixed-point configurations: Q8.24, with 8 integer bits and 24 fractional bits, and Q16.16, with 16 integer bits and 16 fractional bits. Q8.24 provides greater fractional precision at the expense of dynamic range, whereas Q16.16 provides a larger integer range with lower fractional precision.
 
-\section{Authors and Affiliations}
+The reciprocal computation considered in this work takes a fixed-point input $x \in [0.5, 2.5]$ and produces a fixed-point output $y$ approximating $1/x$. The bounded input range provides a common operating domain for all evaluated architectures. In a complete reciprocal datapath, arbitrary positive inputs can be range-reduced using leading-bit or exponent normalization before reciprocal evaluation, followed by appropriate re-scaling. This work focuses on the reciprocal evaluation stage and does not include the preceding normalization or subsequent re-scaling logic.
 
-Each author must be defined separately for accurate metadata
-identification.  As an exception, multiple authors may share one
-affiliation. Authors' names should not be abbreviated; use full first
-names wherever possible. Include authors' e-mail addresses whenever
-possible.
+\subsection{LUT-Based Approximation}
 
-Grouping authors' names or e-mail addresses, or providing an ``e-mail
-alias,'' as shown below, is not acceptable:
-\begin{verbatim}
-  \author{Brooke Aster, David Mehldau}
-  \email{dave,judy,steve@university.edu}
-  \email{firstname.lastname@phillips.org}
-\end{verbatim}
+The most direct approach to reciprocal approximation is to precompute $1/x$ for a quantized set of input values and store the results in a lookup table, typically implemented using FPGA block RAM (BRAM). For an $N$-bit address, a direct LUT requires $2^N$ entries, with each entry having sufficient width to represent the reciprocal at the desired output precision. The main advantage of this approach is its simple datapath and low latency after pipeline fill. However, increasing the address width causes the memory requirement to grow exponentially, while reducing the address width increases the input quantization error.
 
-The \verb|authornote| and \verb|authornotemark| commands allow a note
-to apply to multiple authors --- for example, if the first two authors
-of an article contributed equally to the work.
+LUT-based accuracy can be improved without a proportional increase in table size by adding a linear interpolation stage. Instead of storing the reciprocal at every quantized input value, the table stores reciprocal values at a smaller number of breakpoints, and the value between adjacent breakpoints is estimated using the local slope:
+\begin{equation}
+y(x) = L[i] + (x - x_i) \times S[i]
+\label{eq:interp}
+\end{equation}
+where $x_i$ is the breakpoint immediately below $x$, $L[i]$ is the stored reciprocal value at that breakpoint, and $S[i]$ is the slope between adjacent breakpoints. The interpolation stage therefore reduces the required table size at the cost of additional arithmetic logic.
 
-If your author list is lengthy, you must define a shortened version of
-the list of authors to be used in the page headers, to prevent
-overlapping text. The following command should be placed just after
-the last \verb|\author{}| definition:
-\begin{verbatim}
-  \renewcommand{\shortauthors}{McCartney, et al.}
-\end{verbatim}
-Omitting this command will force the use of a concatenated list of all
-of the authors' names, which may result in overlapping text in the
-page headers.
+\subsection{Iterative Reciprocal Approximation}
 
-The article template's documentation, available at
-\url{https://www.acm.org/publications/proceedings-template}, has a
-complete explanation of these commands and tips for their effective
-use.
+Iterative methods use a coarse initial estimate followed by one or more refinement stages to improve the reciprocal estimate. Two iterative approaches are considered in this work: Newton-Raphson and Goldschmidt iteration.
 
-Note that authors' addresses are mandatory for journal articles.
+Newton-Raphson iteration for the reciprocal function can be derived by finding the root of $f(y) = 1/y - x$. Using the standard Newton update, $y_{n+1} = y_n - f(y_n)/f'(y_n)$, with $f'(y) = -1/y^2$ gives
+\begin{equation}
+y_{n+1} = y_n \times (2 - x \times y_n)
+\label{eq:nr}
+\end{equation}
+The method converges quadratically when the initial estimate $y_0$ is sufficiently close to $1/x$. In this work, $y_0$ is generated using an 8-bit seed LUT and followed by two Newton-Raphson refinement iterations. Each refinement iteration contains two multiplication operations and one subtraction. Thus, the complete Newton-Raphson datapath performs four multiplications and two subtractions per reciprocal estimate.
 
-\section{Rights Information}
+Goldschmidt iteration uses a related multiplicative refinement process. Given an initial estimate $y_0 \approx 1/x$, the initial values are
+\begin{equation}
+N_0 = y_0, \quad D_0 = x \times y_0
+\label{eq:gold_init}
+\end{equation}
+The refinement factor and subsequent updates are
+\begin{equation}
+F_i = 2 - D_i, \qquad N_{i+1} = N_i \times F_i, \qquad D_{i+1} = D_i \times F_i
+\label{eq:gold_update}
+\end{equation}
+As the iterations proceed, $D_i$ approaches unity and $N_i$ approaches $1/x$. The two multiplication paths can be evaluated in parallel within an iteration, providing greater hardware parallelism than the sequential multiplication structure of Newton-Raphson. This can reduce the critical path at the cost of additional multiplier resources. In this work, the Goldschmidt datapath is evaluated using two refinement iterations, with the $N_2$ value used as the final reciprocal estimate.
 
-Authors of any work published by ACM will need to complete a rights
-form. Depending on the kind of work, and the rights management choice
-made by the author, this may be copyright transfer, permission,
-license, or an OA (open access) agreement.
+\subsection{Theoretical Error Analysis}
 
-Regardless of the rights management choice, the author will receive a
-copy of the completed rights form once it has been submitted. This
-form contains \LaTeX\ commands that must be copied into the source
-document. When the document source is compiled, these commands and
-their parameters add formatted text to several areas of the final
-document:
-\begin{itemize}
-\item the ``ACM Reference Format'' text on the first page.
-\item the ``rights management'' text on the first page.
-\item the conference information in the page header(s).
-\end{itemize}
+The measured accuracy differences among the evaluated architectures can be related to the approximation and convergence properties of their underlying methods.
 
-Rights information is unique to the work; if you are preparing several
-works for an event, make sure to use the correct set of commands with
-each of the works.
+For a Direct LUT with an $N$-bit input address over the domain $[a,b] = [0.5, 2.5]$, the nominal input quantization interval is
+\begin{equation}
+\Delta x = \frac{b - a}{2^N}.
+\label{eq:deltax}
+\end{equation}
+Since the reciprocal function $f(x) = 1/x$ has its largest magnitude derivative at the lower boundary, $|f'(x)| = 1/x^2$, $|f'(0.5)| = 4$, a first-order estimate of the maximum quantization-induced reciprocal error is
+\begin{equation}
+e_{\max,\text{LUT}} \approx |f'(0.5)|\, \Delta x = 4 \Delta x.
+\label{eq:elut}
+\end{equation}
+For the 12-bit Direct LUT evaluated in this work, this gives $e_{\max,\text{LUT}} \approx 4\left(\frac{2}{2^{12}}\right) = 2^{-9} \approx 1.953 \times 10^{-3}$. This estimate is close to the measured maximum absolute errors of $1.950 \times 10^{-3}$ for Q8.24 and $1.892 \times 10^{-3}$ for Q16.16 reported in Table~\ref{tab:accuracy}. The agreement indicates that input-address quantization is the dominant error mechanism for the Direct LUT over the evaluated domain, although the first-order model does not capture the complete effects of address mapping and output quantization.
 
-The ACM Reference Format text is required for all articles over one
-page in length, and is optional for one-page articles (abstracts).
+For the LUT with linear interpolation, the ideal interpolation error is substantially smaller than the direct LUT quantization error. Consequently, the measured interpolation error is primarily influenced by finite-precision representation of the stored interpolation coefficients and intermediate arithmetic rather than by the ideal interpolation remainder.
 
-\section{CCS Concepts and User-Defined Keywords}
+For the iterative architectures, convergence can be characterized directly using the relative deviation $\varepsilon_n = 1 - x \times y_n$. Substituting the Newton-Raphson update from Eq.~(\ref{eq:nr}) gives $x \times y_{n+1} = 2(x \times y_n) - (x \times y_n)^2$ and therefore
+\begin{equation}
+\varepsilon_{n+1} = \varepsilon_n^2.
+\label{eq:quadconv}
+\end{equation}
+This is an exact algebraic identity: each refinement iteration squares the current relative deviation. Consequently, the number of correct bits approximately doubles with each iteration while the error remains above the fixed-point quantization floor.
 
-Two elements of the ``acmart'' document class provide powerful
-taxonomic tools for you to help readers find your work in an online
-search.
+An equivalent error relation applies to Goldschmidt iteration. With $\varepsilon_i = 1 - D_i$, the update in Eq.~(\ref{eq:gold_update}) produces the same error-squaring behavior, while the invariant relationship between $N_i$ and $D_i$ preserves the reciprocal estimate. Thus, both iterative methods exhibit quadratic convergence, although their hardware organizations differ.
 
-The ACM Computing Classification System ---
-\url{https://www.acm.org/publications/class-2012} --- is a set of
-classifiers and concepts that describe the computing
-discipline. Authors can select entries from this classification
-system, via \url{https://dl.acm.org/ccs/ccs.cfm}, and generate the
-commands to be included in the \LaTeX\ source.
+Equation~(\ref{eq:quadconv}) also explains the accuracy improvement obtained by the hybrid architecture. Its interpolated seed provides a smaller initial deviation $\varepsilon_0$ than the coarse LUT seed used by the standalone iterative architectures. The subsequent Newton-Raphson refinement then squares this smaller error, allowing the hybrid architecture to achieve high numerical accuracy with a single refinement stage.
 
-User-defined keywords are a comma-separated list of words and phrases
-of the authors' choosing, providing a more flexible way of describing
-the research being presented.
+\section{Reciprocal Architecture Design}
+\label{sec:design}
 
-CCS concepts and user-defined keywords are required for for all
-articles over two pages in length, and are optional for one- and
-two-page articles (or abstracts).
+This section describes the hardware design of each of the five reciprocal approximation architectures evaluated in this work. All five architectures share a common input format, output format, and pipelined register discipline (Section~\ref{sec:common-hw}), differing only in their internal datapath. Design parameters for all five architectures, in both evaluated fixed-point formats, are summarized in Table~\ref{tab:designparams}.
 
-\section{Sectioning Commands}
-
-Your work should use standard \LaTeX\ sectioning commands:
-\verb|\section|, \verb|\subsection|, \verb|\subsubsection|,
-\verb|\paragraph|, and \verb|\subparagraph|. The sectioning levels up to
-\verb|\subsubsection| should be numbered; do not remove the numbering
-from the commands.
-
-Simulating a sectioning command by setting the first word or words of
-a paragraph in boldface or italicized text is {\bfseries not allowed.}
-
-Below are examples of sectioning commands.
-
-\subsection{Subsection}
-\label{sec:subsection}
-
-This is a subsection.
-
-\subsubsection{Subsubsection}
-\label{sec:subsubsection}
-
-This is a subsubsection.
-
-\paragraph{Paragraph}
-
-This is a paragraph.
-
-\subparagraph{Subparagraph}
-
-This is a subparagraph.
-
-\section{Tables}
-
-The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
-package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
-high-quality tables.
-
-Table captions are placed {\itshape above} the table.
-
-Because tables cannot be split across pages, the best placement for
-them is typically the top of the page nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \textbf{table} to enclose the table's contents and the
-table caption.  The contents of the table itself must go in the
-\textbf{tabular} environment, to be aligned properly in rows and
-columns, with the desired horizontal and vertical rules.  Again,
-detailed instructions on \textbf{tabular} material are found in the
-\textit{\LaTeX\ User's Guide}.
-
-Immediately following this sentence is the point at which
-Table~\ref{tab:freq} is included in the input file; compare the
-placement of the table here with the table in the printed output of
-this document.
-
-\begin{table}
-  \caption{Frequency of Special Characters}
-  \label{tab:freq}
-  \begin{tabular}{ccl}
-    \toprule
-    Non-English or Math&Frequency&Comments\\
-    \midrule
-    \O & 1 in 1,000& For Swedish names\\
-    $\pi$ & 1 in 5& Common in math\\
-    \$ & 4 in 5 & Used in business\\
-    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-  \bottomrule
+\begin{table}[htbp]
+\caption{Design Parameters by Architecture and Fixed-Point Format}
+\label{tab:designparams}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{Int/Frac Bits} & \textbf{Clock Target (ns)} & \textbf{Seed LUT (bits)} \\
+\midrule
+Direct LUT & Q8.24 & 8/24 & 2.58 & 12 \\
+Direct LUT & Q16.16 & 16/16 & 2.58 & 12 \\
+LUT + Interpolation & Q8.24 & 8/24 & 2.58 & 11 \\
+LUT + Interpolation & Q16.16 & 16/16 & 2.58 & 11 \\
+Newton-Raphson & Q8.24 & 8/24 & 2.58 & 8 \\
+Newton-Raphson & Q16.16 & 16/16 & 2.58 & 8 \\
+Goldschmidt & Q8.24 & 8/24 & 2.58 & 8 \\
+Goldschmidt & Q16.16 & 16/16 & 2.58 & 8 \\
+Hybrid & Q8.24 & 8/24 & 3.33 & 9 \\
+Hybrid & Q16.16 & 16/16 & 3.33 & 9 \\
+\bottomrule
 \end{tabular}
 \end{table}
 
-To set a wider table, which takes up the whole width of the page's
-live area, use the environment \textbf{table*} to enclose the table's
-contents and the table caption.  As with a single-column table, this
-wide table will ``float'' to a location deemed more
-desirable. Immediately following this sentence is the point at which
-Table~\ref{tab:commands} is included in the input file; again, it is
-instructive to compare the placement of the table here with the table
-in the printed output of this document.
+\subsection{Direct LUT}
 
-\begin{table*}
-  \caption{Some Typical Commands}
-  \label{tab:commands}
-  \begin{tabular}{ccl}
-    \toprule
-    Command &A Number & Comments\\
-    \midrule
-    \texttt{{\char'134}author} & 100& Author \\
-    \texttt{{\char'134}table}& 300 & For tables\\
-    \texttt{{\char'134}table*}& 400& For wider tables\\
-    \bottomrule
-  \end{tabular}
-\end{table*}
+The Direct LUT architecture quantizes the input $x$ to the seed address width (12 bits, per Table~\ref{tab:designparams}) and uses the quantized address to directly index a single block-RAM-resident lookup table storing precomputed reciprocal values at full output precision. The datapath consists of an input register, an address-formation stage that extracts the top address-width bits of the normalized input, the BRAM read itself, and an output register. No arithmetic (multiply or add) logic is required in the data path beyond address formation, which is reflected in Table~\ref{tab:resources}'s near-zero LUT utilization for this architecture. The trade-off, visible throughout Section~\ref{sec:results}, is that a 12-bit address table is the coarsest of the five architectures and consequently exhibits the largest numerical error, concentrated near the lower end of the input domain where $1/x$ changes most rapidly per unit of $x$.
 
-Always use midrule to separate table header rows from data rows, and
-use it only for this purpose. This enables assistive technologies to
-recognise table headers and support their users in navigating tables
-more easily.
-
-\section{Math Equations}
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of the three are
-discussed in the next sections.
-
-\subsection{Inline (In-text) Equations}
-A formula that appears in the running text is called an inline or
-in-text formula.  It is produced by the \textbf{math} environment,
-which can be invoked with the usual
-\texttt{{\char'134}begin\,\ldots{\char'134}end} construction or with
-the short form \texttt{\$\,\ldots\$}. You can use any of the symbols
-and structures, from $\alpha$ to $\omega$, available in
-\LaTeX~\cite{Lamport:LaTeX}; this section will simply show a few
-examples of in-text equations in context. Notice how this equation:
-\begin{math}
-  \lim_{n\rightarrow \infty}x=0
-\end{math},
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsection{Display Equations}
-A numbered display equation---one set off by vertical space from the
-text and centered horizontally---is produced by the \textbf{equation}
-environment. An unnumbered display equation is produced by the
-\textbf{displaymath} environment.
-
-Again, in either environment, you can use any of the symbols and
-structures available in \LaTeX\@; this section will just give a couple
-of examples of display equations in context.  First, consider the
-equation, shown as an inline equation above:
-\begin{equation}
-  \lim_{n\rightarrow \infty}x=0
-\end{equation}
-Notice how it is formatted somewhat differently in
-the \textbf{displaymath}
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}
-  \sum_{i=0}^{\infty} x + 1
-\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}
-  \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
-\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\section{Figures}
-
-The ``\verb|figure|'' environment should be used for figures. One or
-more images can be placed within a figure. If your figure contains
-third-party material, you must clearly identify it as such, as shown
-in the example below.
-\begin{figure}[h]
-  \centering
- \includegraphics[width=\linewidth]{sample-franklin}
-  \caption{1907 Franklin Model D roadster. Photograph by Harris \&
-    Ewing, Inc. [Public domain], via Wikimedia
-    Commons. (\url{https://goo.gl/VLCRBB}).}
-  \Description{A woman and a girl in white dresses sit in an open car.}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pipeline1.png}
+\caption{Direct LUT reciprocal architecture.}
+\Description{Block diagram of the Direct LUT reciprocal architecture, showing an input register, address-formation stage, BRAM lookup table, and output register.}
+\label{fig:directlut}
 \end{figure}
 
-Your figures should contain a caption which describes the figure to
-the reader.
+\subsection{LUT With Linear Interpolation}
 
-Figure captions are placed {\itshape below} the figure.
+The interpolation architecture reduces the seed table to 11 address bits and adds a linear interpolation stage per Eq.~(\ref{eq:interp}). In addition to the coarser reciprocal-value table, a second table (or a second field of the same table row) stores the local slope $S[i]$ between the current breakpoint and the next. The datapath computes the fractional offset $(x - x_i)$ from the low-order bits of the input not consumed by the address, multiplies this offset by the stored slope, and adds the product to the base table value $L[i]$. This requires one multiplier and one adder beyond the Direct LUT datapath, which is reflected in the non-zero DSP and substantially higher LUT/FF utilization reported in Table~\ref{tab:resources}, but yields more than an order-of-magnitude improvement in maximum relative error relative to the Direct LUT architecture at only one address bit less of table width.
 
-Every figure should also have a figure description unless it is purely
-decorative. These descriptions convey what’s in the image to someone
-who cannot see it. They are also used by search engine crawlers for
-indexing images, and when images cannot be loaded.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pipeline2.png}
+\caption{LUT with Linear Interpolation reciprocal architecture.}
+\Description{Block diagram of the LUT with Linear Interpolation reciprocal architecture, showing the breakpoint table, slope table, fractional-offset multiplier, and adder stage.}
+\label{fig:lutinterp}
+\end{figure}
 
-A figure description must be unformatted plain text less than 2000
-characters long (including spaces).  {\bfseries Figure descriptions
-  should not repeat the figure caption – their purpose is to capture
-  important information that is not already provided in the caption or
-  the main text of the paper.} For figures that convey important and
-complex new information, a short text description may not be
-adequate. More complex alternative descriptions can be placed in an
-appendix and referenced in a short figure description. For example,
-provide a data table capturing the information in a bar chart, or a
-structured list representing a graph.  For additional information
-regarding how best to write figure descriptions and why doing this is
-so important, please see
-\url{https://www.acm.org/publications/taps/describing-figures/}.
+\subsection{Newton-Raphson}
 
-\subsection{The ``Teaser Figure''}
+The Newton-Raphson architecture computes an 8-bit seed estimate $y_0$ from a coarse BRAM lookup table and applies two Newton-Raphson refinement iterations using Eq.~(\ref{eq:nr}). The first iteration computes $y_1 = y_0(2 - xy_0)$, while the second computes $y_2 = y_1(2 - xy_1)$, with $y_2$ used as the final reciprocal estimate. Each iteration consists of two sequential $32\times32$ fixed-point multiplications with a subtraction from the constant 2 between them, giving four sequential multiplications and two subtraction operations per reciprocal estimate. The datapath is implemented using the deeply pipelined \texttt{pipelined\_mult32x32\_signed} multiplier and the \texttt{reciprocal\_nr\_q8\_24} iteration-control structure. Because the four multiplications form a serial dependency chain across the two refinement iterations, the Newton-Raphson architecture has the deepest multiplier pipeline among the evaluated architectures, resulting in a 69-cycle pipeline at the target clock.
 
-A ``teaser figure'' is an image, or set of images in one figure, that
-are placed after all author and affiliation information, and before
-the body of the article, spanning the page. If you wish to have such a
-figure in your article, place the command immediately before the
-\verb|\maketitle| command:
-\begin{verbatim}
-  \begin{teaserfigure}
- \includegraphics[width=\textwidth]{sampleteaser}
-    \caption{figure caption}
-    \Description{figure description}
-  \end{teaserfigure}
-\end{verbatim}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pipeline3.png}
+\caption{Newton-Raphson reciprocal architecture.}
+\Description{Block diagram of the Newton-Raphson reciprocal architecture, showing the seed LUT and two sequential refinement iterations each with two multipliers and a subtraction.}
+\label{fig:newtonraphson}
+\end{figure}
 
-\section{Citations and Bibliographies}
+\subsection{Goldschmidt}
 
-The use of \BibTeX\ for the preparation and formatting of one's
-references is strongly recommended. Authors' names should be complete
---- use full first names (``Donald E. Knuth'') not initials
-(``D. E. Knuth'') --- and the salient identifying features of a
-reference should be included: title, year, volume, number, pages,
-article DOI, etc.
+The Goldschmidt architecture uses the same 8-bit seed table as Newton-Raphson but restructures the refinement as the mutually recursive numerator/denominator update of Eqs.~(\ref{eq:gold_init})-(\ref{eq:gold_update}). The two multiplications $F_i \times N_i$ and $F_i \times D_i$ within a given iteration do not depend on one another and can therefore be scheduled in parallel across two multiplier instances, rather than sequentially through one multiplier instance as in Newton-Raphson. This parallelism shortens the achievable pipeline depth per iteration (54 cycles versus 69 for Newton-Raphson at the same clock target) at the cost of a second parallel multiplier datapath. The final reciprocal estimate is read from the $N_i$ register once the iteration count is reached.
 
-The bibliography is included in your source document with these two
-commands, placed just before the \verb|\end{document}| command:
-\begin{verbatim}
-  \bibliographystyle{ACM-Reference-Format}
-  \bibliography{bibfile}
-\end{verbatim}
-where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
-suffix, of the \BibTeX\ file.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pipeline4.png}
+\caption{Goldschmidt reciprocal architecture.}
+\Description{Block diagram of the Goldschmidt reciprocal architecture, showing parallel numerator and denominator multiplier paths updated across two refinement iterations.}
+\label{fig:goldschmidt}
+\end{figure}
 
-Citations and references are numbered by default. A small number of
-ACM publications have citations and references formatted in the
-``author year'' style; for these exceptions, please include this
-command in the {\bfseries preamble} (before the command
-``\verb|\begin{document}|'') of your \LaTeX\ source:
-\begin{verbatim}
-  \citestyle{acmauthoryear}
-\end{verbatim}
+\subsection{Hybrid LUT-Interpolation/Newton-Raphson}
+
+The hybrid architecture (module name \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} in the Q8.24 configuration) combines LUT-based interpolation with a single Newton-Raphson refinement stage. It first generates an interpolated reciprocal estimate using a 9-bit LUT-and-interpolation stage, providing a finer initial approximation than the 8-bit seed LUTs used by the standalone iterative architectures. The interpolated estimate is then refined using a single Newton-Raphson iteration of Eq.~(\ref{eq:nr}), rather than applying the iteration directly to a coarse LUT output. Since the interpolated estimate has a smaller initial error, the refinement can achieve substantially higher accuracy while avoiding the deeper pipeline required by the standalone Newton-Raphson architecture. The complete hybrid design comprises four constituent modules: \texttt{reciprocal\_interp9\_q8\_24} for the interpolation seed stage, \texttt{mult32x32\_pipe\_q8\_24} for the shared pipelined multiplier, \texttt{nr\_iterate\_q8\_24} for the single-iteration refinement, and \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} as the top-level integration wrapper.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pipeline5.png}
+\caption{Hybrid LUT-Interpolation/Newton-Raphson reciprocal architecture.}
+\Description{Block diagram of the hybrid reciprocal architecture, showing the 9-bit interpolation seed stage feeding a single Newton-Raphson refinement iteration.}
+\label{fig:hybrid}
+\end{figure}
+
+\subsection{Common Hardware Configuration}
+\label{sec:common-hw}
+
+All five architectures share a common set of implementation conventions to keep the comparison controlled. Each architecture is implemented as a fully pipelined datapath with registers inserted at every internal arithmetic stage boundary, so that after the pipeline fill latency, one new result is produced every clock cycle; this is what allows the Max Throughput (Mops/s) figures reported in Section~\ref{sec:results} to equal the achieved $F_{\max}$ directly, rather than a fraction of it. All five architectures were synthesized and implemented for a Xilinx Artix-7 device (Nexys A7-100T development board, part xc7a100tcsg324-1) using the Xilinx Vivado design suite (2025.2.1), with out-of-context synthesis and full place-and-route implementation performed independently for each architecture/format combination at its own clock target (2.58~ns for the four 387.6~MHz-targeted architectures, 3.33~ns for the hybrid architecture's 300.3~MHz target, per Table~\ref{tab:designparams}). The pipelined multipliers used throughout the iterative and hybrid datapaths map onto the device's DSP48E1 slices, each of which integrates a pre-adder, a $25 \times 18$ multiplier, and a configurable adder/accumulator with internal cascade paths \cite{XilinxUG479}; the DSP utilization figures reported in Table~\ref{tab:resources} are counted in units of these slices. During implementation, multiple Vivado synthesis and implementation optimization strategies were used, including \texttt{AggressiveExplore}, \texttt{ExtraTimingOpt}, and \texttt{Explore} strategies, together with timing-oriented implementation directives, to obtain the best achievable timing under the stated architectural constraints. The same optimization methodology was applied across the architectures rather than relying on a single default implementation strategy. Two architecture/format combinations--Newton-Raphson and Goldschmidt--additionally required attribute-level intervention during physical synthesis (\texttt{dont\_touch} constraints on selected register stages) to prevent Vivado's retiming optimizer from merging or removing intended pipeline register boundaries; this is discussed further in Section~\ref{sec:timing-closure}.
+
+\subsection{Algorithmic Complexity}
+
+Table~\ref{tab:opcount} summarizes each architecture's datapath in terms of primitive operation counts--multiplications, additions/subtractions, and memory reads--per complete reciprocal estimate. Direct LUT requires a single memory read and no arithmetic, while LUT-based interpolation adds one multiply and one add to the two table reads used for the stored breakpoint value and slope. Newton-Raphson performs two refinement iterations, with each iteration requiring two sequential multiplications and one subtraction, giving four multiplications and two subtractions per reciprocal estimate. Goldschmidt also performs two refinement iterations; its initialization requires one multiplication to form $D_0 = xy_0$, the first refinement computes $N_1 = N_0 F_0$ and $D_1 = D_0 F_0$ using two parallel multiplications, and the second refinement computes the final $N_2 = N_1 F_1$, giving four multiplications and two subtractions in total. The hybrid architecture combines one interpolation stage with a single Newton-Raphson refinement, resulting in three multiplications and two additions/subtractions per reciprocal estimate. The parallel organization of Goldschmidt reduces sequential multiplier depth relative to Newton-Raphson without reducing the total arithmetic operation count.
+
+\begin{table}[htbp]
+\caption{Algorithmic Operation Count per Reciprocal Estimate}
+\label{tab:opcount}
+\begin{tabular}{@{}lcccl@{}}
+\toprule
+\textbf{Architecture} & \textbf{Mult.} & \textbf{Add/Sub} & \textbf{Mem. Reads} & \textbf{Seed Table Width} \\
+\midrule
+Direct LUT & 0 & 0 & 1 & 12-bit address \\
+LUT + Interpolation & 1 & 1 & 2 & 11-bit address \\
+Newton-Raphson & 4 & 2 & 1 & 8-bit address \\
+Goldschmidt & 4 & 2 & 1 & 8-bit address \\
+Hybrid & 3 & 2 & 2 & 9-bit address \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Experimental Methodology}
+\label{sec:methodology}
+
+\subsection{Verification Methodology}
+
+Functional correctness and numerical accuracy for all five architectures, in both fixed-point formats, were verified against a common double-precision software reference model computing $1/x$ directly. Each architecture was exercised over one million verification vectors swept uniformly across the input domain $x \in [0.5, 2.5]$, with the hardware (or bit-accurate RTL simulation) output compared against the reference value at matching precision. For each output sample, the signed error is defined in least-significant-bit (LSB) units as
+\begin{equation}
+e[n] = y_{hw}[n] - \mathrm{round}\!\left(y_{ref}[n]\, 2^F\right)
+\label{eq:lsberror}
+\end{equation}
+Here, $y_{hw}[n]$ is the hardware/RTL output represented as a raw integer in the device's Q-format, $y_{ref}[n]$ is the double-precision reference reciprocal, and $F$ is the number of fractional bits for the format under test. For relative-error calculation, the hardware output is converted to real-valued form as $y_{hw,real}[n] = y_{hw}[n]\, 2^{-F}$. The maximum relative error is then defined as
+\begin{equation}
+E_{\max,rel} = \max_n \left( \frac{|y_{hw,real}[n] - y_{ref}[n]|}{|y_{ref}[n]|} \right) \times 100\%
+\label{eq:maxrelerror}
+\end{equation}
+Maximum relative error is used as the primary accuracy metric in the Pareto analysis of Section~\ref{sec:pareto} because, unlike a raw LSB count, it is directly comparable across the two evaluated fixed-point formats: one LSB of Q8.24 ($2^{-24}$) and one LSB of Q16.16 ($2^{-16}$) represent different absolute quantities, so an LSB-based error metric cannot be used to rank accuracy across formats without first normalizing by format resolution, which the relative-error metric does implicitly. All pipelined architectures exhibit a warm-up transient during the first $N_{cycles}$ output samples, corresponding to the pipeline fill period before the first valid result reaches the output register; these initial samples are excluded from all summary error statistics and are visualized explicitly in Section~\ref{sec:accuracy} (pipeline warm-up plots).
+
+\subsection{Timing Closure}
+\label{sec:timing-closure}
+
+Timing closure was the most implementation-intensive part of this work, particularly for the two full iterative architectures (Newton-Raphson and Goldschmidt), each of which required multiple revision cycles to close timing at their 387.6~MHz target on the Artix-7 fabric. Several recurring classes of timing violation were encountered and resolved across the iterative architectures' revision history. First, wide fixed-point adders synthesized as single-stage CARRY4 chains repeatedly failed to meet the target period and had to be manually split across pipeline stage boundaries (e.g., separating a cross-term adder from the final high-order sum in the pipelined multiplier). Second, Vivado's register-merge retiming optimization was found to silently undo manually inserted pipeline splits by merging what were intended as two distinct pipeline stages back into one combinational block. Register retiming is, in general, a valuable transformation that moves registers across combinational logic to balance path delays without changing observable circuit behavior \cite{LeisersonSaxe91}, and is applied productively to FPGA pipelines in techniques such as C-slow retiming \cite{WeaverMarkovskiyPatelWawrzynek03}; the difficulty encountered here was that automatic retiming, applied uniformly, merged register boundaries the design deliberately relied on as physical pipeline-stage markers. This was resolved by applying \texttt{dont\_touch} (and, in one case, a synthesis-level \texttt{keep}) attributes to the registers marking the intended stage boundary, since a \texttt{shreg\_extract="no"} attribute alone was found to be insufficient to prevent this class of retiming. Third, DSP48E1 cascade inference was found to occasionally fuse an intended register boundary directly into the DSP slice's internal C-port cascade path, bypassing the pipeline register the designer intended to be a hard stage boundary; this required explicit attribute-level or structural intervention to restore the intended pipeline stage count.
+
+A related correctness (rather than timing) issue surfaced during this process: a one-cycle discrepancy in the reported latency of a signed dedicated-adder submodule (\texttt{dsp\_add18x18\_signed}) caused a systematic, low-probability functional error that was only caught by the full one-million-vector verification sweep described in Section~\ref{sec:methodology}.A rather than by smaller directed test sets, underscoring the value of exhaustive-range verification for pipelined fixed-point arithmetic where an off-by-one-cycle latency bug can silently corrupt only a small fraction of the output space. Once identified, the fix consisted of correcting the tracked \texttt{MULT\_LATENCY} parameter used to align data with its corresponding valid/control signal through the pipeline, together with a corrected operand-port assignment inside the same submodule.
+
+\subsection{Power and Energy Measurement}
+
+Dynamic and static power figures reported in Section~\ref{sec:power} are obtained from Vivado's post-implementation power analysis for each architecture/format combination, using the achieved (post-place-and-route) clock frequency and a representative input-activity profile matched to the verification input distribution described in Section~\ref{sec:methodology}.A. Because every evaluated architecture is fully pipelined to produce one valid output per clock cycle once its pipeline is filled, the sustained throughput of each architecture in operations per second is equal to its achieved $F_{\max}$, and the energy consumed per reciprocal operation is computed directly from total power and throughput as
+\begin{equation}
+E_{op} = \frac{P_{total}}{F_{\max}}
+\label{eq:energyop}
+\end{equation}
+This relationship is the basis of every Energy/op figure reported in Table~\ref{tab:power} and used throughout the Pareto analysis of Section~\ref{sec:pareto}, and was confirmed to reproduce the reported Energy/op values for all ten architecture/format combinations to within measurement rounding. Reported latency in nanoseconds (Table~\ref{tab:timing}) is computed separately from the achieved $F_{\max}$, as the product of the architecture's fixed pipeline depth in clock cycles and its target clock period:
+\begin{equation}
+L_{ns} = N_{cycles} \times T_{target}
+\label{eq:latency}
+\end{equation}
+using the target clock period from Table~\ref{tab:designparams} rather than the achieved period, so that latency reflects the architecture's designed pipeline depth independent of any timing margin achieved beyond the target frequency.
+
+\section{Experimental Results}
+\label{sec:results}
+
+This section presents post-implementation results across resource utilization, timing and latency, numerical accuracy, and power/energy for all five architectures in both evaluated fixed-point formats, followed by a direct cross-format comparison in Section~\ref{sec:crossformat}.
+
+\subsection{Resource Utilization}
+
+Table~\ref{tab:resources} reports post-implementation resource utilization for all ten architecture/format combinations. The Direct LUT architecture consumes negligible LUT and flip-flop resources but requires \textbf{3.5 BRAMs in Q8.24, tied with LUT-based interpolation for the largest BRAM allocation among the evaluated configurations}, since it must store a full-precision reciprocal value at every one of its 4096 addressable entries. The two full iterative architectures (Newton-Raphson and Goldschmidt) consume an order of magnitude more LUTs and flip-flops than the table-based architectures, reflecting their pipelined multiplier datapaths, and both consume the maximum 20 DSP48E1 slices allocated to the pipelined multiplier chains. The hybrid architecture sits between the interpolation and full-iterative architectures on LUT/FF count, consistent with its interpolated seed followed by a single Newton-Raphson refinement iteration, while requiring roughly half the DSP count of the full iterative architectures (9 versus 20). This lower DSP utilization results from performing only one Newton-Raphson refinement iteration after interpolation, rather than the two refinement iterations used by the standalone Newton-Raphson architecture.
+
+\begin{table}[htbp]
+\caption{Post-Implementation Resource Utilization}
+\label{tab:resources}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{LUT} & \textbf{LUT\%} & \textbf{FF} & \textbf{DSP} & \textbf{BRAM} \\
+\midrule
+Direct LUT & Q8.24 & 19 & 0.03\% & 84 & 0 & 3.5 \\
+Direct LUT & Q16.16 & 2 & 0.003\% & 51 & 0 & 2.5 \\
+LUT + Interp. & Q8.24 & 159 & 0.25\% & 685 & 1 & 3.5 \\
+LUT + Interp. & Q16.16 & 119 & 0.19\% & 647 & 1 & 2.0 \\
+Newton-Raphson & Q8.24 & 966 & 1.52\% & 3612 & 20 & 0.5 \\
+Newton-Raphson & Q16.16 & 849 & 1.34\% & 3340 & 20 & 0.5 \\
+Goldschmidt & Q8.24 & 846 & 1.33\% & 3656 & 20 & 0.5 \\
+Goldschmidt & Q16.16 & 722 & 1.14\% & 3385 & 20 & 0.5 \\
+Hybrid & Q8.24 & 768 & 1.21\% & 2626 & 9 & 1.0 \\
+Hybrid & Q16.16 & 799 & 1.26\% & 2586 & 9 & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_resource.png}
+\caption{Post-implementation LUT, flip-flop, DSP, and BRAM utilization by architecture, Q8.24.}
+\Description{Bar chart comparing LUT, flip-flop, DSP, and BRAM utilization across the five reciprocal architectures in Q8.24 format.}
+\label{fig:util824}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_resource.png}
+\caption{Post-implementation LUT, flip-flop, DSP, and BRAM utilization by architecture, Q16.16.}
+\Description{Bar chart comparing LUT, flip-flop, DSP, and BRAM utilization across the five reciprocal architectures in Q16.16 format.}
+\label{fig:util1616}
+\end{figure}
+
+\subsection{Timing and Latency}
+
+Table~\ref{tab:timing} reports the achieved maximum frequency ($F_{\max}$), worst negative slack (WNS) at the target clock period, pipeline depth, and corresponding latency calculated using Eq.~(\ref{eq:latency}). All ten architecture/format combinations achieve timing closure with positive slack at their respective target periods. The Direct LUT architecture has the shortest pipeline depth, requiring 5 cycles for Q8.24 and 3 cycles for Q16.16, resulting in the lowest absolute latency among the evaluated architectures. In contrast, the Newton-Raphson architecture requires the deepest pipeline at 69 cycles, reflecting the four sequentially dependent multiplication stages arising from its two refinement iterations, as described in Section~\ref{sec:design}.C. Goldschmidt reduces the pipeline depth to 54 cycles by exploiting parallelism between intermediate multiplier operations, representing an approximately 22\% reduction in pipeline depth relative to Newton-Raphson.
+
+\begin{table}[htbp]
+\caption{Post-Implementation Timing and Latency}
+\label{tab:timing}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{$F_{\max}$ (MHz)} & \textbf{WNS (ns)} & \textbf{Latency (cyc.)} & \textbf{Latency (ns)} & \textbf{Throughput (Mops/s)} \\
+\midrule
+Direct LUT & Q8.24 & 392.77 & 0.034 & 5 & 12.90 & 392.77 \\
+Direct LUT & Q16.16 & 519.21 & 0.654 & 3 & 7.74 & 519.21 \\
+LUT + Interp. & Q8.24 & 429.74 & 0.253 & 16 & 41.28 & 429.74 \\
+LUT + Interp. & Q16.16 & 424.45 & 0.224 & 16 & 41.28 & 424.45 \\
+Newton-Raphson & Q8.24 & 399.20 & 0.075 & 69 & 178.02 & 399.20 \\
+Newton-Raphson & Q16.16 & 392.62 & 0.033 & 69 & 178.02 & 392.62 \\
+Goldschmidt & Q8.24 & 396.35 & 0.057 & 54 & 139.32 & 396.35 \\
+Goldschmidt & Q16.16 & 394.94 & 0.048 & 54 & 139.32 & 394.94 \\
+Hybrid & Q8.24 & 316.06 & 0.169 & 40 & 133.20 & 316.06 \\
+Hybrid & Q16.16 & 305.06 & 0.055 & 40 & 133.20 & 305.06 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_fmax.png}
+\caption{Post-implementation $F_{\max}$, latency (cycles), total power, and energy per operation by architecture, Q8.24.}
+\Description{Grouped bar chart of maximum frequency, latency in cycles, total power, and energy per operation for each architecture in Q8.24 format.}
+\label{fig:summary824}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_fmax.png}
+\caption{Post-implementation $F_{\max}$, latency (cycles), total power, and energy per operation by architecture, Q16.16.}
+\Description{Grouped bar chart of maximum frequency, latency in cycles, total power, and energy per operation for each architecture in Q16.16 format.}
+\label{fig:summary1616}
+\end{figure}
+
+\subsection{Numerical Accuracy}
+\label{sec:accuracy}
+
+Table~\ref{tab:accuracy} summarizes the four accuracy metrics defined in Section~\ref{sec:methodology}.A for all ten architecture/format combinations. As expected from the architectural discussion in Sections~\ref{sec:design}.A-\ref{sec:design}.D, the two table-based architectures exhibit the largest maximum relative error (0.098\% for Direct LUT and 0.0104\% for LUT with Interpolation, both in Q8.24), while the two full iterative architectures achieve error more than three orders of magnitude smaller ($1.5\times10^{-5}$\% for Newton-Raphson and $2.0\times10^{-5}$\% for Goldschmidt, Q8.24). The hybrid architecture, benefiting from a single refinement iteration applied to an already-interpolated seed, achieves a maximum relative error of $4.09\times10^{-4}$\%--roughly 25$\times$ worse than the full iterative architectures but more than 25$\times$ better than interpolation alone, consistent with the intermediate positioning described in Section~\ref{sec:design}.E.
+
+\begin{table*}[htbp]
+\caption{Numerical Accuracy Summary (1,000,000-Vector Sweep, $x \in [0.5, 2.5]$)}
+\label{tab:accuracy}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{Max Abs Error (real)} & \textbf{MAE (real)} & \textbf{RMSE (LSB)} & \textbf{Max Rel. Error (\%)} \\
+\midrule
+Direct LUT & Q8.24 & $1.950\times10^{-3}$ & $1.95\times10^{-4}$ & 5440.20 & 0.097596 \\
+Direct LUT & Q16.16 & $1.892\times10^{-3}$ & $1.89\times10^{-4}$ & 20.75 & 0.094787 \\
+LUT + Interpolation & Q8.24 & $2.079\times10^{-4}$ & $\approx 0$ & 11.70 & 0.010396 \\
+LUT + Interpolation & Q16.16 & $1.831\times10^{-4}$ & $7.49\times10^{-6}$ & 0.71 & 0.009156 \\
+Newton-Raphson & Q8.24 & $1.192\times10^{-7}$ & $\approx 0$ & 0.45 & 0.000015 \\
+Newton-Raphson & Q16.16 & $3.526\times10^{-5}$ & $3.11\times10^{-6}$ & 0.45 & 0.003815 \\
+Goldschmidt & Q8.24 & $1.788\times10^{-7}$ & $2.15\times10^{-8}$ & 0.62 & 0.000020 \\
+Goldschmidt & Q16.16 & $3.052\times10^{-5}$ & $3.81\times10^{-6}$ & 0.51 & 0.003814 \\
+Hybrid & Q8.24 & $8.166\times10^{-6}$ & $1.60\times10^{-6}$ & 38.60 & 0.000409 \\
+Hybrid & Q16.16 & $7.629\times10^{-5}$ & $3.86\times10^{-6}$ & 0.59 & 0.004118 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Figs.~\ref{fig:errdist824}-\ref{fig:errdistlog824} show the distribution of signed error across all five Q8.24 architectures, first in raw LSB units and then on a log-compressed $|e|$ scale to make the tails of the heavier-tailed distributions (Direct LUT, Hybrid) visible alongside the tightly concentrated iterative architectures. The corresponding Q16.16 distributions are shown in Figs.~\ref{fig:errdist1616}-\ref{fig:errdistlog1616}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_signederror.png}
+\caption{Signed error distributions by architecture, Q8.24 (raw LSB units).}
+\Description{Overlaid histograms of signed reciprocal error in LSB units for each of the five architectures in Q8.24 format.}
+\label{fig:errdist824}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_abserr.png}
+\caption{Absolute error distributions by architecture, Q8.24 ($\log_{10}(1+|e|)$ scale).}
+\Description{Overlaid histograms of absolute reciprocal error on a log-compressed scale for each of the five architectures in Q8.24 format.}
+\label{fig:errdistlog824}
+\end{figure}
+
+Fig.~\ref{fig:zerolsb824} decomposes the error population for each architecture into the fraction of outputs with zero LSB error relative to the quantized fixed-point reference and the distribution of nonzero errors. The zero-LSB fraction varies substantially across the architectures. Newton-Raphson and Goldschmidt produce exact agreement with the quantized fixed-point reference for a large fraction of test vectors, whereas the hybrid architecture exhibits predominantly nonzero errors despite its substantially lower maximum relative error than the interpolation-only design.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_zeroerr.png}
+\caption{Zero-LSB output fraction and distribution of nonzero errors by architecture, Q8.24.}
+\Description{Bar chart of zero-LSB output fraction alongside a distribution of nonzero errors for each architecture in Q8.24 format.}
+\label{fig:zerolsb824}
+\end{figure}
+
+Figs.~\ref{fig:maxabserr824}-\ref{fig:maxrelerr824} show how the maximum absolute and maximum relative error vary as a function of the input value $x$ across the domain $[0.5, 2.5]$. For all five architectures, error is concentrated toward the lower end of the input domain, where the local slope of $1/x$ is steepest and a fixed quantization step in $x$ therefore maps to a larger quantization step in $1/x$; error decreases monotonically (Direct LUT) or in a sawtooth pattern tied to breakpoint/table boundaries (Interpolation, Goldschmidt, Hybrid) as $x$ increases toward 2.5.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_relerr.png}
+\caption{Maximum relative error as a function of input value $x$, by architecture, Q8.24.}
+\Description{Line plot of maximum relative error versus input value x for each architecture in Q8.24 format.}
+\label{fig:maxrelerr824}
+\end{figure}
+
+Fig.~\ref{fig:warmup824} shows the pipeline warm-up transient discussed in Section~\ref{sec:methodology}.A: for each architecture, the first $N_{cycles}$ output samples (shaded) correspond to the pipeline fill period and do not represent valid steady-state outputs; these samples are excluded from all summary statistics reported in Table~\ref{tab:accuracy}. Fig.~\ref{fig:percentile824} presents the complementary cumulative view, showing absolute error as a function of output percentile across the full one-million-vector sweep, which makes clear that all five architectures' worst-case error is concentrated in a small percentile tail rather than being representative of typical-case behavior.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_pipelinewarmup.png}
+\caption{Pipeline warm-up transient by architecture (shaded region = pipeline fill period), Q8.24.}
+\Description{Time series plot of output error during the initial pipeline fill period for each architecture in Q8.24 format, with the warm-up region shaded.}
+\label{fig:warmup824}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q8_errorpercentile.png}
+\caption{Absolute error as a function of output percentile, all architectures, Q8.24.}
+\Description{Line plot of absolute error versus output percentile for all five architectures in Q8.24 format.}
+\label{fig:percentile824}
+\end{figure}
+
+The corresponding Q16.16 error-distribution, worst-case, warm-up, and percentile figures are reproduced in Figs.~\ref{fig:errdist1616}-\ref{fig:percentile1616} for direct comparison against the Q8.24 results above; the cross-format differences visible between these figure pairs are discussed quantitatively in Section~\ref{sec:crossformat}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_signederror.png}
+\caption{Signed error distributions by architecture, Q16.16 (raw LSB units).}
+\Description{Overlaid histograms of signed reciprocal error in LSB units for each of the five architectures in Q16.16 format.}
+\label{fig:errdist1616}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_abserr.png}
+\caption{Absolute error distributions by architecture, Q16.16 ($\log_{10}(1+|e|)$ scale).}
+\Description{Overlaid histograms of absolute reciprocal error on a log-compressed scale for each of the five architectures in Q16.16 format.}
+\label{fig:errdistlog1616}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_zeroerr.png}
+\caption{Zero-LSB output fraction and distribution of nonzero errors by architecture, Q16.16.}
+\Description{Bar chart of zero-LSB output fraction alongside a distribution of nonzero errors for each architecture in Q16.16 format.}
+\label{fig:zerolsb1616}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_relerr.png}
+\caption{Maximum relative error as a function of input value $x$, by architecture, Q16.16.}
+\Description{Line plot of maximum relative error versus input value x for each architecture in Q16.16 format.}
+\label{fig:maxrelerr1616}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_pipelinewarmup.png}
+\caption{Pipeline warm-up transient by architecture (shaded region = pipeline fill period), Q16.16.}
+\Description{Time series plot of output error during the initial pipeline fill period for each architecture in Q16.16 format, with the warm-up region shaded.}
+\label{fig:warmup1616}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/q16_errorpercentile.png}
+\caption{Absolute error as a function of output percentile, all architectures, Q16.16.}
+\Description{Line plot of absolute error versus output percentile for all five architectures in Q16.16 format.}
+\label{fig:percentile1616}
+\end{figure}
+
+\subsection{Power and Energy}
+\label{sec:power}
+
+Table~\ref{tab:power} reports dynamic, static, and total power together with the derived energy per operation (Eq.~(\ref{eq:energyop})) for all ten architecture/format combinations. Total power scales closely with DSP and flip-flop count: the two full iterative architectures consume the most total power (0.475-0.483~W) and, combined with their long pipeline latency, the most energy per operation (1.19-1.22~nJ/op) of any evaluated architecture. The Direct LUT architecture is the most energy-efficient in both formats (0.346-0.412~nJ/op), reflecting both its minimal dynamic power draw and its short pipeline. Static power is essentially constant (0.091-0.092~W) across all ten combinations, as expected since it is dominated by device leakage rather than architecture-specific switching activity.
+
+\begin{table}[htbp]
+\caption{Post-Implementation Power and Energy}
+\label{tab:power}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{Dynamic P (W)} & \textbf{Static P (W)} & \textbf{Total P (W)} & \textbf{Energy/op (nJ)} \\
+\midrule
+Direct LUT & Q8.24 & 0.045 & 0.091 & 0.136 & 0.346 \\
+Direct LUT & Q16.16 & 0.122 & 0.092 & 0.214 & 0.412 \\
+LUT + Interp. & Q8.24 & 0.083 & 0.091 & 0.174 & 0.405 \\
+LUT + Interp. & Q16.16 & 0.070 & 0.091 & 0.161 & 0.379 \\
+Newton-Raphson & Q8.24 & 0.383 & 0.092 & 0.475 & 1.190 \\
+Newton-Raphson & Q16.16 & 0.366 & 0.092 & 0.458 & 1.167 \\
+Goldschmidt & Q8.24 & 0.391 & 0.092 & 0.483 & 1.219 \\
+Goldschmidt & Q16.16 & 0.385 & 0.092 & 0.477 & 1.208 \\
+Hybrid & Q8.24 & 0.227 & 0.092 & 0.319 & 1.009 \\
+Hybrid & Q16.16 & 0.228 & 0.092 & 0.320 & 1.049 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Format Comparison}
+\label{sec:crossformat}
+
+Figs.~\ref{fig:cross_fmax}-\ref{fig:cross_full} directly compare Q8.24 and Q16.16 across achieved $F_{\max}$ and latency, LUT/DSP resource usage, total power and energy per operation, and full four-metric resource utilization, respectively. Two cross-format effects are evident. First, Direct LUT and LUT-with-Interpolation achieve markedly higher $F_{\max}$ in Q16.16 than in Q8.24, with Direct LUT increasing from 392.8~MHz to 519.2~MHz. This difference is consistent with the narrower output representation and the resulting implementation of the BRAM/output datapath, although the exact timing improvement depends on the post-implementation critical paths. In contrast, Newton-Raphson, Goldschmidt, and Hybrid show comparatively smaller $F_{\max}$ differences between the two formats, reflecting the greater influence of their pipelined arithmetic datapaths on the achieved timing.
+
+Second, the iterative and hybrid architectures exhibit substantially different accuracy behavior across the two formats. Newton-Raphson and Goldschmidt, both seeded from 8-bit coarse lookup tables, show substantially higher maximum relative error in Q16.16 than in Q8.24, by approximately two orders of magnitude. The Hybrid architecture, which uses a 9-bit interpolated seed followed by a Newton-Raphson refinement, also shows a higher maximum relative error in Q16.16. This behavior is consistent with the reduced fractional precision of Q16.16, which provides fewer bits for representing intermediate and final correction terms throughout the fixed-point refinement process.
+
+These results illustrate that the effect of fixed-point format extends beyond numerical representation alone and influences the measured timing and accuracy characteristics of the architectures. Consequently, the relative trade-offs among accuracy, latency, and energy depend on both the reciprocal algorithm and the fixed-point format used by the surrounding system.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/fmax_latency_plot.png}
+\caption{Achieved $F_{\max}$ and latency (ns) by architecture, Q8.24 vs. Q16.16.}
+\Description{Grouped bar chart comparing achieved maximum frequency and latency between Q8.24 and Q16.16 for each architecture.}
+\label{fig:cross_fmax}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/lut_dsp_bar_plot.png}
+\caption{LUT and DSP utilization by architecture, Q8.24 vs. Q16.16.}
+\Description{Grouped bar chart comparing LUT and DSP utilization between Q8.24 and Q16.16 for each architecture.}
+\label{fig:cross_lutdsp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/power_energy_plot.png}
+\caption{Total power and energy per operation by architecture, Q8.24 vs. Q16.16.}
+\Description{Grouped bar chart comparing total power and energy per operation between Q8.24 and Q16.16 for each architecture.}
+\label{fig:cross_power}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/resources_plot.png}
+\caption{Full resource utilization (LUT, FF, DSP, BRAM) by architecture, Q8.24 vs. Q16.16.}
+\Description{Grouped bar chart comparing LUT, flip-flop, DSP, and BRAM utilization between Q8.24 and Q16.16 for each architecture.}
+\label{fig:cross_full}
+\end{figure}
+
+\section{Pareto Trade-off Analysis}
+\label{sec:pareto}
+
+\subsection{Pareto Formulation}
+
+The results of Section~\ref{sec:results} show that no single architecture dominates the others across every metric of interest. The relative ordering depends on the fixed-point format and the metric considered: the iterative architectures provide substantially lower numerical error than the table-based approaches, but generally incur higher latency and energy per operation, whereas the Direct LUT architecture provides the shortest latency with low energy per operation at the cost of higher approximation error. To characterize these trade-offs rigorously rather than anecdotally, this section applies a three-objective Pareto analysis over maximum relative error, latency, and energy per operation:
+\begin{equation}
+\text{minimize} \; \{ E_{\max,rel},\, L_{ns},\, E_{op} \}
+\label{eq:paretomin}
+\end{equation}
+Hardware resource utilization (LUT, FF, DSP, BRAM) is deliberately reported separately (Table~\ref{tab:resources}) rather than folded into the Pareto objective set above. A composite resource metric would require assigning relative weights across four resource types with different device-level scarcity and cost characteristics (e.g., BRAM versus DSP), and any such weighting would introduce a design choice into what is intended to be an objective, data-driven comparison; a design's resource cost is instead read directly from Table~\ref{tab:resources} alongside its position on the Pareto front. Given this three-objective formulation, an architecture $A$ is said to dominate an architecture $B$ if $A$ is no worse than $B$ on all three objectives and strictly better on at least one:
+\begin{equation}
+A \succ B \iff \left(\forall k \in \{E_{rel}, L, E_{op}\} : A_k \le B_k\right) \land \left(\exists k : A_k < B_k\right)
+\label{eq:dominance}
+\end{equation}
+An architecture is Pareto-optimal (non-dominated) if no other evaluated architecture dominates it under this relation. Energy-delay product (EDP $= E_{op} \times L_{ns}$) is computed separately as a secondary, derived metric (Section~\ref{sec:pareto}.D) rather than substituted for latency and energy as a combined objective, since two architectures with identical EDP can have substantially different individual energy and latency characteristics that matter for system-level integration (e.g., a hard real-time latency budget versus a battery energy budget), and collapsing the two into one number would discard that distinction.
+
+\subsection{Pareto Fronts}
+
+Fig.~\ref{fig:paretofront} plots each architecture's position in the latency-energy plane for both fixed-point formats, with marker size inversely related to maximum relative error: larger markers indicate lower maximum relative error. A single global marker-size scale is shared across both panels so that marker sizes are directly comparable between the Q8.24 and Q16.16 results rather than only within each format. Applying the dominance relation of Eq.~(\ref{eq:dominance}) to all five architectures within each format shows that all five architectures are non-dominated in both Q8.24 and Q16.16: no evaluated architecture is simultaneously no worse than another architecture on all three objectives while being strictly better on at least one. Thus, each architecture represents a distinct trade-off point in the three-dimensional accuracy-latency-energy objective space, and the resulting Pareto set reflects different combinations of numerical accuracy, latency, and energy per operation rather than a single architecture dominating across all three objectives.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/pareto_front_plot.png}
+\caption{Pareto trade-off in the latency-energy plane, by architecture, Q8.24 (left) and Q16.16 (right). Marker size is proportional to accuracy (max relative error) on a shared global scale across both panels; all five architectures are mutually non-dominated in both formats.}
+\Description{Scatter plot showing each architecture's position in the latency-energy plane for Q8.24 and Q16.16, with marker size representing accuracy.}
+\label{fig:paretofront}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\columnwidth]{figures/radar_chart_plot.png}
+\hfill
+\includegraphics[width=0.48\columnwidth]{figures/pareto_score_plot.png}
+
+\caption{Pareto score comparison for the evaluated architectures.}
+\Description{Two plots showing normalized Pareto scores for the evaluated architectures.}
+\label{fig:pareto_comparison}
+\end{figure}
 
 
-  Some examples.  A paginated journal article \cite{Abril07}, an
-  enumerated journal article \cite{Cohen07}, a reference to an entire
-  issue \cite{JCohen96}, a monograph (whole book) \cite{Kosiur01}, a
-  monograph/whole book in a series (see 2a in spec. document)
-  \cite{Harel79}, a divisible-book such as an anthology or compilation
-  \cite{Editor00} followed by the same example, however we only output
-  the series if the volume number is given \cite{Editor00a} (so
-  Editor00a's series should NOT be present since it has no vol. no.),
-  a chapter in a divisible book \cite{Spector90}, a chapter in a
-  divisible book in a series \cite{Douglass98}, a multi-volume work as
-  book \cite{Knuth97}, a couple of articles in a proceedings (of a
-  conference, symposium, workshop for example) (paginated proceedings
-  article) \cite{Andler79, Hagerup1993}, a proceedings article with
-  all possible elements \cite{Smith10}, an example of an enumerated
-  proceedings article \cite{VanGundy07}, an informally published work
-  \cite{Harel78}, a couple of preprints \cite{Bornmann2019,
-    AnzarootPBM14}, a doctoral dissertation \cite{Clarkson85}, a
-  master's thesis: \cite{anisi03}, an online document / world wide web
-  resource \cite{Thornburg01, Ablamowicz07, Poker06}, a video game
-  (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03} and \cite{Lee05}
-  and (Case 3) a patent \cite{JoeScientist001}, work accepted for
-  publication \cite{rous08}, 'YYYYb'-test for prolific author
-  \cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might
-  contain 'duplicate' DOI and URLs (some SIAM articles)
-  \cite{Kirschmer:2010:AEI:1958016.1958018}. Boris / Barbara Beeton:
-  multi-volume works as books \cite{MR781536} and \cite{MR781537}. A
-  presentation~\cite{Reiser2014}. An article under
-  review~\cite{Baggett2025}. A
-  couple of citations with DOIs:
-  \cite{2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018}. Online
-  citations: \cite{TUGInstmem, Thornburg01, CTANacmart}.
-  Artifacts: \cite{R} and \cite{UMassCitations}.
+\subsection{Trade-off Analysis}
 
-\section{Acknowledgments}
+Within the Q8.24 non-dominated set, Direct LUT occupies the low-latency and low-energy region of the trade-off surface, with a latency of 12.9~ns, energy of 0.346~nJ/op, and maximum relative error of 0.098\%. Newton-Raphson occupies the high-accuracy region, achieving $1.5\times10^{-5}$\% maximum relative error at 178.0~ns latency and 1.190~nJ/op. Goldschmidt provides comparable numerical accuracy, with a maximum relative error of $2.0\times10^{-5}$\%, while reducing latency by approximately 22\% to 139.3~ns. This latency reduction is accompanied by a small increase in energy per operation, from 1.190 to 1.219~nJ/op (approximately 2.4\%). Thus, the measured Goldschmidt implementation represents a lower-latency alternative to Newton-Raphson when latency is prioritized over a small difference in energy per operation.
 
-Identification of funding sources and other support, and thanks to
-individuals and groups that assisted in the research and the
-preparation of the work should be included in an acknowledgment
-section, which is placed just before the reference section in your
-document.
+The hybrid architecture occupies an intermediate region of the trade-off surface. It achieves 133.2~ns latency and 1.009~nJ/op, both lower than the corresponding values of the full iterative architectures, while achieving a maximum relative error of $4.09\times10^{-4}$\%. This represents more than an order-of-magnitude improvement over interpolation-only accuracy ($1.04\times10^{-2}$\%). The result demonstrates the distinct trade-off obtained by combining a 9-bit interpolated seed with a single Newton-Raphson refinement, providing an intermediate accuracy, latency, energy, and DSP-utilization point between table-based and fully iterative approaches.
 
-This section has a special environment:
-\begin{verbatim}
-  \begin{acks}
-  ...
-  \end{acks}
-\end{verbatim}
-so that the information contained therein can be more easily collected
-during the article metadata extraction phase, and to ensure
-consistency in the spelling of the section heading.
+\subsection{Energy-Delay Product}
 
-Authors should not prepare this section as a numbered or unnumbered {\verb|\section|}; please use the ``{\verb|acks|}'' environment.
+Table~\ref{tab:edp} reports energy-delay product (EDP $= E_{op} \times L_{ns}$) for all ten architecture/format combinations as a secondary, derived summary metric, per the reasoning in Section~\ref{sec:pareto}.A. EDP reproduces the same broad ranking as the individual latency and energy metrics--Direct LUT lowest, the full iterative architectures highest--but is useful as a single figure of merit when comparing architectures for applications where the product of speed and efficiency, rather than either quantity alone, is the relevant system-level cost function (for example, when energy is consumed only while a result is pending, so a design that is twice as fast for the same power is preferable to a design with half the power at the same latency).
 
-\section{Appendices}
+\begin{table}[htbp]
+\caption{Energy-Delay Product (EDP = Energy/op $\times$ Latency)}
+\label{tab:edp}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{Energy/op (nJ)} & \textbf{EDP (nJ$\cdot$ns)} \\
+\midrule
+Direct LUT & Q8.24 & 0.346 & 4.46 \\
+Direct LUT & Q16.16 & 0.412 & 3.19 \\
+LUT + Interpolation & Q8.24 & 0.405 & 16.72 \\
+LUT + Interpolation & Q16.16 & 0.379 & 15.66 \\
+Newton-Raphson & Q8.24 & 1.190 & 211.80 \\
+Newton-Raphson & Q16.16 & 1.167 & 207.68 \\
+Goldschmidt & Q8.24 & 1.219 & 169.79 \\
+Goldschmidt & Q16.16 & 1.208 & 168.24 \\
+Hybrid & Q8.24 & 1.009 & 134.44 \\
+Hybrid & Q16.16 & 1.049 & 139.73 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-If your work needs an appendix, add it before the
-``\verb|\end{document}|'' command at the conclusion of your source
-document.
+\section{Discussion}
+\label{sec:discussion}
 
-Start the appendix with the ``\verb|appendix|'' command:
-\begin{verbatim}
-  \appendix
-\end{verbatim}
-and note that in the appendix, sections are lettered, not
-numbered. This document has two appendices, demonstrating the section
-and subsection identification method.
+\subsection{Architecture-Level Trade-offs}
 
-\section{Multi-language papers}
+The results of Sections~\ref{sec:results} and~\ref{sec:pareto} illustrate several distinct architecture-level trade-offs. For applications in which latency and energy are important constraints and an error on the order of \textbf{0.1\%} is acceptable, the \textbf{Direct LUT} architecture provides the shortest pipeline and negligible logic utilization, while requiring one of the largest BRAM footprints among the evaluated designs. For the \textbf{Q8.24} results, applications requiring maximum relative error below approximately $\mathbf{10^{-4}}$\% are served by the full iterative architectures, which provide substantially higher numerical accuracy than the table-based approaches. Within this accuracy range, \textbf{Goldschmidt} achieves comparable accuracy to Newton-Raphson while reducing latency by approximately \textbf{22\%}. This latency reduction is accompanied by an energy-per-operation increase of approximately \textbf{2.4\% in Q8.24 and 3.5\% in Q16.16}. The \textbf{hybrid} architecture provides a distinct intermediate trade-off by combining a 9-bit interpolated seed with a single Newton-Raphson refinement. It achieves substantially lower error than interpolation alone while reducing the hardware cost of full iterative refinement, with approximately \textbf{75\% of the Newton-Raphson latency and 45\% of the DSP utilization of either full iterative architecture}.
 
-Papers may be written in languages other than English or include
-titles, subtitles, keywords and abstracts in different languages (as a
-rule, a paper in a language other than English should include an
-English title and an English abstract).  Use \verb|language=...| for
-every language used in the paper.  The last language indicated is the
-main language of the paper.  For example, a French paper with
-additional titles and abstracts in English and German may start with
-the following command
-\begin{verbatim}
-\documentclass[sigconf, language=english, language=german,
-               language=french]{acmart}
-\end{verbatim}
+\subsection{Applicability}
 
-The title, subtitle, keywords and abstract will be typeset in the main
-language of the paper.  The commands \verb|\translatedXXX|, \verb|XXX|
-begin title, subtitle and keywords, can be used to set these elements
-in the other languages.  The environment \verb|translatedabstract| is
-used to set the translation of the abstract.  These commands and
-environment have a mandatory first argument: the language of the
-second argument.  See \verb|sample-sigconf-i13n.tex| file for examples
-of their usage.
+The reciprocal approximation architectures evaluated in this work are applicable wherever a fixed-point, division-free reciprocal is required as a building block within a larger FPGA arithmetic pipeline. Representative applications include normalization stages in adaptive and statistical signal processing, such as computing a z-score or an Ornstein-Uhlenbeck mean-reversion signal, where division by a continuously updated scale or standard-deviation term may be required; coordinate and vector normalization in graphics and radar/sonar signal chains, where a reciprocal can precede a subsequent multiplication; and fixed-point implementations of floating-point-adjacent arithmetic, where reciprocal computation forms part of mantissa normalization and division. In these settings, the appropriate architecture depends on the required combination of \textbf{numerical precision, latency, throughput, resource utilization, and energy}, with the evaluated designs occupying different regions of the corresponding trade-off space rather than a single architecture being universally optimal.
 
-%%
-%% The acknowledgments section is defined using the "acks" environment
-%% (and NOT an unnumbered section). This ensures the proper
-%% identification of the section in the article metadata, and the
-%% consistent spelling of the heading.
-\begin{acks}
-To Robert, for the bagels and explaining CMYK and color spaces.
-\end{acks}
+\subsection{Limitations}
 
+Several limitations should be considered when interpreting and generalizing the results. First, all experiments use a single input domain, $x \in [0.5, 2.5]$. Although this range represents the normalized reciprocal domain considered in Section~\ref{sec:background}.A and captures the characteristic error concentration near the lower bound discussed in Section~\ref{sec:accuracy}, the evaluation does not include alternative or non-uniform input distributions. Such distributions may alter the observed accuracy and performance trade-offs among the architectures.
+
+Second, the evaluation is limited to a single FPGA family, Xilinx Artix-7. The relative costs of BRAM, DSP, LUT, and FF resources are device-dependent; consequently, the specific resource-utilization trade-offs reported in Table~\ref{tab:resources} may differ on other FPGA families or vendor platforms. The timing and power characteristics may likewise change with the underlying device architecture and implementation resources.
+
+Third, the study does not include a direct comparison with vendor-supplied divider or reciprocal IP cores, such as Xilinx LogiCORE-class implementations, nor with CORDIC-based reciprocal/division computation \cite{Volder59,Andraka98}, which trades the multiplier-centric datapaths evaluated here for a shift-and-add rotation structure well suited to FPGA fabrics with limited DSP resources. Such comparisons would provide additional baselines for evaluating the custom architectures against off-the-shelf and multiplier-free solutions and are therefore left for future work.
+
+Finally, the evaluated iterative architectures use fixed iteration configurations: \textbf{two Newton-Raphson iterations, two Goldschmidt iterations, and one Newton-Raphson refinement iteration following LUT interpolation in the hybrid architecture}. The seed-table sizes and interpolation resolutions are likewise fixed for the evaluated configurations. A broader exploration varying iteration count, seed-table size, and interpolation resolution could expose additional points in the accuracy, latency, resource, and energy trade-off space beyond the five architectures evaluated in this study.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This work presented a hardware-validated comparative evaluation of five fixed-point reciprocal approximation architectures--Direct LUT, LUT with Linear Interpolation, Newton-Raphson, Goldschmidt, and a hybrid LUT-Interpolation/Newton-Raphson architecture--implemented in Q8.24 and Q16.16 fixed-point formats on a Xilinx Artix-7 XC7A100T FPGA. All architectures were evaluated using a common input domain of $x \in [0.5, 2.5]$ and one million verification vectors, enabling accuracy, latency, resource utilization, and energy to be compared under a consistent experimental framework.
+
+The results demonstrate substantial differences in the hardware and numerical characteristics of the evaluated architectures. The Direct LUT architecture provides the shortest pipelines, with latencies of 12.90~ns in Q8.24 and 7.74~ns in Q16.16, at the cost of the largest table-based memory requirement and the highest approximation error among the evaluated designs. LUT-based linear interpolation substantially reduces approximation error while retaining a relatively shallow pipeline, requiring 41.28~ns in both evaluated formats. The two iterative architectures provide substantially higher numerical accuracy but require deeper pipelined datapaths and significantly greater DSP and flip-flop utilization. In particular, the two-iteration Newton-Raphson architecture requires 69 pipeline cycles, whereas the two-iteration Goldschmidt architecture requires 54 cycles by exploiting parallelism between its intermediate numerator and denominator updates, reducing pipeline depth by approximately 22\% relative to Newton-Raphson. The hybrid architecture combines a 9-bit interpolated seed with a single Newton-Raphson refinement iteration, providing an intermediate point in the accuracy, latency, DSP, and energy trade-off space.
+
+The comparison also demonstrates that fixed-point format selection has a direct interaction with reciprocal architecture. Q8.24 generally preserves substantially higher numerical accuracy for the iterative and hybrid architectures because of its larger fractional field, whereas Q16.16 reduces fractional precision and consequently increases the observed approximation error for these architectures. At the same time, the change in fractional precision does not produce a uniform hardware advantage across all architectures, illustrating that arithmetic precision, memory organization, pipeline structure, and FPGA resource mapping must be considered together when selecting a fixed-point reciprocal implementation.
+
+Across the evaluated designs, the maximum relative error spans more than three orders of magnitude, while latency spans more than an order of magnitude. Energy per operation varies by approximately $3.5\times$, from 0.346~nJ/op to 1.219~nJ/op. The three-objective Pareto analysis further shows that all five architectures remain mutually non-dominated within each fixed-point format: each occupies a distinct point in the accuracy-latency-energy design space rather than being uniformly superseded by another evaluated architecture. This result reinforces that reciprocal architecture selection is inherently application-dependent, with the appropriate implementation determined by the required balance among numerical precision, pipeline latency, throughput, energy, and FPGA resource availability.
+
+Overall, the study provides a common hardware evaluation framework for understanding these trade-offs across lookup-based, interpolated, iterative, and hybrid reciprocal architectures. Rather than identifying a universally optimal implementation, the results establish quantitative design points that can be used to select or further optimize a reciprocal architecture according to the constraints of a target FPGA application. Future work can extend this design space to additional FPGA families, alternative input distributions, vendor-supplied reciprocal/division IP, and systematic variation of seed-table resolution and iteration count to investigate configurations beyond the five evaluated architectures.
+
+\section{Consolidated Results Table}
+
+Table~\ref{tab:consolidated} consolidates the key metrics from Tables~\ref{tab:resources}-\ref{tab:power} into a single reference table, for readers who want the complete set of headline figures for all ten architecture/format combinations without cross-referencing multiple tables.
+
+\begin{table*}[htbp]
+\caption{Consolidated Summary of All Reported Metrics, All Architectures and Formats}
+\label{tab:consolidated}
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Format} & \textbf{LUT\%} & \textbf{DSP} & \textbf{Latency (ns)} & \textbf{Max Rel. Err (\%)} & \textbf{Total P (W)} & \textbf{Energy/op (nJ)} & \textbf{EDP (nJ$\cdot$ns)} \\
+\midrule
+Direct LUT & Q8.24 & 0.03\% & 0 & 12.90 & 0.097596 & 0.136 & 0.346 & 4.46 \\
+Direct LUT & Q16.16 & 0.003\% & 0 & 7.74 & 0.094787 & 0.214 & 0.412 & 3.19 \\
+LUT + Interp. & Q8.24 & 0.25\% & 1 & 41.28 & 0.010396 & 0.174 & 0.405 & 16.72 \\
+LUT + Interp. & Q16.16 & 0.19\% & 1 & 41.28 & 0.009156 & 0.161 & 0.379 & 15.66 \\
+Newton-Raphson & Q8.24 & 1.52\% & 20 & 178.02 & 0.000015 & 0.475 & 1.190 & 211.80 \\
+Newton-Raphson & Q16.16 & 1.34\% & 20 & 178.02 & 0.003815 & 0.458 & 1.167 & 207.68 \\
+Goldschmidt & Q8.24 & 1.33\% & 20 & 139.32 & 0.000020 & 0.483 & 1.219 & 169.79 \\
+Goldschmidt & Q16.16 & 1.14\% & 20 & 139.32 & 0.003814 & 0.477 & 1.208 & 168.24 \\
+Hybrid & Q8.24 & 1.21\% & 9 & 133.20 & 0.000409 & 0.319 & 1.009 & 134.44 \\
+Hybrid & Q16.16 & 1.26\% & 9 & 133.20 & 0.004118 & 0.320 & 1.049 & 139.73 \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
 \section*{Ethics and Privacy Statement}
 
-This section of your ACM work should discuss the potential societal
-risks that might result from its publication; two to three sentences
-related to the findings of your study, or new advancements made
-possible by their developed methods. The privacy and ethics statement
-should clearly address the broader impacts of their work as it relates
-to the authors' interpretation of privacy, fairness, safety, human
-rights, data sovereignty, or future misuse and any benefit/risk
-trade-off resulting from this research. We acknowledge that some
-papers may have minimal societal risks beyond those considered by
-institutional review boards, and the dimensions considered by any
-review of the user study design or dataset licenses could be provided
-in this statement.
+This work is a comparative hardware-architecture study of fixed-point arithmetic circuits on FPGAs and does not involve human subjects, personal data, or user-facing applications. The reciprocal approximation architectures evaluated here are general-purpose arithmetic building blocks with no direct dual-use, surveillance, or safety-critical application inherent to the study itself; any downstream use, including in signal-processing or embedded systems, is subject to the standard engineering and safety review appropriate to that application domain. The authors are not aware of any societal risks specific to the publication of these results.
 
-%%
-%% The next two lines define the bibliography style to be used, and
-%% the bibliography file.
-\bibliographystyle{ACM-Reference-Format}
-\bibliography{sample-base}
+\begin{thebibliography}{9}
 
+\bibitem{Oberman97}
+S. F. Oberman and M. J. Flynn, ``Division Algorithms and Implementations,'' \textit{IEEE Trans. Comput.}, vol.~46, no.~8, pp.~833-854, Aug. 1997, doi: 10.1109/12.609274.
 
-%%
-%% If your work has an appendix, this is the place to put it.
-\appendix
+\bibitem{Chen05}
+D. Chen, B. Zhou, Z. Guo, and P. Nilsson, ``Design and Implementation of Reciprocal Unit,'' \textit{Proc. IEEE Midwest Symp. Circuits Syst. (MWSCAS)}, pp.~1318-1321, 2005, doi: 10.1109/MWSCAS.2005.1594352.
 
-\section{Research Methods}
+\bibitem{Kucukkabak04}
+U. Kucukkabak and A. Akkas, ``Design and Implementation of Reciprocal Unit Using Table Look-Up and Newton-Raphson Iteration,'' \textit{Proc. Euromicro Symp. Digital System Design (DSD)}, pp.~249-253, 2004, doi: 10.1109/DSD.2004.1333284.
 
-\subsection{Part One}
+\bibitem{Rodriguez13}
+A. Rodr\'{i}guez-Garc\'{i}a, L. Pizano-Escalante, R. Parra-Michel, O. Longoria-Gandara, and J. Cortez, ``Fast Fixed-Point Divider Based on Newton-Raphson Method and Piecewise Polynomial Approximation,'' \textit{Proc. Int. Conf. Reconfigurable Computing and FPGAs (ReConFig)}, 2013, doi: 10.1109/ReConFig.2013.6732291.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-malesuada, quam in pulvinar varius, metus nunc fermentum urna, id
-sollicitudin purus odio sit amet enim. Aliquam ullamcorper eu ipsum
-vel mollis. Curabitur quis dictum nisl. Phasellus vel semper risus, et
-lacinia dolor. Integer ultricies commodo sem nec semper.
+\bibitem{Libessart17}
+E. Libessart, M. Arzel, C. Lahuec, and F. P. Andriulli, ``A Scaling-Less Newton-Raphson Pipelined Implementation for a Fixed-Point Reciprocal Operator,'' \textit{IEEE Signal Process. Lett.}, vol.~24, no.~6, pp.~789-793, 2017, doi: 10.1109/LSP.2017.2694225.
 
-\subsection{Part Two}
+\bibitem{Kumar17}
+D. Kumar, P. Saha, and A. Dandapat, ``Hardware Implementation of Methodologies of Fixed Point Division Algorithms,'' \textit{Int. J. Smart Sens. Intell. Syst.}, vol.~10, no.~3, 2017, doi: 10.21307/ijssis-2017-227.
 
-Etiam commodo feugiat nisl pulvinar pellentesque. Etiam auctor sodales
-ligula, non varius nibh pulvinar semper. Suspendisse nec lectus non
-ipsum convallis congue hendrerit vitae sapien. Donec at laoreet
-eros. Vivamus non purus placerat, scelerisque diam eu, cursus
-ante. Etiam aliquam tortor auctor efficitur mattis.
+\bibitem{Kasim13}
+M. F. Kasim, T. Adiono, M. Fahreza, and M. F. Zakiy, ``FPGA Implementation of Fixed-Point Divider Using Pre-Computed Values,'' \textit{Procedia Technology}, vol.~11, pp.~206-211, 2013, doi: 10.1016/j.protcy.2013.12.182.
 
-\section{Online Resources}
+\bibitem{Paim17}
+G. Paim, P. Marques, E. A. C. da Costa, S. J. M. de Almeida, and S. Bampi, ``Improved Goldschmidt Algorithm for Fast and Energy-Efficient Fixed-Point Divider,'' \textit{Proc. 24th IEEE Int. Conf. Electronics, Circuits and Systems (ICECS)}, pp.~482-485, 2017, doi: 10.1109/ICECS.2017.8292070.
 
-Nam id fermentum dui. Suspendisse sagittis tortor a nulla mollis, in
-pulvinar ex pretium. Sed interdum orci quis metus euismod, et sagittis
-enim maximus. Vestibulum gravida massa ut felis suscipit
-congue. Quisque mattis elit a risus ultrices commodo venenatis eget
-dui. Etiam sagittis eleifend elementum.
+\bibitem{Gutierrez26}
+G. Guti\'{e}rrez-Ramos, R. Parra-Michel, E. Romero-Aguirre, A. Rodriguez-Garc\'{i}a, and R. Jaramillo-Ram\'{i}rez, ``A Fast Fixed-Point Implementation for Division, Reciprocal, Square Root and Reciprocal Square Root Based on Newton-Raphson Method,'' \textit{Electronics}, vol.~15, no.~13, Art. no.~2899, 2026, doi: 10.3390/electronics15132899.
 
-Nam interdum magna at lectus dignissim, ac dignissim lorem
-rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar
-massa et mattis lacinia.
+\bibitem{Goldschmidt64}
+R. E. Goldschmidt, ``Applications of Division by Convergence,'' M.S. thesis, Dept. Electrical Engineering, Massachusetts Institute of Technology, Cambridge, MA, USA, 1964.
+
+\bibitem{KongSwartzlander11}
+I. Kong and E. E. Swartzlander, Jr., ``A Goldschmidt Division Method With Faster Than Quadratic Convergence,'' \textit{IEEE Trans. Very Large Scale Integr. (VLSI) Syst.}, vol.~19, no.~4, pp.~696-700, Apr. 2011, doi: 10.1109/TVLSI.2009.2036926.
+
+\bibitem{DasSarmaMatula95}
+D. Das Sarma and D. W. Matula, ``Faithful Bipartite ROM Reciprocal Tables,'' in \textit{Proc. 12th IEEE Symp. Computer Arithmetic (ARITH)}, 1995, pp.~17-28, doi: 10.1109/ARITH.1995.465381.
+
+\bibitem{Volder59}
+J. E. Volder, ``The CORDIC Trigonometric Computing Technique,'' \textit{IRE Trans. Electron. Comput.}, vol. EC-8, no.~3, pp.~330-334, Sep. 1959, doi: 10.1109/TEC.1959.5222693.
+
+\bibitem{Andraka98}
+R. Andraka, ``A Survey of CORDIC Algorithms for FPGA Based Computers,'' in \textit{Proc. 1998 ACM/SIGDA 6th Int. Symp. Field Programmable Gate Arrays (FPGA)}, 1998, pp.~191-200, doi: 10.1145/275107.275139.
+
+\bibitem{ErcegovacLang04}
+M. D. Ercegovac and T. Lang, \textit{Digital Arithmetic}. San Francisco, CA, USA: Morgan Kaufmann, 2004.
+
+\bibitem{Soderquist96}
+P. Soderquist and M. Leeser, ``Area and Performance Tradeoffs in Floating-Point Divide and Square-Root Implementations,'' \textit{ACM Comput. Surv.}, vol.~28, no.~3, pp.~518-564, Sep. 1996, doi: 10.1145/243439.243481.
+
+\bibitem{ErcegovacLang94}
+M. D. Ercegovac and T. Lang, \textit{Division and Square Root: Digit-Recurrence Algorithms and Implementations}. Boston, MA, USA: Kluwer Academic, 1994.
+
+\bibitem{Parhami00}
+B. Parhami, \textit{Computer Arithmetic: Algorithms and Hardware Designs}. New York, NY, USA: Oxford Univ. Press, 2000.
+
+\bibitem{Muller97}
+J.-M. Muller, \textit{Elementary Functions: Algorithms and Implementation}. Boston, MA, USA: Birkh\"{a}user, 1997.
+
+\bibitem{AndersonEarleGoldschmidtPowers67}
+S. F. Anderson, J. G. Earle, R. E. Goldschmidt, and D. M. Powers, ``The IBM System/360 Model 91: Floating-Point Execution Unit,'' \textit{IBM J. Res. Develop.}, vol.~11, no.~1, pp.~34-53, Jan. 1967, doi: 10.1147/rd.111.0034.
+
+\bibitem{Flynn70}
+M. J. Flynn, ``On Division by Functional Iteration,'' \textit{IEEE Trans. Comput.}, vol.~C-19, no.~8, pp.~702-706, Aug. 1970, doi: 10.1109/T-C.1970.223026.
+
+\bibitem{Ito97}
+M. Ito, N. Takagi, and S. Yajima, ``Efficient Initial Approximation for Multiplicative Division and Square Root by a Multiplication With Operand Modification,'' \textit{IEEE Trans. Comput.}, vol.~46, no.~4, pp.~495-498, Apr. 1997, doi: 10.1109/12.588066.
+
+\bibitem{SchulteStine99}
+M. J. Schulte and J. E. Stine, ``Approximating Elementary Functions with Symmetric Bipartite Tables,'' \textit{IEEE Trans. Comput.}, vol.~48, no.~8, pp.~842-847, Aug. 1999, doi: 10.1109/12.795125.
+
+\bibitem{DeDinechinTisserand05}
+F. de Dinechin and A. Tisserand, ``Multipartite Table Methods,'' \textit{IEEE Trans. Comput.}, vol.~54, no.~3, pp.~319-330, Mar. 2005, doi: 10.1109/TC.2005.54.
+
+\bibitem{ErcegovacLangMullerTisserand00}
+M. D. Ercegovac, T. Lang, J.-M. Muller, and A. Tisserand, ``Reciprocation, Square Root, Inverse Square Root, and Some Elementary Functions Using Small Multipliers,'' \textit{IEEE Trans. Comput.}, vol.~49, no.~7, pp.~628-637, Jul. 2000, doi: 10.1109/12.863040.
+
+\bibitem{BeuchatTisserand02}
+J.-L. Beuchat and A. Tisserand, ``Small Multiplier-Based Multiplication and Division Operators for Virtex-II Devices,'' in \textit{Proc. 12th Int. Conf. Field-Programmable Logic and Applications (FPL)}, 2002, pp.~513-522, doi: 10.1007/3-540-46117-5\_53.
+
+\bibitem{PineiroBruguera02}
+J.-A. Pi\~{n}eiro and J. D. Bruguera, ``High-Speed Double-Precision Computation of Reciprocal, Division, Square Root, and Inverse Square Root,'' \textit{IEEE Trans. Comput.}, vol.~51, no.~12, pp.~1377-1388, Dec. 2002, doi: 10.1109/TC.2002.1146704.
+
+\bibitem{PineiroObermanMullerBruguera05}
+J.-A. Pi\~{n}eiro, S. F. Oberman, J.-M. Muller, and J. D. Bruguera, ``High-Speed Function Approximation Using a Minimax Quadratic Interpolator,'' \textit{IEEE Trans. Comput.}, vol.~54, no.~3, pp.~304-318, Mar. 2005, doi: 10.1109/TC.2005.54.
+
+\bibitem{ErcegovacImbertMatulaMullerWei00}
+M. D. Ercegovac, L. Imbert, D. W. Matula, J.-M. Muller, and G. Wei, ``Improving Goldschmidt Division, Square Root, and Square Root Reciprocal,'' \textit{IEEE Trans. Comput.}, vol.~49, no.~7, pp.~759-763, Jul. 2000, doi: 10.1109/12.863046.
+
+\bibitem{GallagherSwartzlander00}
+W. L. Gallagher and E. E. Swartzlander, Jr., ``Fault-Tolerant Newton-Raphson and Goldschmidt Dividers Using Time Shared TMR,'' \textit{IEEE Trans. Comput.}, vol.~49, no.~6, pp.~588-595, Jun. 2000, doi: 10.1109/12.859542.
+
+\bibitem{NannarelliLang98}
+A. Nannarelli and T. Lang, ``Power-Delay Tradeoffs for Radix-4 and Radix-8 Dividers,'' in \textit{Proc. Int. Symp. Low Power Electronics and Design (ISLPED)}, 1998, pp.~109-111, doi: 10.1145/280756.280873.
+
+\bibitem{WangNelson03}
+X. Wang and B. Nelson, ``Tradeoffs of Designing Floating-Point Division and Square Root on Virtex FPGAs,'' in \textit{Proc. 11th Annu. IEEE Symp. Field-Programmable Custom Computing Machines (FCCM)}, Apr. 2003, pp.~195-203, doi: 10.1109/FPGA.2003.1227255.
+
+\bibitem{Sorokin06}
+N. Sorokin, ``Implementation of High-Speed Fixed-Point Dividers on FPGA,'' \textit{J. Comput. Sci. Technol.}, vol.~6, no.~1, pp.~8-11, Apr. 2006.
+
+\bibitem{MunozEtAl10}
+D. M. Mu\~{n}oz, D. F. Sanchez, C. H. Llanos, and M. Ayala-Rinc\'{o}n, ``Tradeoff of FPGA Design of a Floating-Point Library for Arithmetic Operators,'' \textit{J. Integr. Circuits Syst.}, vol.~5, no.~1, pp.~42-52, 2010.
+
+\bibitem{Lunglmayr21}
+M. Lunglmayr, ``Efficient Non-sequential Division for FPGAs,'' arXiv:2105.05747, 2021.
+
+\bibitem{XilinxUG479}
+Xilinx, Inc., \textit{7 Series FPGAs DSP48E1 Slice User Guide}, UG479 (v1.10), Mar. 2018.
+
+\bibitem{WeaverMarkovskiyPatelWawrzynek03}
+N. Weaver, Y. Markovskiy, Y. Patel, and J. Wawrzynek, ``Post-Placement C-slow Retiming for the Xilinx Virtex FPGA,'' in \textit{Proc. 11th ACM Int. Symp. Field-Programmable Gate Arrays (FPGA)}, Monterey, CA, USA, Feb. 2003, pp.~185-194, doi: 10.1145/611817.611844.
+
+\bibitem{LeisersonSaxe91}
+C. E. Leiserson and J. B. Saxe, ``Retiming Synchronous Circuitry,'' \textit{Algorithmica}, vol.~6, no.~1, pp.~5-35, 1991, doi: 10.1007/BF01759032.
+
+\end{thebibliography}
 
 \end{document}
-\endinput
-%%
-%% End of file `acmmanuscript.tex'.
