@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.30)  27 SEP 2026 22:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.30)  27 SEP 2026 22:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1307,7 +1307,7 @@ Overfull \hbox (35.17393pt too wide) in paragraph at lines 863--864
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [32.32]
-Overfull \hbox (50.2068pt too wide) in paragraph at lines 880--896
+Overfull \hbox (50.2068pt too wide) in paragraph at lines 881--897
  [][] 
  []
 
@@ -1320,10 +1320,16 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 
 [33.33]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 905.
- [34.34]
+(Font)              scaled to size 7.0pt on input line 906.
 
-Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 1020.
+Underfull \vbox (badness 1043) has occurred while \output is active []
+
+ [34.34]
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
+(Font)              scaled to size 7.3pt on input line 1021.
+
+
+Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 1030.
 
 
 Package fancyhdr Warning: \headheight is too small (13.0pt): 
@@ -1333,11 +1339,11 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-7.48303pt}.
 
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 10.95pt on input line 1020.
+(Font)              scaled to size 10.95pt on input line 1030.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 8.0pt on input line 1020.
+(Font)              scaled to size 8.0pt on input line 1030.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.1pt on input line 1020.
+(Font)              scaled to size 6.1pt on input line 1030.
 (C:\Users\knith\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\knith\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
@@ -1355,17 +1361,17 @@ Package rerunfilecheck Info: File `acmmanuscript.out' has not changed.
 (rerunfilecheck)             Checksum: AFACB6B8C8CF87111D9E4BC83B5B9BF7;6981.
  ) 
 Here is how much of TeX's memory you used:
- 22174 strings out of 467501
- 370066 string characters out of 5408550
- 856986 words of memory out of 5000000
- 50078 multiletter control sequences out of 15000+600000
- 840029 words of font info for 550 fonts, out of 8000000 for 9000
+ 22192 strings out of 467501
+ 370485 string characters out of 5408550
+ 858403 words of memory out of 5000000
+ 50086 multiletter control sequences out of 15000+600000
+ 842557 words of font info for 555 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  89i,17n,131p,2579b,824s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI7.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathRM.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinBiolinumT.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinBiolinumTB.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTB.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTZ.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb>
-Output written on acmmanuscript.pdf (35 pages, 8829181 bytes).
+Output written on acmmanuscript.pdf (35 pages, 8830695 bytes).
 PDF statistics:
- 716 PDF objects out of 1000 (max. 8388607)
- 164 named destinations out of 1000 (max. 500000)
- 127957 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 722 PDF objects out of 1000 (max. 8388607)
+ 166 named destinations out of 1000 (max. 500000)
+ 130005 words of extra memory for PDF output out of 154059 (max. 10000000)
 

@@ -870,6 +870,7 @@ Across the evaluated designs, the maximum relative error spans more than three o
 
 Overall, the study provides a common hardware evaluation framework for understanding these trade-offs across lookup-based, interpolated, iterative, and hybrid reciprocal architectures. Rather than identifying a universally optimal implementation, the results establish quantitative design points that can be used to select or further optimize a reciprocal architecture according to the constraints of a target FPGA application. Future work can extend this design space to additional FPGA families, alternative input distributions, vendor-supplied reciprocal/division IP, and systematic variation of seed-table resolution and iteration count to investigate configurations beyond the five evaluated architectures.
 
+The complete RTL implementations, verification testbenches, datasets, and analysis scripts are publicly available in the accompanying GitHub repository~\cite{GitHubRepo}, enabling reproducibility of the reported results.
 \section{Consolidated Results Table}
 
 Table~\ref{tab:consolidated} consolidates the key metrics from Tables~\ref{tab:resources}-\ref{tab:power} into a single reference table, for readers who want the complete set of headline figures for all ten architecture/format combinations without cross-referencing multiple tables.
@@ -1014,6 +1015,15 @@ N. Weaver, Y. Markovskiy, Y. Patel, and J. Wawrzynek, ``Post-Placement C-slow Re
 
 \bibitem{LeisersonSaxe91}
 C. E. Leiserson and J. B. Saxe, ``Retiming Synchronous Circuitry,'' \textit{Algorithmica}, vol.~6, no.~1, pp.~5-35, 1991, doi: 10.1007/BF01759032.
+
+\bibitem{DigilentNexysA7}
+
+Digilent, ``Nexys A7 FPGA Board Reference Manual,'' Digilent, Inc., [Online]. Available: \url{https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual}.
+
+\bibitem{GitHubRepo}
+
+N. K. Navaneeth, ``[Repository Name],'' GitHub repository. [Online]. Available:
+\url{https://github.com/navaneethkutty/fixed-point-research}.
 
 \end{thebibliography}
 

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790527402.43842 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790527432.67629 0
+["pdflatex"] 1790527860.6711 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790527887.44306 0
   "C:/Users/knith/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790402894 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/knith/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1788071591 13367606 93afbb73f75e83143d69eca9db59a6d0 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1557958141 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
@@ -210,10 +210,10 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "acmart.cls" 1789895492 121737 e553f62fc9642f9010f9c29ba27de8d5 ""
-  "acmmanuscript.aux" 1790527431 21340 73970901aa24f91ac973a62ffafeaaa6 "pdflatex"
-  "acmmanuscript.out" 1790527431 6981 afacb6b8c8cf87111d9e4bc83b5b9bf7 "pdflatex"
-  "acmmanuscript.tex" 1790527363 100311 8fe42537dae4876cbaa95763681b38b5 ""
-  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790527363 100311 8fe42537dae4876cbaa95763681b38b5 ""
+  "acmmanuscript.aux" 1790527886 21441 68c2c73b3b8010fd9153cc4ee845db96 "pdflatex"
+  "acmmanuscript.out" 1790527886 6981 afacb6b8c8cf87111d9e4bc83b5b9bf7 "pdflatex"
+  "acmmanuscript.tex" 1790527833 100907 a18650292e8f349c1aeb066f21485fdc ""
+  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790527833 100907 a18650292e8f349c1aeb066f21485fdc ""
   "figures/fmax_latency_plot.png" 1790402425 255277 edfd35bc7b08a441837eec75c800330b ""
   "figures/lut_dsp_bar_plot.png" 1790402433 138568 ce3211407916bf849255b42b91bc78a2 ""
   "figures/pareto_front_plot.png" 1790405072 302749 938fc86d015a6188f391fcb4b1948800 ""
