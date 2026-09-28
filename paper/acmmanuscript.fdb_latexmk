@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex acmmanuscript"] 1790608036.64861 "acmmanuscript.aux" "acmmanuscript.bbl" "acmmanuscript" 1790608092.39993 0
+["bibtex acmmanuscript"] 1790608233.96012 "acmmanuscript.aux" "acmmanuscript.bbl" "acmmanuscript" 1790608266.31628 0
   "./ACM-Reference-Format.bst" 1789895488 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   "./references.bib" 1790607483 13276 2e31eb77de23125eb8adf241462b78b1 ""
-  "acmmanuscript.aux" 1790608090 25284 e9cebaf188acdcf18747bddafc531592 "pdflatex"
+  "acmmanuscript.aux" 1790608262 25284 b7207411d579d503564aba1227cb6965 "pdflatex"
   (generated)
   "acmmanuscript.bbl"
   "acmmanuscript.blg"
   (rewritten before read)
-["pdflatex"] 1790608065.6568 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790608092.40131 0
+["pdflatex"] 1790608234.65022 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790608266.31628 0
   "C:/Users/knith/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790402894 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/knith/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1788071591 13367606 93afbb73f75e83143d69eca9db59a6d0 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1557958141 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
@@ -222,12 +222,12 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "acmart.cls" 1789895492 121737 e553f62fc9642f9010f9c29ba27de8d5 ""
-  "acmmanuscript.aux" 1790608090 25284 e9cebaf188acdcf18747bddafc531592 "pdflatex"
-  "acmmanuscript.bbl" 1790608037 23864 890ef94eaba229cb06e645c00bce529f "bibtex acmmanuscript"
-  "acmmanuscript.out" 1790608090 8489 6d2fc7859496405ccc5bf56c34940960 "pdflatex"
-  "acmmanuscript.tex" 1790608042 109434 0373de2e90b5287c0cd4307864ff6084 ""
-  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790608042 109434 0373de2e90b5287c0cd4307864ff6084 ""
-  "comment.cut" 1790608090 1294 cac5d69f95978b422b2a8c3ec1b99e3d "pdflatex"
+  "acmmanuscript.aux" 1790608262 25284 b7207411d579d503564aba1227cb6965 "pdflatex"
+  "acmmanuscript.bbl" 1790608234 23864 890ef94eaba229cb06e645c00bce529f "bibtex acmmanuscript"
+  "acmmanuscript.out" 1790608262 8489 6d2fc7859496405ccc5bf56c34940960 "pdflatex"
+  "acmmanuscript.tex" 1790608215 109263 3e44bf933b9ee8d9da696bfbc3ab9b1b ""
+  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790608215 109263 3e44bf933b9ee8d9da696bfbc3ab9b1b ""
+  "comment.cut" 1790608262 1122 4a7d3b54211a835581d130c7d40ac2f8 "pdflatex"
   "figures/fmax_latency_plot.png" 1790402425 255277 edfd35bc7b08a441837eec75c800330b ""
   "figures/lut_dsp_bar_plot.png" 1790402433 138568 ce3211407916bf849255b42b91bc78a2 ""
   "figures/pareto_front_plot.png" 1790405072 302749 938fc86d015a6188f391fcb4b1948800 ""
