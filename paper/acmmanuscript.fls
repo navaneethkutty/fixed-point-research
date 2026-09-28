@@ -697,11 +697,6 @@ INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\vf\public\libertine\Lin
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\libertine\LinLibertineTI-tlf-t1--base.tfm
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\libertine\LinLibertineTZ-tlf-ot1.tfm
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\libertine\LinLibertineTZ-tlf-ot1.tfm
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\vf\public\newtx\nxlmi5.vf
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\LibertineMathMI5.tfm
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\NewTXMI5.tfm
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\stxscr.tfm
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\libertine\LinLibertineTZ-tlf-ot1.tfm
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\tfm\public\libertine\LinLibertineTZ-tlf-ot1.tfm
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
@@ -716,8 +711,6 @@ INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\inconsolat
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\inconsolata\Inconsolata-zi4r.pfb
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI.pfb
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI.pfb
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI5.pfb
-INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI5.pfb
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI7.pfb
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathMI7.pfb
 INPUT C:\Users\knith\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\LibertineMathRM.pfb
