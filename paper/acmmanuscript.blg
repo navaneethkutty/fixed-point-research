@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: acmmanuscript.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+The style file: ACM-Reference-Format.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Database file #1: references.bib
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Warning--empty publisher in Andraka98
+Warning--empty address in Andraka98
+Warning--empty publisher in BeuchatTisserand02
+Warning--empty address in BeuchatTisserand02
+Warning--empty publisher in Chen05
+Warning--empty address in Chen05
+Warning--empty publisher in DasSarmaMatula95
+Warning--empty address in DasSarmaMatula95
+Warning--empty year in DigilentNexysA7
+Warning--using n.d. in DigilentNexysA7
+Warning--empty year in GitHubRepo
+Warning--using n.d. in GitHubRepo
+Warning--empty publisher in Kucukkabak04
+Warning--empty address in Kucukkabak04
+Warning--no number and no volume in Lunglmayr21
+Warning--page numbers missing in both pages and numpages fields in Lunglmayr21
+Warning--empty publisher in Paim17
+Warning--empty address in Paim17
+Warning--empty publisher in Rodriguez13
+Warning--empty address in Rodriguez13
+Warning--page numbers missing in both pages and numpages fields in Rodriguez13
+Warning--empty publisher in WangNelson03
+Warning--empty address in WangNelson03
+Warning--empty publisher in WeaverMarkovskiyPatelWawrzynek03
+You've used 40 entries,
+            6273 wiz_defined-function locations,
+            1814 strings with 26235 characters,
+and the built_in function-call counts, 43817 in all, are:
+= -- 5749
+> -- 1213
+< -- 0
++ -- 410
+- -- 461
+* -- 3056
+:= -- 4189
+add.period$ -- 204
+call.type$ -- 40
+change.case$ -- 260
+chr.to.int$ -- 39
+cite$ -- 64
+duplicate$ -- 3941
+empty$ -- 2777
+format.name$ -- 576
+if$ -- 10658
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 145
+newline$ -- 394
+num.names$ -- 279
+pop$ -- 1428
+preamble$ -- 1
+purify$ -- 567
+quote$ -- 0
+skip$ -- 1417
+stack$ -- 0
+substring$ -- 3553
+swap$ -- 407
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 815
+warning$ -- 24
+while$ -- 312
+width$ -- 0
+write$ -- 834
+(There were 24 warnings)

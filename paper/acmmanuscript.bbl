@@ -36,521 +36,510 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem[Ablamowicz and Fauser(2007)]%
-        {Ablamowicz07}
-\bibfield{author}{\bibinfo{person}{Rafal Ablamowicz} {and}
-  \bibinfo{person}{Bertfried Fauser}.} \bibinfo{year}{2007}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{CLIFFORD: a Maple 11 Package for Clifford
-  Algebra Computations, version 11}}.
+\bibitem[Anderson et~al\mbox{.}(1967)]%
+        {AndersonEarleGoldschmidtPowers67}
+\bibfield{author}{\bibinfo{person}{S.~F. Anderson}, \bibinfo{person}{J.~G.
+  Earle}, \bibinfo{person}{R.~E. Goldschmidt}, {and} \bibinfo{person}{D.~M.
+  Powers}.} \bibinfo{year}{1967}\natexlab{}.
+\newblock \showarticletitle{The IBM System/360 Model 91: Floating-Point
+  Execution Unit}.
+\newblock \bibinfo{journal}{\emph{IBM Journal of Research and Development}}
+  \bibinfo{volume}{11}, \bibinfo{number}{1} (\bibinfo{date}{Jan.}
+  \bibinfo{year}{1967}), \bibinfo{pages}{34--53}.
 \newblock
-\urldef\tempurl%
-\url{http://math.tntech.edu/rafal/cliff11/index.html}
-\showURL{%
-Retrieved February 28, 2008 from \tempurl}
+\href{https://doi.org/10.1147/rd.111.0034}{doi:\nolinkurl{10.1147/rd.111.0034}}
 
 
-\bibitem[Abril and Plant(2007)]%
-        {Abril07}
-\bibfield{author}{\bibinfo{person}{Patricia~S. Abril} {and}
-  \bibinfo{person}{Robert Plant}.} \bibinfo{year}{2007}\natexlab{}.
-\newblock \showarticletitle{The patent holder's dilemma: Buy, sell, or troll?}
-\newblock \bibinfo{journal}{\emph{Commun. ACM}} \bibinfo{volume}{50},
-  \bibinfo{number}{1} (\bibinfo{date}{Jan.} \bibinfo{year}{2007}),
-  \bibinfo{pages}{36--44}.
-\newblock
-\href{https://doi.org/10.1145/1188913.1188915}{doi:\nolinkurl{10.1145/1188913.1188915}}
-
-
-\bibitem[Andler(1979)]%
-        {Andler79}
-\bibfield{author}{\bibinfo{person}{Sten Andler}.}
-  \bibinfo{year}{1979}\natexlab{}.
-\newblock \showarticletitle{Predicate Path expressions}. In
-  \bibinfo{booktitle}{\emph{Proceedings of the 6th. ACM SIGACT-SIGPLAN
-  symposium on Principles of Programming Languages}}
-  \emph{(\bibinfo{series}{POPL '79})}. \bibinfo{publisher}{ACM Press},
-  \bibinfo{address}{New York, NY}, \bibinfo{pages}{226--236}.
-\newblock
-\href{https://doi.org/10.1145/567752.567774}{doi:\nolinkurl{10.1145/567752.567774}}
-
-
-\bibitem[Anisi(2003)]%
-        {anisi03}
-\bibfield{author}{\bibinfo{person}{David~A. Anisi}.}
-  \bibinfo{year}{2003}\natexlab{}.
-\newblock \emph{\bibinfo{title}{Optimal Motion Control of a Ground Vehicle}}.
-\newblock \bibinfo{thesistype}{Master's\ thesis}. \bibinfo{school}{Royal
-  Institute of Technology (KTH), Stockholm, Sweden}.
-\newblock
-
-
-\bibitem[Anzaroot and McCallum(2013)]%
-        {UMassCitations}
-\bibfield{author}{\bibinfo{person}{Sam Anzaroot} {and} \bibinfo{person}{Andrew
-  McCallum}.} \bibinfo{year}{2013}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{{UMass} Citation Field Extraction
-  Dataset}}.
-\newblock
-\urldef\tempurl%
-\url{http://www.iesl.cs.umass.edu/data/data-umasscitationfield}
-\showURL{%
-Retrieved May 27, 2019 from \tempurl}
-
-
-\bibitem[Anzaroot et~al\mbox{.}(2014)]%
-        {AnzarootPBM14}
-\bibfield{author}{\bibinfo{person}{Sam Anzaroot}, \bibinfo{person}{Alexandre
-  Passos}, \bibinfo{person}{David Belanger}, {and} \bibinfo{person}{Andrew
-  McCallum}.} \bibinfo{year}{2014}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{Learning Soft Linear Constraints with
-  Application to Citation Field Extraction}}.
-\newblock
-\showeprint[arxiv]{1403.1349}
-\href{https://doi.org/10.48550/arXiv.1403.1349}{doi:\nolinkurl{10.48550/arXiv.1403.1349}}
-
-
-\bibitem[Baggett et~al\mbox{.}(2025)]%
-        {Baggett2025}
-\bibfield{author}{\bibinfo{person}{R. Baggett}, \bibinfo{person}{M. Simecek},
-  \bibinfo{person}{C. Chambellan}, \bibinfo{person}{K. Tsui}, {and}
-  \bibinfo{person}{M. Fraune}.} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{Fluidity in the Phased Framework of Technology
-  Acceptance: Case Study to Gain a Holistic Understanding of (Older Adult)
-  Participant Advancement Through Acceptance Phases with Mobile Telepresence
-  Robots}.
-\newblock \bibinfo{journal}{\emph{Robotics Aut. Systems}}. Manuscript submitted
-  for review.
-\newblock
-
-
-\bibitem[Bornmann et~al\mbox{.}(2019)]%
-        {Bornmann2019}
-\bibfield{author}{\bibinfo{person}{Lutz Bornmann}, \bibinfo{person}{K.~Brad
-  Wray}, {and} \bibinfo{person}{Robin Haunschild}.}
-  \bibinfo{year}{2019}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{Citation concept analysis {(CCA)}---A new
-  form of citation analysis revealing the usefulness of concepts for other
-  researchers illustrated by two exemplary case studies including classic books
-  by {Thomas S.~Kuhn} and {Karl R.~Popper}}}.
-\newblock
-\showeprint[arxiv]{1905.12410}~[cs.DL]
-
-
-\bibitem[Clarkson(1985)]%
-        {Clarkson85}
-\bibfield{author}{\bibinfo{person}{Kenneth~L. Clarkson}.}
-  \bibinfo{year}{1985}\natexlab{}.
-\newblock \emph{\bibinfo{title}{Algorithms for Closest-Point Problems
-  (Computational Geometry)}}.
-\newblock \bibinfo{thesistype}{Ph.\,D. Dissertation}. \bibinfo{school}{Stanford
-  University}, \bibinfo{address}{Palo Alto, CA}.
-\newblock
-\shownote{UMI Order Number: AAT 8506171}.
-\newblock
-
-
-\bibitem[Cohen(1996)]%
-        {JCohen96}
-\bibfield{editor}{\bibinfo{person}{Jacques Cohen}} (Ed.).
-  \bibinfo{year}{1996}\natexlab{}. \showarticletitle{Special issue: Digital
-  Libraries}.
-\newblock \bibinfo{journal}{\emph{Commun. {ACM}}} \bibinfo{volume}{39},
-  \bibinfo{number}{11} (\bibinfo{date}{Nov.} \bibinfo{year}{1996}).
-
-\bibitem[Cohen et~al\mbox{.}(2007)]%
-        {Cohen07}
-\bibfield{author}{\bibinfo{person}{Sarah Cohen}, \bibinfo{person}{Werner Nutt},
-  {and} \bibinfo{person}{Yehoshua Sagic}.} \bibinfo{year}{2007}\natexlab{}.
-\newblock \showarticletitle{Deciding equivalances among conjunctive aggregate
-  queries}.
-\newblock \bibinfo{journal}{\emph{J. ACM}} \bibinfo{volume}{54},
-  \bibinfo{number}{2}, Article \bibinfo{articleno}{5} (\bibinfo{date}{April}
-  \bibinfo{year}{2007}), \bibinfo{numpages}{50}~pages.
-\newblock
-\href{https://doi.org/10.1145/1219092.1219093}{doi:\nolinkurl{10.1145/1219092.1219093}}
-
-
-\bibitem[Douglass et~al\mbox{.}(1998)]%
-        {Douglass98}
-\bibfield{author}{\bibinfo{person}{Bruce~P. Douglass}, \bibinfo{person}{David
-  Harel}, {and} \bibinfo{person}{Mark~B. Trakhtenbrot}.}
+\bibitem[Andraka(1998)]%
+        {Andraka98}
+\bibfield{author}{\bibinfo{person}{R. Andraka}.}
   \bibinfo{year}{1998}\natexlab{}.
-\newblock \showarticletitle{Statecarts in use: structured analysis and
-  object-orientation}.
-\newblock In \bibinfo{booktitle}{\emph{Lectures on Embedded Systems}},
-  \bibfield{editor}{\bibinfo{person}{Grzegorz Rozenberg} {and}
-  \bibinfo{person}{Frits~W. Vaandrager}} (Eds.). \bibinfo{series}{Lecture Notes
-  in Computer Science}, Vol.~\bibinfo{volume}{1494}.
-  \bibinfo{publisher}{Springer-Verlag}, \bibinfo{address}{London},
-  \bibinfo{pages}{368--394}.
+\newblock \showarticletitle{A Survey of CORDIC Algorithms for FPGA Based
+  Computers}. In \bibinfo{booktitle}{\emph{Proceedings of the 1998 ACM/SIGDA
+  International Symposium on Field-Programmable Gate Arrays (FPGA)}}.
+  \bibinfo{pages}{191--200}.
 \newblock
-\href{https://doi.org/10.1007/3-540-65193-4_29}{doi:\nolinkurl{10.1007/3-540-65193-4_29}}
+\href{https://doi.org/10.1145/275107.275139}{doi:\nolinkurl{10.1145/275107.275139}}
 
 
-\bibitem[Editor(2007)]%
-        {Editor00}
-\bibfield{editor}{\bibinfo{person}{Ian Editor}} (Ed.).
-  \bibinfo{year}{2007}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{The title of book one}
-  (\bibinfo{edition}{1st.} ed.)}. \bibinfo{series}{The name of the series one},
-  Vol.~\bibinfo{volume}{9}.
-\newblock \bibinfo{publisher}{University of Chicago Press},
-  \bibinfo{address}{Chicago}, Chapter The title of the chapter,
-  \bibinfo{pages}{127--238}.
+\bibitem[Beuchat and Tisserand(2002)]%
+        {BeuchatTisserand02}
+\bibfield{author}{\bibinfo{person}{Jean-Louis Beuchat} {and}
+  \bibinfo{person}{Arnaud Tisserand}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Small Multiplier-Based Multiplication and Division
+  Operators for Virtex-II Devices}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the 12th International Conference on Field-Programmable Logic and
+  Applications (FPL)}}. \bibinfo{pages}{513--522}.
 \newblock
-\href{https://doi.org/10.1007/3-540-09237-4}{doi:\nolinkurl{10.1007/3-540-09237-4}}
+\href{https://doi.org/10.1007/3-540-46117-5_54}{doi:\nolinkurl{10.1007/3-540-46117-5_54}}
 
 
-\bibitem[Editor(2008)]%
-        {Editor00a}
-\bibfield{editor}{\bibinfo{person}{Ian Editor}} (Ed.).
-  \bibinfo{year}{2008}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{The title of book two}
-  (\bibinfo{edition}{2nd.} ed.)}.
-\newblock \bibinfo{publisher}{University of Chicago Press},
-  \bibinfo{address}{Chicago}, Chapter 100, \bibinfo{pages}{25--137}.
-\newblock
-\href{https://doi.org/10.1007/3-540-09237-4}{doi:\nolinkurl{10.1007/3-540-09237-4}}
-
-
-\bibitem[Gundy et~al\mbox{.}(2007)]%
-        {VanGundy07}
-\bibfield{author}{\bibinfo{person}{Matthew~Van Gundy}, \bibinfo{person}{Davide
-  Balzarotti}, {and} \bibinfo{person}{Giovanni Vigna}.}
-  \bibinfo{year}{2007}\natexlab{}.
-\newblock \showarticletitle{Catch me, if you can: Evading network signatures
-  with web-based polymorphic worms}. In \bibinfo{booktitle}{\emph{Proceedings
-  of the first USENIX workshop on Offensive Technologies}}
-  \emph{(\bibinfo{series}{WOOT '07})}. \bibinfo{publisher}{USENIX Association},
-  \bibinfo{address}{Berkley, CA}, Article \bibinfo{articleno}{7},
-  \bibinfo{numpages}{9}~pages.
-\newblock
-
-
-\bibitem[Hagerup et~al\mbox{.}(1993)]%
-        {Hagerup1993}
-\bibfield{author}{\bibinfo{person}{Torben Hagerup}, \bibinfo{person}{Kurt
-  Mehlhorn}, {and} \bibinfo{person}{J.~Ian Munro}.}
-  \bibinfo{year}{1993}\natexlab{}.
-\newblock \showarticletitle{Maintaining Discrete Probability Distributions
-  Optimally}. In \bibinfo{booktitle}{\emph{Proceedings of the 20th
-  International Colloquium on Automata, Languages and Programming}}
-  \emph{(\bibinfo{series}{Lecture Notes in Computer Science},
-  Vol.~\bibinfo{volume}{700})}. \bibinfo{publisher}{Springer-Verlag},
-  \bibinfo{address}{Berlin}, \bibinfo{pages}{253--264}.
-\newblock
-
-
-\bibitem[Harel(1978)]%
-        {Harel78}
-\bibfield{author}{\bibinfo{person}{David Harel}.}
-  \bibinfo{year}{1978}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{LOGICS of Programs: AXIOMATICS and
-  DESCRIPTIVE POWER}}.
-\newblock \bibinfo{type}{MIT Research Lab Technical Report} TR-200.
-  \bibinfo{institution}{Massachusetts Institute of Technology},
-  \bibinfo{address}{Cambridge, MA}.
-\newblock
-
-
-\bibitem[Harel(1979)]%
-        {Harel79}
-\bibfield{author}{\bibinfo{person}{David Harel}.}
-  \bibinfo{year}{1979}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{First-Order Dynamic Logic}}.
-  \bibinfo{series}{Lecture Notes in Computer Science},
-  Vol.~\bibinfo{volume}{68}.
-\newblock \bibinfo{publisher}{Springer-Verlag}, \bibinfo{address}{New York,
-  NY}.
-\newblock
-\href{https://doi.org/10.1007/3-540-09237-4}{doi:\nolinkurl{10.1007/3-540-09237-4}}
-
-
-\bibitem[H{\"o}rmander(1985a)]%
-        {MR781537}
-\bibfield{author}{\bibinfo{person}{Lars H{\"o}rmander}.}
-  \bibinfo{year}{1985}\natexlab{a}.
-\newblock \bibinfo{booktitle}{\emph{The analysis of linear partial differential
-  operators. {III}}}. \bibinfo{series}{Grundlehren der Mathematischen
-  Wissenschaften [Fundamental Principles of Mathematical Sciences]},
-  Vol.~\bibinfo{volume}{275}.
-\newblock \bibinfo{publisher}{Springer-Verlag}, \bibinfo{address}{Berlin,
-  Germany}. viii+525 pages.
-\newblock
-\shownote{Pseudodifferential operators}.
-\newblock
-\showISBNx{3-540-13828-5}
-
-
-\bibitem[H{\"o}rmander(1985b)]%
-        {MR781536}
-\bibfield{author}{\bibinfo{person}{Lars H{\"o}rmander}.}
-  \bibinfo{year}{1985}\natexlab{b}.
-\newblock \bibinfo{booktitle}{\emph{The analysis of linear partial differential
-  operators. {IV}}}. \bibinfo{series}{Grundlehren der Mathematischen
-  Wissenschaften [Fundamental Principles of Mathematical Sciences]},
-  Vol.~\bibinfo{volume}{275}.
-\newblock \bibinfo{publisher}{Springer-Verlag}, \bibinfo{address}{Berlin,
-  Germany}. vii+352 pages.
-\newblock
-\shownote{Fourier integral operators}.
-\newblock
-\showISBNx{3-540-13829-3}
-
-
-\bibitem[IEEE(2004)]%
-        {2004:ITE:1009386.1010128}
-IEEE \bibinfo{year}{2004}\natexlab{}.
-\newblock \showarticletitle{IEEE TCSC Executive Committee}. In
-  \bibinfo{booktitle}{\emph{Proceedings of the IEEE International Conference on
-  Web Services}} \emph{(\bibinfo{series}{ICWS '04})}. \bibinfo{publisher}{IEEE
-  Computer Society}, \bibinfo{address}{Washington, DC, USA},
-  \bibinfo{pages}{21--22}.
-\newblock
-\showISBNx{0-7695-2167-3}
-\href{https://doi.org/10.1109/ICWS.2004.64}{doi:\nolinkurl{10.1109/ICWS.2004.64}}
-
-
-\bibitem[Kirschmer and Voight(2010)]%
-        {Kirschmer:2010:AEI:1958016.1958018}
-\bibfield{author}{\bibinfo{person}{Markus Kirschmer} {and}
-  \bibinfo{person}{John Voight}.} \bibinfo{year}{2010}\natexlab{}.
-\newblock \showarticletitle{Algorithmic Enumeration of Ideal Classes for
-  Quaternion Orders}.
-\newblock \bibinfo{journal}{\emph{SIAM J. Comput.}} \bibinfo{volume}{39},
-  \bibinfo{number}{5} (\bibinfo{date}{Jan.} \bibinfo{year}{2010}),
-  \bibinfo{pages}{1714--1747}.
-\newblock
-\showISSN{0097-5397}
-\href{https://doi.org/10.1137/080734467}{doi:\nolinkurl{10.1137/080734467}}
-
-
-\bibitem[Knuth(1997)]%
-        {Knuth97}
-\bibfield{author}{\bibinfo{person}{Donald~E. Knuth}.}
-  \bibinfo{year}{1997}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{The Art of Computer Programming, Vol. 1:
-  Fundamental Algorithms (3rd. ed.)}}.
-\newblock \bibinfo{publisher}{Addison Wesley Longman Publishing Co., Inc.},
-  \bibinfo{address}{Boston}.
-\newblock
-
-
-\bibitem[Kosiur(2001)]%
-        {Kosiur01}
-\bibfield{author}{\bibinfo{person}{David Kosiur}.}
-  \bibinfo{year}{2001}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{Understanding Policy-Based Networking}
-  (\bibinfo{edition}{2nd.} ed.)}.
-\newblock \bibinfo{publisher}{Wiley}, \bibinfo{address}{New York, NY}.
-\newblock
-
-
-\bibitem[Lamport(1986)]%
-        {Lamport:LaTeX}
-\bibfield{author}{\bibinfo{person}{Leslie Lamport}.}
-  \bibinfo{year}{1986}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{\it {\LaTeX}: A Document Preparation
-  System}}.
-\newblock \bibinfo{publisher}{Addison-Wesley}, \bibinfo{address}{Reading, MA.}
-\newblock
-
-
-\bibitem[Lee(2005)]%
-        {Lee05}
-\bibfield{author}{\bibinfo{person}{Newton Lee}.}
+\bibitem[Chen et~al\mbox{.}(2005)]%
+        {Chen05}
+\bibfield{author}{\bibinfo{person}{D. Chen}, \bibinfo{person}{B. Zhou},
+  \bibinfo{person}{Z. Guo}, {and} \bibinfo{person}{P. Nilsson}.}
   \bibinfo{year}{2005}\natexlab{}.
-\newblock \showarticletitle{Interview with Bill Kinder: January 13, 2005}.
-\newblock \bibinfo{howpublished}{Video}.
-\newblock \bibinfo{journal}{\emph{Comput. Entertain.}} \bibinfo{volume}{3},
-  \bibinfo{number}{1}, Article \bibinfo{articleno}{4}
-  (\bibinfo{date}{Jan.-March} \bibinfo{year}{2005}).
+\newblock \showarticletitle{Design and Implementation of Reciprocal Unit}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE Midwest Symposium on
+  Circuits and Systems (MWSCAS)}}. \bibinfo{pages}{1318--1321}.
 \newblock
-\href{https://doi.org/10.1145/1057270.1057278}{doi:\nolinkurl{10.1145/1057270.1057278}}
+\href{https://doi.org/10.1109/MWSCAS.2005.1594352}{doi:\nolinkurl{10.1109/MWSCAS.2005.1594352}}
 
 
-\bibitem[Novak(2003)]%
-        {Novak03}
-\bibfield{author}{\bibinfo{person}{Dave Novak}.}
-  \bibinfo{year}{2003}\natexlab{}.
-\newblock \showarticletitle{Solder man}. \bibinfo{howpublished}{Video}. In
-  \bibinfo{booktitle}{\emph{ACM SIGGRAPH 2003 Video Review on Animation theater
-  Program: Part I - Vol. 145 (July 27--27, 2003)}}. \bibinfo{publisher}{ACM
-  Press}, \bibinfo{address}{New York, NY}, \bibinfo{pages}{4}.
+\bibitem[Das~Sarma and Matula(1995)]%
+        {DasSarmaMatula95}
+\bibfield{author}{\bibinfo{person}{D. Das~Sarma} {and} \bibinfo{person}{D.~W.
+  Matula}.} \bibinfo{year}{1995}\natexlab{}.
+\newblock \showarticletitle{Faithful Bipartite ROM Reciprocal Tables}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 12th IEEE Symposium on Computer
+  Arithmetic (ARITH)}}. \bibinfo{pages}{17--28}.
 \newblock
-\href{https://doi.org/10.945/woot07-S422}{doi:\nolinkurl{10.945/woot07-S422}}
+\href{https://doi.org/10.1109/ARITH.1995.465381}{doi:\nolinkurl{10.1109/ARITH.1995.465381}}
+
+
+\bibitem[de~Dinechin and Tisserand(2005)]%
+        {DeDinechinTisserand05}
+\bibfield{author}{\bibinfo{person}{Florent de Dinechin} {and}
+  \bibinfo{person}{Arnaud Tisserand}.} \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{Multipartite Table Methods}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{54},
+  \bibinfo{number}{3} (\bibinfo{date}{March} \bibinfo{year}{2005}),
+  \bibinfo{pages}{319--330}.
+\newblock
+\href{https://doi.org/10.1109/TC.2005.54}{doi:\nolinkurl{10.1109/TC.2005.54}}
+
+
+\bibitem[{Digilent, Inc.}({[n.\,d.]})]%
+        {DigilentNexysA7}
+\bibfield{author}{\bibinfo{person}{{Digilent, Inc.}}}
+  \bibinfo{year}{[n.\,d.]}\natexlab{}.
+\newblock \bibinfo{title}{Nexys A7 FPGA Board Reference Manual}.
+\newblock \bibinfo{howpublished}{Online}.
+\newblock
 \urldef\tempurl%
-\url{http://video.google.com/videoplay?docid=6528042696351994555}
+\url{https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual}
 \showURL{%
 \tempurl}
 
 
-\bibitem[Obama(2008)]%
-        {Obama08}
-\bibfield{author}{\bibinfo{person}{Barack Obama}.}
-  \bibinfo{year}{2008}\natexlab{}.
-\newblock \bibinfo{title}{A more perfect union}.
-\newblock \bibinfo{howpublished}{Video}.
+\bibitem[Ercegovac et~al\mbox{.}(2000a)]%
+        {ErcegovacImbertMatulaMullerWei00}
+\bibfield{author}{\bibinfo{person}{Milos~D. Ercegovac},
+  \bibinfo{person}{Laurent Imbert}, \bibinfo{person}{David~W. Matula},
+  \bibinfo{person}{Jean-Michel Muller}, {and} \bibinfo{person}{Guang Wei}.}
+  \bibinfo{year}{2000}\natexlab{a}.
+\newblock \showarticletitle{Improving Goldschmidt Division, Square Root, and
+  Square Root Reciprocal}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{49},
+  \bibinfo{number}{7} (\bibinfo{date}{July} \bibinfo{year}{2000}),
+  \bibinfo{pages}{759--763}.
+\newblock
+\href{https://doi.org/10.1109/12.863046}{doi:\nolinkurl{10.1109/12.863046}}
+
+
+\bibitem[Ercegovac and Lang(1994)]%
+        {ErcegovacLang94}
+\bibfield{author}{\bibinfo{person}{Milos~D. Ercegovac} {and}
+  \bibinfo{person}{Tomas Lang}.} \bibinfo{year}{1994}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Division and Square Root: Digit-Recurrence
+  Algorithms and Implementations}}.
+\newblock \bibinfo{publisher}{Kluwer Academic Publishers},
+  \bibinfo{address}{Boston, MA, USA}.
+\newblock
+
+
+\bibitem[Ercegovac and Lang(2004)]%
+        {ErcegovacLang04}
+\bibfield{author}{\bibinfo{person}{Milos~D. Ercegovac} {and}
+  \bibinfo{person}{Tomas Lang}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Digital Arithmetic}}.
+\newblock \bibinfo{publisher}{Morgan Kaufmann}, \bibinfo{address}{San
+  Francisco, CA, USA}.
+\newblock
+
+
+\bibitem[Ercegovac et~al\mbox{.}(2000b)]%
+        {ErcegovacLangMullerTisserand00}
+\bibfield{author}{\bibinfo{person}{Milos~D. Ercegovac}, \bibinfo{person}{Tomas
+  Lang}, \bibinfo{person}{Jean-Michel Muller}, {and} \bibinfo{person}{Arnaud
+  Tisserand}.} \bibinfo{year}{2000}\natexlab{b}.
+\newblock \showarticletitle{Reciprocation, Square Root, Inverse Square Root,
+  and Some Elementary Functions Using Small Multipliers}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{49},
+  \bibinfo{number}{7} (\bibinfo{date}{July} \bibinfo{year}{2000}),
+  \bibinfo{pages}{628--637}.
+\newblock
+\href{https://doi.org/10.1109/12.863031}{doi:\nolinkurl{10.1109/12.863031}}
+
+
+\bibitem[Flynn(1970)]%
+        {Flynn70}
+\bibfield{author}{\bibinfo{person}{Michael~J. Flynn}.}
+  \bibinfo{year}{1970}\natexlab{}.
+\newblock \showarticletitle{On Division by Functional Iteration}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{C-19},
+  \bibinfo{number}{8} (\bibinfo{date}{Aug.} \bibinfo{year}{1970}),
+  \bibinfo{pages}{702--706}.
+\newblock
+\href{https://doi.org/10.1109/T-C.1970.223019}{doi:\nolinkurl{10.1109/T-C.1970.223019}}
+
+
+\bibitem[Gallagher and Swartzlander(2000)]%
+        {GallagherSwartzlander00}
+\bibfield{author}{\bibinfo{person}{William~L. Gallagher} {and}
+  \bibinfo{person}{Earl~E. Swartzlander}.} \bibinfo{year}{2000}\natexlab{}.
+\newblock \showarticletitle{Fault-Tolerant Newton-Raphson and Goldschmidt
+  Dividers Using Time Shared TMR}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{49},
+  \bibinfo{number}{6} (\bibinfo{date}{June} \bibinfo{year}{2000}),
+  \bibinfo{pages}{588--595}.
+\newblock
+\href{https://doi.org/10.1109/12.862218}{doi:\nolinkurl{10.1109/12.862218}}
+
+
+\bibitem[Goldschmidt(1964)]%
+        {Goldschmidt64}
+\bibfield{author}{\bibinfo{person}{Robert~E. Goldschmidt}.}
+  \bibinfo{year}{1964}\natexlab{}.
+\newblock \emph{\bibinfo{title}{Applications of Division by Convergence}}.
+\newblock M.S. thesis. \bibinfo{school}{Massachusetts Institute of Technology},
+  \bibinfo{address}{Cambridge, MA, USA}.
+\newblock
+
+
+\bibitem[Guti{\'e}rrez-Ramos et~al\mbox{.}(2026)]%
+        {Gutierrez26}
+\bibfield{author}{\bibinfo{person}{Gonzalo Guti{\'e}rrez-Ramos},
+  \bibinfo{person}{Ram{\'o}n Parra-Michel}, \bibinfo{person}{Eduardo
+  Romero-Aguirre}, \bibinfo{person}{Alberto Rodriguez-Garc{\'i}a}, {and}
+  \bibinfo{person}{Rodrigo Jaramillo-Ram{\'i}rez}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{A Fast Fixed-Point Implementation for Division,
+  Reciprocal, Square Root and Reciprocal Square Root Based on Newton-Raphson
+  Method}.
+\newblock \bibinfo{journal}{\emph{Electronics}} \bibinfo{volume}{15},
+  \bibinfo{number}{13} (\bibinfo{year}{2026}), \bibinfo{pages}{2899}.
+\newblock
+\href{https://doi.org/10.3390/electronics15132899}{doi:\nolinkurl{10.3390/electronics15132899}}
+
+
+\bibitem[Ito et~al\mbox{.}(1997)]%
+        {Ito97}
+\bibfield{author}{\bibinfo{person}{M. Ito}, \bibinfo{person}{N. Takagi}, {and}
+  \bibinfo{person}{S. Yajima}.} \bibinfo{year}{1997}\natexlab{}.
+\newblock \showarticletitle{Efficient Initial Approximation for Multiplicative
+  Division and Square Root by a Multiplication With Operand Modification}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{46},
+  \bibinfo{number}{4} (\bibinfo{date}{April} \bibinfo{year}{1997}),
+  \bibinfo{pages}{495--498}.
+\newblock
+\href{https://doi.org/10.1109/12.588066}{doi:\nolinkurl{10.1109/12.588066}}
+
+
+\bibitem[K.({[n.\,d.]})]%
+        {GitHubRepo}
+\bibfield{author}{\bibinfo{person}{Navaneeth K.}}
+  \bibinfo{year}{[n.\,d.]}\natexlab{}.
+\newblock \bibinfo{title}{fixed-point-research}.
+\newblock \bibinfo{howpublished}{GitHub repository}.
 \newblock
 \urldef\tempurl%
-\url{http://video.google.com/videoplay?docid=6528042696351994555}
-\showURL{%
-Retrieved March 21, 2008 from \tempurl}
-
-
-\bibitem[Poker-Edge.Com(2006)]%
-        {Poker06}
-\bibfield{author}{\bibinfo{person}{Poker-Edge.Com}.}
-  \bibinfo{year}{2006}\natexlab{}.
-\newblock \bibinfo{title}{Stats and Analysis}.
-\newblock
-\urldef\tempurl%
-\url{http://www.poker-edge.com/stats.php}
-\showURL{%
-Retrieved June 7, 2006 from \tempurl}
-
-
-\bibitem[{R Core Team}(2019)]%
-        {R}
-\bibfield{author}{\bibinfo{person}{{R Core Team}}.}
-  \bibinfo{year}{2019}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{R: A Language and Environment for
-  Statistical Computing}}.
-\newblock R Foundation for Statistical Computing, Vienna, Austria.
-\newblock
-\urldef\tempurl%
-\url{https://www.R-project.org/}
+\url{https://github.com/navaneethkutty/fixed-point-research}
 \showURL{%
 \tempurl}
 
 
-\bibitem[Reiser(2014)]%
-        {Reiser2014}
-\bibfield{author}{\bibinfo{person}{Brian~J. Reiser}.}
-  \bibinfo{year}{2014}\natexlab{}.
-\newblock \showarticletitle{Designing coherent storylines aligned with NGSS for
-  the K-12 classroom}. Presentation at \bibinfo{venue}{National Science
-  Education Leadership Association Meeting, Boston, MA, USA}.
+\bibitem[Kasim et~al\mbox{.}(2013)]%
+        {Kasim13}
+\bibfield{author}{\bibinfo{person}{M.~F. Kasim}, \bibinfo{person}{T. Adiono},
+  \bibinfo{person}{M. Fahreza}, {and} \bibinfo{person}{M.~F. Zakiy}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{FPGA Implementation of Fixed-Point Divider Using
+  Pre-Computed Values}.
+\newblock \bibinfo{journal}{\emph{Procedia Technology}}  \bibinfo{volume}{11}
+  (\bibinfo{year}{2013}), \bibinfo{pages}{206--211}.
 \newblock
-\urldef\tempurl%
-\url{https://www.academia.edu/6884962/}
-\showURL{%
-\tempurl}
+\href{https://doi.org/10.1016/j.protcy.2013.12.182}{doi:\nolinkurl{10.1016/j.protcy.2013.12.182}}
 
 
-\bibitem[Rous(2008)]%
-        {rous08}
-\bibfield{author}{\bibinfo{person}{Bernard Rous}.}
-  \bibinfo{year}{2008}\natexlab{}.
-\newblock \showarticletitle{The Enabling of Digital Libraries}.
-\newblock \bibinfo{journal}{\emph{Digital Libraries}} \bibinfo{volume}{12},
-  \bibinfo{number}{3}, Article \bibinfo{articleno}{5} (\bibinfo{date}{July}
-  \bibinfo{year}{2008}).
+\bibitem[Kong and Swartzlander(2011)]%
+        {KongSwartzlander11}
+\bibfield{author}{\bibinfo{person}{I. Kong} {and} \bibinfo{person}{E.~E.
+  Swartzlander}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{A Goldschmidt Division Method With Faster Than
+  Quadratic Convergence}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Very Large Scale
+  Integration (VLSI) Systems}} \bibinfo{volume}{19}, \bibinfo{number}{4}
+  (\bibinfo{date}{April} \bibinfo{year}{2011}), \bibinfo{pages}{696--700}.
 \newblock
-\shownote{To appear}.
+\href{https://doi.org/10.1109/TVLSI.2009.2036926}{doi:\nolinkurl{10.1109/TVLSI.2009.2036926}}
+
+
+\bibitem[Kucukkabak and Akkas(2004)]%
+        {Kucukkabak04}
+\bibfield{author}{\bibinfo{person}{U. Kucukkabak} {and} \bibinfo{person}{A.
+  Akkas}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Design and Implementation of Reciprocal Unit Using
+  Table Look-Up and Newton-Raphson Iteration}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the Euromicro Symposium on Digital
+  System Design (DSD)}}. \bibinfo{pages}{249--253}.
 \newblock
+\href{https://doi.org/10.1109/DSD.2004.1333284}{doi:\nolinkurl{10.1109/DSD.2004.1333284}}
 
 
-\bibitem[Saeedi et~al\mbox{.}(2010a)]%
-        {SaeediMEJ10}
-\bibfield{author}{\bibinfo{person}{Mehdi Saeedi},
-  \bibinfo{person}{Morteza~Saheb Zamani}, {and} \bibinfo{person}{Mehdi
-  Sedighi}.} \bibinfo{year}{2010}\natexlab{a}.
-\newblock \showarticletitle{A library-based synthesis methodology for
-  reversible logic}.
-\newblock \bibinfo{journal}{\emph{Microelectron. J.}} \bibinfo{volume}{41},
-  \bibinfo{number}{4} (\bibinfo{date}{April} \bibinfo{year}{2010}),
-  \bibinfo{pages}{185--194}.
+\bibitem[Kumar et~al\mbox{.}(2017)]%
+        {Kumar17}
+\bibfield{author}{\bibinfo{person}{D. Kumar}, \bibinfo{person}{P. Saha}, {and}
+  \bibinfo{person}{A. Dandapat}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Hardware Implementation of Methodologies of Fixed
+  Point Division Algorithms}.
+\newblock \bibinfo{journal}{\emph{International Journal of Smart Sensing and
+  Intelligent Systems}} \bibinfo{volume}{10}, \bibinfo{number}{3}
+  (\bibinfo{year}{2017}), \bibinfo{pages}{1--16}.
 \newblock
+\href{https://doi.org/10.21307/ijssis-2017-227}{doi:\nolinkurl{10.21307/ijssis-2017-227}}
 
 
-\bibitem[Saeedi et~al\mbox{.}(2010b)]%
-        {SaeediJETC10}
-\bibfield{author}{\bibinfo{person}{Mehdi Saeedi},
-  \bibinfo{person}{Morteza~Saheb Zamani}, \bibinfo{person}{Mehdi Sedighi},
-  {and} \bibinfo{person}{Zahra Sasanian}.} \bibinfo{year}{2010}\natexlab{b}.
-\newblock \showarticletitle{Synthesis of Reversible Circuit Using Cycle-Based
-  Approach}.
-\newblock \bibinfo{journal}{\emph{J. Emerg. Technol. Comput. Syst.}}
-  \bibinfo{volume}{6}, \bibinfo{number}{4} (\bibinfo{date}{Dec.}
-  \bibinfo{year}{2010}), \bibinfo{numpages}{12}~pages.
+\bibitem[Leiserson and Saxe(1991)]%
+        {LeisersonSaxe91}
+\bibfield{author}{\bibinfo{person}{Charles~E. Leiserson} {and}
+  \bibinfo{person}{James~B. Saxe}.} \bibinfo{year}{1991}\natexlab{}.
+\newblock \showarticletitle{Retiming Synchronous Circuitry}.
+\newblock \bibinfo{journal}{\emph{Algorithmica}} \bibinfo{volume}{6},
+  \bibinfo{number}{1} (\bibinfo{year}{1991}), \bibinfo{pages}{5--35}.
 \newblock
+\href{https://doi.org/10.1007/BF01759032}{doi:\nolinkurl{10.1007/BF01759032}}
 
 
-\bibitem[Scientist(2009)]%
-        {JoeScientist001}
-\bibfield{author}{\bibinfo{person}{Joseph Scientist}.}
-  \bibinfo{year}{2009}\natexlab{}.
-\newblock \bibinfo{title}{The fountain of youth}.
-\newblock
-\shownote{Patent No. 12345, Filed July 1st., 2008, Issued Aug. 9th., 2009}.
-\newblock
-
-
-\bibitem[Smith(2010)]%
-        {Smith10}
-\bibfield{author}{\bibinfo{person}{Stan~W. Smith}.}
-  \bibinfo{year}{2010}\natexlab{}.
-\newblock \showarticletitle{An experiment in bibliographic mark-up: Parsing
-  metadata for XML export}. In \bibinfo{booktitle}{\emph{Proceedings of the
-  3rd. annual workshop on Librarians and Computers}}
-  \emph{(\bibinfo{series}{LAC '10}, Vol.~\bibinfo{volume}{3})},
-  \bibfield{editor}{\bibinfo{person}{Reginald~N. Smythe} {and}
-  \bibinfo{person}{Alexander Noble}} (Eds.). \bibinfo{publisher}{Paparazzi
-  Press}, \bibinfo{address}{Milan Italy}, \bibinfo{pages}{422--431}.
-\newblock
-
-
-\bibitem[Spector(1990)]%
-        {Spector90}
-\bibfield{author}{\bibinfo{person}{Asad~Z. Spector}.}
-  \bibinfo{year}{1990}\natexlab{}.
-\newblock \showarticletitle{Achieving application requirements}.
-\newblock In \bibinfo{booktitle}{\emph{Distributed Systems}
-  (\bibinfo{edition}{2nd.} ed.)}, \bibfield{editor}{\bibinfo{person}{Sape
-  Mullender}} (Ed.). \bibinfo{publisher}{ACM Press}, \bibinfo{address}{New
-  York, NY}, \bibinfo{pages}{19--33}.
-\newblock
-\href{https://doi.org/10.1145/90417.90738}{doi:\nolinkurl{10.1145/90417.90738}}
-
-
-\bibitem[Thornburg(2001)]%
-        {Thornburg01}
-\bibfield{author}{\bibinfo{person}{Harry Thornburg}.}
-  \bibinfo{year}{2001}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{Introduction to Bayesian Statistics}}.
-\newblock
-\urldef\tempurl%
-\url{http://ccrma.stanford.edu/~jos/bayes/bayes.html}
-\showURL{%
-\urldef\tempurla%
-\url{https://web.archive.org/web/20240505055615/https://ccrma.stanford.edu/~jos/bayes/bayes.html}%
-Retrieved March 2, 2005 from \tempurl, archived at [\tempurla]}
-
-
-\bibitem[TUG(2017)]%
-        {TUGInstmem}
-TUG \bibinfo{year}{2017}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{Institutional members of the {\TeX} Users
-  Group}}.
-\newblock
-\urldef\tempurl%
-\url{http://wwtug.org/instmem.html}
-\showURL{%
-Retrieved May 27, 2017 from \tempurl}
-
-
-\bibitem[Veytsman(2017)]%
-        {CTANacmart}
-\bibfield{author}{\bibinfo{person}{Boris Veytsman}.}
+\bibitem[Libessart et~al\mbox{.}(2017)]%
+        {Libessart17}
+\bibfield{author}{\bibinfo{person}{E. Libessart}, \bibinfo{person}{M. Arzel},
+  \bibinfo{person}{C. Lahuec}, {and} \bibinfo{person}{F.~P. Andriulli}.}
   \bibinfo{year}{2017}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{acmart---{Class} for typesetting
-  publications of {ACM}}}.
+\newblock \showarticletitle{A Scaling-Less Newton-Raphson Pipelined
+  Implementation for a Fixed-Point Reciprocal Operator}.
+\newblock \bibinfo{journal}{\emph{IEEE Signal Processing Letters}}
+  \bibinfo{volume}{24}, \bibinfo{number}{6} (\bibinfo{date}{June}
+  \bibinfo{year}{2017}), \bibinfo{pages}{789--793}.
+\newblock
+\href{https://doi.org/10.1109/LSP.2017.2694225}{doi:\nolinkurl{10.1109/LSP.2017.2694225}}
+
+
+\bibitem[Lunglmayr(2021)]%
+        {Lunglmayr21}
+\bibfield{author}{\bibinfo{person}{Michael Lunglmayr}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Efficient Non-sequential Division for FPGAs}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2105.05747}}
+  (\bibinfo{year}{2021}).
+\newblock
+\href{https://doi.org/10.48550/arXiv.2105.05747}{doi:\nolinkurl{10.48550/arXiv.2105.05747}}
+
+
+\bibitem[Muller(1997)]%
+        {Muller97}
+\bibfield{author}{\bibinfo{person}{Jean-Michel Muller}.}
+  \bibinfo{year}{1997}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Elementary Functions: Algorithms and
+  Implementation}}.
+\newblock \bibinfo{publisher}{Birkh{\"a}user}, \bibinfo{address}{Boston, MA,
+  USA}.
+\newblock
+\href{https://doi.org/10.1007/978-1-4757-2646-6}{doi:\nolinkurl{10.1007/978-1-4757-2646-6}}
+
+
+\bibitem[Mu{\~n}oz et~al\mbox{.}(2010)]%
+        {MunozEtAl10}
+\bibfield{author}{\bibinfo{person}{D.~M. Mu{\~n}oz}, \bibinfo{person}{D.~F.
+  Sanchez}, \bibinfo{person}{C.~H. Llanos}, {and} \bibinfo{person}{M.
+  Ayala-Rinc{\'o}n}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Tradeoff of FPGA Design of a Floating-Point Library
+  for Arithmetic Operators}.
+\newblock \bibinfo{journal}{\emph{Journal of Integrated Circuits and Systems}}
+  \bibinfo{volume}{5}, \bibinfo{number}{1} (\bibinfo{year}{2010}),
+  \bibinfo{pages}{42--52}.
+\newblock
+\href{https://doi.org/10.29292/jics.v5i1.309}{doi:\nolinkurl{10.29292/jics.v5i1.309}}
+
+
+\bibitem[Nannarelli and Lang(1999)]%
+        {NannarelliLang99}
+\bibfield{author}{\bibinfo{person}{Alberto Nannarelli} {and}
+  \bibinfo{person}{Tomas Lang}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Low-Power Divider}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{48},
+  \bibinfo{number}{1} (\bibinfo{date}{Jan.} \bibinfo{year}{1999}),
+  \bibinfo{pages}{2--14}.
+\newblock
+\href{https://doi.org/10.1109/12.802356}{doi:\nolinkurl{10.1109/12.802356}}
+
+
+\bibitem[Oberman and Flynn(1997)]%
+        {Oberman97}
+\bibfield{author}{\bibinfo{person}{Stuart~F. Oberman} {and}
+  \bibinfo{person}{Michael~J. Flynn}.} \bibinfo{year}{1997}\natexlab{}.
+\newblock \showarticletitle{Division Algorithms and Implementations}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{46},
+  \bibinfo{number}{8} (\bibinfo{date}{Aug.} \bibinfo{year}{1997}),
+  \bibinfo{pages}{833--854}.
+\newblock
+\href{https://doi.org/10.1109/12.609274}{doi:\nolinkurl{10.1109/12.609274}}
+
+
+\bibitem[Paim et~al\mbox{.}(2017)]%
+        {Paim17}
+\bibfield{author}{\bibinfo{person}{G. Paim}, \bibinfo{person}{P. Marques},
+  \bibinfo{person}{E.~A.~C. da Costa}, \bibinfo{person}{S.~J.~M. de Almeida},
+  {and} \bibinfo{person}{S. Bampi}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Improved Goldschmidt Algorithm for Fast and
+  Energy-Efficient Fixed-Point Divider}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 24th IEEE International
+  Conference on Electronics, Circuits and Systems (ICECS)}}.
+  \bibinfo{pages}{482--485}.
+\newblock
+\href{https://doi.org/10.1109/ICECS.2017.8292070}{doi:\nolinkurl{10.1109/ICECS.2017.8292070}}
+
+
+\bibitem[Parhami(2000)]%
+        {Parhami00}
+\bibfield{author}{\bibinfo{person}{Behrooz Parhami}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Computer Arithmetic: Algorithms and
+  Hardware Designs}}.
+\newblock \bibinfo{publisher}{Oxford University Press}, \bibinfo{address}{New
+  York, NY, USA}.
+\newblock
+
+
+\bibitem[Pi{\~n}eiro and Bruguera(2002)]%
+        {PineiroBruguera02}
+\bibfield{author}{\bibinfo{person}{Juan-Antonio Pi{\~n}eiro} {and}
+  \bibinfo{person}{Jes{\'u}s~D. Bruguera}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{High-Speed Double-Precision Computation of
+  Reciprocal, Division, Square Root, and Inverse Square Root}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{51},
+  \bibinfo{number}{12} (\bibinfo{date}{Dec.} \bibinfo{year}{2002}),
+  \bibinfo{pages}{1377--1388}.
+\newblock
+\href{https://doi.org/10.1109/TC.2002.1146704}{doi:\nolinkurl{10.1109/TC.2002.1146704}}
+
+
+\bibitem[Pi{\~n}eiro et~al\mbox{.}(2005)]%
+        {PineiroObermanMullerBruguera05}
+\bibfield{author}{\bibinfo{person}{Juan-Antonio Pi{\~n}eiro},
+  \bibinfo{person}{Stuart~F. Oberman}, \bibinfo{person}{Jean-Michel Muller},
+  {and} \bibinfo{person}{Jes{\'u}s~D. Bruguera}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{High-Speed Function Approximation Using a Minimax
+  Quadratic Interpolator}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{54},
+  \bibinfo{number}{3} (\bibinfo{date}{March} \bibinfo{year}{2005}),
+  \bibinfo{pages}{304--318}.
+\newblock
+\href{https://doi.org/10.1109/TC.2005.52}{doi:\nolinkurl{10.1109/TC.2005.52}}
+
+
+\bibitem[Rodr{\'i}guez-Garc{\'i}a et~al\mbox{.}(2013)]%
+        {Rodriguez13}
+\bibfield{author}{\bibinfo{person}{A. Rodr{\'i}guez-Garc{\'i}a},
+  \bibinfo{person}{L. Pizano-Escalante}, \bibinfo{person}{R. Parra-Michel},
+  \bibinfo{person}{O. Longoria-Gandara}, {and} \bibinfo{person}{J. Cortez}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Fast Fixed-Point Divider Based on Newton-Raphson
+  Method and Piecewise Polynomial Approximation}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the International Conference on
+  Reconfigurable Computing and FPGAs (ReConFig)}}.
+\newblock
+\href{https://doi.org/10.1109/ReConFig.2013.6732291}{doi:\nolinkurl{10.1109/ReConFig.2013.6732291}}
+
+
+\bibitem[Schulte and Stine(1999)]%
+        {SchulteStine99}
+\bibfield{author}{\bibinfo{person}{Michael~J. Schulte} {and}
+  \bibinfo{person}{James~E. Stine}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Approximating Elementary Functions with Symmetric
+  Bipartite Tables}.
+\newblock \bibinfo{journal}{\emph{IEEE Trans. Comput.}} \bibinfo{volume}{48},
+  \bibinfo{number}{8} (\bibinfo{date}{Aug.} \bibinfo{year}{1999}),
+  \bibinfo{pages}{842--847}.
+\newblock
+\href{https://doi.org/10.1109/12.795125}{doi:\nolinkurl{10.1109/12.795125}}
+
+
+\bibitem[Soderquist and Leeser(1996)]%
+        {Soderquist96}
+\bibfield{author}{\bibinfo{person}{Peter Soderquist} {and}
+  \bibinfo{person}{Miriam Leeser}.} \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{Area and Performance Tradeoffs in Floating-Point
+  Divide and Square-Root Implementations}.
+\newblock \bibinfo{journal}{\emph{Comput. Surveys}} \bibinfo{volume}{28},
+  \bibinfo{number}{3} (\bibinfo{date}{Sept.} \bibinfo{year}{1996}),
+  \bibinfo{pages}{518--564}.
+\newblock
+\href{https://doi.org/10.1145/243439.243481}{doi:\nolinkurl{10.1145/243439.243481}}
+
+
+\bibitem[Sorokin(2006)]%
+        {Sorokin06}
+\bibfield{author}{\bibinfo{person}{N. Sorokin}.}
+  \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{Implementation of High-Speed Fixed-Point Dividers
+  on FPGA}.
+\newblock \bibinfo{journal}{\emph{Journal of Computer Science and Technology}}
+  \bibinfo{volume}{6}, \bibinfo{number}{1} (\bibinfo{date}{April}
+  \bibinfo{year}{2006}), \bibinfo{pages}{8--11}.
+\newblock
+
+
+\bibitem[Volder(1959)]%
+        {Volder59}
+\bibfield{author}{\bibinfo{person}{J.~E. Volder}.}
+  \bibinfo{year}{1959}\natexlab{}.
+\newblock \showarticletitle{The CORDIC Trigonometric Computing Technique}.
+\newblock \bibinfo{journal}{\emph{IRE Transactions on Electronic Computers}}
+  \bibinfo{volume}{EC-8}, \bibinfo{number}{3} (\bibinfo{date}{Sept.}
+  \bibinfo{year}{1959}), \bibinfo{pages}{330--334}.
+\newblock
+\href{https://doi.org/10.1109/TEC.1959.5222693}{doi:\nolinkurl{10.1109/TEC.1959.5222693}}
+
+
+\bibitem[Wang and Nelson(2003)]%
+        {WangNelson03}
+\bibfield{author}{\bibinfo{person}{X. Wang} {and} \bibinfo{person}{B. Nelson}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Tradeoffs of Designing Floating-Point Division and
+  Square Root on Virtex FPGAs}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  11th Annual IEEE Symposium on Field-Programmable Custom Computing Machines
+  (FCCM)}}. \bibinfo{pages}{195--203}.
+\newblock
+\href{https://doi.org/10.1109/FPGA.2003.1227255}{doi:\nolinkurl{10.1109/FPGA.2003.1227255}}
+
+
+\bibitem[Weaver et~al\mbox{.}(2003)]%
+        {WeaverMarkovskiyPatelWawrzynek03}
+\bibfield{author}{\bibinfo{person}{Nicholas Weaver}, \bibinfo{person}{Yury
+  Markovskiy}, \bibinfo{person}{Yatish Patel}, {and} \bibinfo{person}{John
+  Wawrzynek}.} \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Post-Placement C-Slow Retiming for the Xilinx
+  Virtex FPGA}. In \bibinfo{booktitle}{\emph{Proceedings of the 11th ACM
+  International Symposium on Field-Programmable Gate Arrays (FPGA)}}.
+  \bibinfo{address}{Monterey, CA, USA}, \bibinfo{pages}{185--194}.
+\newblock
+\href{https://doi.org/10.1145/611817.611845}{doi:\nolinkurl{10.1145/611817.611845}}
+
+
+\bibitem[{Xilinx, Inc.}(2018)]%
+        {XilinxUG479}
+\bibfield{author}{\bibinfo{person}{{Xilinx, Inc.}}}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{7 Series FPGAs DSP48E1 Slice User Guide}
+  (\bibinfo{edition}{1.10} ed.)}.
+\newblock Xilinx, Inc.
 \newblock
 \urldef\tempurl%
-\url{http://www.ctan.org/pkg/acmart}
+\url{https://docs.amd.com/v/u/en-US/ug479_7Series_DSP48E1}
 \showURL{%
-Retrieved May 27, 2017 from \tempurl}
+\tempurl}
 
 
 \end{thebibliography}

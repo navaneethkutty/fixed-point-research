@@ -1,5 +1,13 @@
 # Fdb version 4
-["pdflatex"] 1790527860.6711 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790527887.44306 0
+["bibtex acmmanuscript"] 1790608036.64861 "acmmanuscript.aux" "acmmanuscript.bbl" "acmmanuscript" 1790608092.39993 0
+  "./ACM-Reference-Format.bst" 1789895488 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
+  "./references.bib" 1790607483 13276 2e31eb77de23125eb8adf241462b78b1 ""
+  "acmmanuscript.aux" 1790608090 25284 e9cebaf188acdcf18747bddafc531592 "pdflatex"
+  (generated)
+  "acmmanuscript.bbl"
+  "acmmanuscript.blg"
+  (rewritten before read)
+["pdflatex"] 1790608065.6568 "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" "acmmanuscript.pdf" "acmmanuscript" 1790608092.40131 0
   "C:/Users/knith/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790402894 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/knith/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1788071591 13367606 93afbb73f75e83143d69eca9db59a6d0 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1557958141 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
@@ -41,9 +49,11 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/libertine/LinLibertineTZ-tlf-ot1--base.tfm" 1732620802 1360 a425d2371104892a5a1ef36bfb35a4d6 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/libertine/LinLibertineTZ-tlf-ot1.tfm" 1732620802 7980 71b0e73dbd483925d19ec6431fc391c6 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/LibertineMathMI.tfm" 1736607165 1552 f91250a4f6e3f34d48dfc8f34aabc764 ""
+  "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/LibertineMathMI5.tfm" 1736607165 1604 830e0bb815cb4091c5b6632428e4b333 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/LibertineMathMI7.tfm" 1736607166 1576 8b8bb19fb7739a0ce82c1377e0e950fe ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/LibertineMathRM.tfm" 1736607165 768 5d62e4cbf373f8d0d7ef7daa7a6f7a5d ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/NewTXMI.tfm" 1736607165 1408 ef71a9098da4d5a1a85b5920860b6731 ""
+  "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/NewTXMI5.tfm" 1736607165 1608 3b4f5db1bef3c1dab5d5687ad287108b ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/NewTXMI7.tfm" 1736607165 1556 4df22ac3e5cc03ff0898d83d8817c6cf ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/ntxexa.tfm" 1736607165 760 e8ec875a87aa119f1af7ea4be48da9e8 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/tfm/public/newtx/ntxexx.tfm" 1736607165 1788 252bc928adbd02cba8c68f0fccd62f6c ""
@@ -70,6 +80,7 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTI.pfb" 1497089889 490980 a252c644e887b4e2fc664c31f1402303 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTZ.pfb" 1497089889 526513 6202ae88302da257d8876e2fd92620cb ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb" 1736607166 35829 e5b81ebdef873b4e07e10dde7ac213f2 ""
+  "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI5.pfb" 1736607166 36138 54cca9a189ecac91365757cd31373770 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI7.pfb" 1736607166 36894 5faa3d8244e2228f0a366635240ed4d4 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathRM.pfb" 1736607166 17941 ddba6afdead1586dc42d18763749eddd ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb" 1736607166 32409 70669e52221234457749adcf327540bc ""
@@ -90,6 +101,7 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxsy5.vf" 1736607166 1856 05afd1fb7a543fb973348907ffdabf53 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/ntxsy7.vf" 1736607166 1940 bf4bac1135a7513fb45cfd9280176019 ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmi.vf" 1736607166 2744 3e5ba39e1559219ae379b7645e2f9524 ""
+  "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmi5.vf" 1736607166 2740 c8b5f27ae076b0aa71375fdbd19167ca ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmi7.vf" 1736607166 2740 2574d1692bc06933fa73eb18c93daedb ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/vf/public/newtx/nxlmia.vf" 1736607166 2252 bb868e02d533d88cf043058750d87c0b ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -210,10 +222,12 @@
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/knith/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "acmart.cls" 1789895492 121737 e553f62fc9642f9010f9c29ba27de8d5 ""
-  "acmmanuscript.aux" 1790527886 21441 68c2c73b3b8010fd9153cc4ee845db96 "pdflatex"
-  "acmmanuscript.out" 1790527886 6981 afacb6b8c8cf87111d9e4bc83b5b9bf7 "pdflatex"
-  "acmmanuscript.tex" 1790527833 100907 a18650292e8f349c1aeb066f21485fdc ""
-  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790527833 100907 a18650292e8f349c1aeb066f21485fdc ""
+  "acmmanuscript.aux" 1790608090 25284 e9cebaf188acdcf18747bddafc531592 "pdflatex"
+  "acmmanuscript.bbl" 1790608037 23864 890ef94eaba229cb06e645c00bce529f "bibtex acmmanuscript"
+  "acmmanuscript.out" 1790608090 8489 6d2fc7859496405ccc5bf56c34940960 "pdflatex"
+  "acmmanuscript.tex" 1790608042 109434 0373de2e90b5287c0cd4307864ff6084 ""
+  "c:/Users/knith/OneDrive/Desktop/REPOS/fixed point research/paper/acmmanuscript.tex" 1790608042 109434 0373de2e90b5287c0cd4307864ff6084 ""
+  "comment.cut" 1790608090 1294 cac5d69f95978b422b2a8c3ec1b99e3d "pdflatex"
   "figures/fmax_latency_plot.png" 1790402425 255277 edfd35bc7b08a441837eec75c800330b ""
   "figures/lut_dsp_bar_plot.png" 1790402433 138568 ce3211407916bf849255b42b91bc78a2 ""
   "figures/pareto_front_plot.png" 1790405072 302749 938fc86d015a6188f391fcb4b1948800 ""
@@ -247,4 +261,6 @@
   "acmmanuscript.log"
   "acmmanuscript.out"
   "acmmanuscript.pdf"
+  "comment.cut"
   (rewritten before read)
+  "comment.cut"
