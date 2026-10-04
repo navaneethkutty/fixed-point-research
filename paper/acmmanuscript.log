@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.30)  3 OCT 2026 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.30)  3 OCT 2026 14:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1097,9 +1097,6 @@ Overfull \hbox (18.86958pt too wide) in paragraph at lines 432--433
  []
 
 [12.12]
-Underfull \vbox (badness 2073) has occurred while \output is active []
-
-
 
 Package fancyhdr Warning: \headheight is too small (13.0pt): 
 (fancyhdr)                Make it at least 20.48303pt, for example:
@@ -1114,12 +1111,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/q8_resource.png, id=405, 507.21495pt x 500.5902pt>
 File: figures/q8_resource.png Graphic file (type png)
 <use figures/q8_resource.png>
-Package pdftex.def Info: figures/q8_resource.png  used on input line 521.
+Package pdftex.def Info: figures/q8_resource.png  used on input line 522.
 (pdftex.def)             Requested size: 210.70462pt x 207.95493pt.
 <figures/q16_resource.png, id=406, 507.21495pt x 500.8311pt>
 File: figures/q16_resource.png Graphic file (type png)
 <use figures/q16_resource.png>
-Package pdftex.def Info: figures/q16_resource.png  used on input line 523.
+Package pdftex.def Info: figures/q16_resource.png  used on input line 524.
 (pdftex.def)             Requested size: 210.70462pt x 208.05501pt.
 
 
@@ -1133,27 +1130,27 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 <figures/q8_fmax.png, id=418, 510.4671pt x 500.8311pt>
 File: figures/q8_fmax.png Graphic file (type png)
 <use figures/q8_fmax.png>
-Package pdftex.def Info: figures/q8_fmax.png  used on input line 557.
+Package pdftex.def Info: figures/q8_fmax.png  used on input line 558.
 (pdftex.def)             Requested size: 210.70462pt x 206.7253pt.
 <figures/q16_fmax.png, id=419, 510.58755pt x 500.8311pt>
 File: figures/q16_fmax.png Graphic file (type png)
 <use figures/q16_fmax.png>
-Package pdftex.def Info: figures/q16_fmax.png  used on input line 559.
+Package pdftex.def Info: figures/q16_fmax.png  used on input line 560.
 (pdftex.def)             Requested size: 210.70462pt x 206.67944pt.
 
 
-LaTeX Warning: Reference `tab:accuracy' on page 16 undefined on input line 569.
+LaTeX Warning: Reference `tab:accuracy' on page 16 undefined on input line 570.
 
 [16.16 <./figures/q8_fmax.png> <./figures/q16_fmax.png>]
 <figures/q8_signederror.png, id=434, 508.17854pt x 340.6326pt>
 File: figures/q8_signederror.png Graphic file (type png)
 <use figures/q8_signederror.png>
-Package pdftex.def Info: figures/q8_signederror.png  used on input line 596.
+Package pdftex.def Info: figures/q8_signederror.png  used on input line 597.
 (pdftex.def)             Requested size: 365.50655pt x 245.00578pt.
 <figures/q8_abserr.png, id=435, 508.0581pt x 340.75305pt>
 File: figures/q8_abserr.png Graphic file (type png)
 <use figures/q8_abserr.png>
-Package pdftex.def Info: figures/q8_abserr.png  used on input line 604.
+Package pdftex.def Info: figures/q8_abserr.png  used on input line 605.
 (pdftex.def)             Requested size: 365.50655pt x 245.15482pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1170,7 +1167,7 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 <figures/q8_zeroerr.png, id=446, 512.6352pt x 247.76566pt>
 File: figures/q8_zeroerr.png Graphic file (type png)
 <use figures/q8_zeroerr.png>
-Package pdftex.def Info: figures/q8_zeroerr.png  used on input line 614.
+Package pdftex.def Info: figures/q8_zeroerr.png  used on input line 615.
 (pdftex.def)             Requested size: 430.00462pt x 207.83061pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1179,7 +1176,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/q8_relerr.png, id=454, 508.299pt x 340.1508pt>
 File: figures/q8_relerr.png Graphic file (type png)
 <use figures/q8_relerr.png>
-Package pdftex.def Info: figures/q8_relerr.png  used on input line 624.
+Package pdftex.def Info: figures/q8_relerr.png  used on input line 625.
 (pdftex.def)             Requested size: 430.00462pt x 287.7645pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1194,12 +1191,12 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 
 [19.19 <./figures/q8_zeroerr.png>]
 
-LaTeX Warning: Reference `tab:accuracy' on page 20 undefined on input line 630.
+LaTeX Warning: Reference `tab:accuracy' on page 20 undefined on input line 631.
 
 <figures/q8_pipelinewarmup.png, id=465, 506.49225pt x 341.8371pt>
 File: figures/q8_pipelinewarmup.png Graphic file (type png)
 <use figures/q8_pipelinewarmup.png>
-Package pdftex.def Info: figures/q8_pipelinewarmup.png  used on input line 634.
+Package pdftex.def Info: figures/q8_pipelinewarmup.png  used on input line 635.
 (pdftex.def)             Requested size: 387.00153pt x 261.20198pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1208,12 +1205,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/q8_errorpercentile.png, id=473, 506.3718pt x 269.20575pt>
 File: figures/q8_errorpercentile.png Graphic file (type png)
 <use figures/q8_errorpercentile.png>
-Package pdftex.def Info: figures/q8_errorpercentile.png  used on input line 642.
+Package pdftex.def Info: figures/q8_errorpercentile.png  used on input line 643.
 (pdftex.def)             Requested size: 387.00153pt x 205.75276pt.
 <figures/q16_signederror.png, id=477, 508.0581pt x 340.6326pt>
 File: figures/q16_signederror.png Graphic file (type png)
 <use figures/q16_signederror.png>
-Package pdftex.def Info: figures/q16_signederror.png  used on input line 652.
+Package pdftex.def Info: figures/q16_signederror.png  used on input line 653.
 (pdftex.def)             Requested size: 430.00462pt x 288.31242pt.
 
 
@@ -1227,7 +1224,7 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 <figures/q16_abserr.png, id=484, 507.5763pt x 340.75305pt>
 File: figures/q16_abserr.png Graphic file (type png)
 <use figures/q16_abserr.png>
-Package pdftex.def Info: figures/q16_abserr.png  used on input line 660.
+Package pdftex.def Info: figures/q16_abserr.png  used on input line 661.
 (pdftex.def)             Requested size: 430.00462pt x 288.67955pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1236,12 +1233,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/q16_zeroerr.png, id=491, 512.6352pt x 247.76566pt>
 File: figures/q16_zeroerr.png Graphic file (type png)
 <use figures/q16_zeroerr.png>
-Package pdftex.def Info: figures/q16_zeroerr.png  used on input line 668.
+Package pdftex.def Info: figures/q16_zeroerr.png  used on input line 669.
 (pdftex.def)             Requested size: 430.00462pt x 207.83061pt.
 <figures/q16_relerr.png, id=492, 508.299pt x 340.27126pt>
 File: figures/q16_relerr.png Graphic file (type png)
 <use figures/q16_relerr.png>
-Package pdftex.def Info: figures/q16_relerr.png  used on input line 676.
+Package pdftex.def Info: figures/q16_relerr.png  used on input line 677.
 (pdftex.def)             Requested size: 365.50655pt x 244.68877pt.
 
 
@@ -1255,12 +1252,12 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 <figures/q16_pipelinewarmup.png, id=500, 506.49225pt x 341.8371pt>
 File: figures/q16_pipelinewarmup.png Graphic file (type png)
 <use figures/q16_pipelinewarmup.png>
-Package pdftex.def Info: figures/q16_pipelinewarmup.png  used on input line 684.
+Package pdftex.def Info: figures/q16_pipelinewarmup.png  used on input line 685.
 (pdftex.def)             Requested size: 365.50655pt x 246.69106pt.
 <figures/q16_errorpercentile.png, id=501, 506.3718pt x 269.20575pt>
 File: figures/q16_errorpercentile.png Graphic file (type png)
 <use figures/q16_errorpercentile.png>
-Package pdftex.def Info: figures/q16_errorpercentile.png  used on input line 692.
+Package pdftex.def Info: figures/q16_errorpercentile.png  used on input line 693.
 (pdftex.def)             Requested size: 387.00153pt x 205.75276pt.
  [24.24 <./figures/q16_relerr.png> <./figures/q16_pipelinewarmup.png>]
 
@@ -1271,29 +1268,29 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-7.48303pt}.
 
 [25.25 <./figures/q16_errorpercentile.png>]
-<figures/fmax_latency_plot.png, id=521, 525.76425pt x 210.66705pt>
+<figures/fmax_latency_plot.png, id=522, 525.76425pt x 210.66705pt>
 File: figures/fmax_latency_plot.png Graphic file (type png)
 <use figures/fmax_latency_plot.png>
-Package pdftex.def Info: figures/fmax_latency_plot.png  used on input line 735.
+Package pdftex.def Info: figures/fmax_latency_plot.png  used on input line 736.
 (pdftex.def)             Requested size: 430.00462pt x 172.30127pt.
-<figures/lut_dsp_bar_plot.png, id=522, 525.76425pt x 225.12105pt>
+<figures/lut_dsp_bar_plot.png, id=523, 525.76425pt x 225.12105pt>
 File: figures/lut_dsp_bar_plot.png Graphic file (type png)
 <use figures/lut_dsp_bar_plot.png>
-Package pdftex.def Info: figures/lut_dsp_bar_plot.png  used on input line 743.
+Package pdftex.def Info: figures/lut_dsp_bar_plot.png  used on input line 744.
 (pdftex.def)             Requested size: 430.00462pt x 184.12297pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26.26 <./figures/fmax_latency_plot.png>]
-<figures/power_energy_plot.png, id=530, 525.76425pt x 210.66705pt>
+<figures/power_energy_plot.png, id=531, 525.76425pt x 210.66705pt>
 File: figures/power_energy_plot.png Graphic file (type png)
 <use figures/power_energy_plot.png>
-Package pdftex.def Info: figures/power_energy_plot.png  used on input line 751.
+Package pdftex.def Info: figures/power_energy_plot.png  used on input line 752.
 (pdftex.def)             Requested size: 430.00462pt x 172.30127pt.
-<figures/resources_plot.png, id=531, 525.76425pt x 368.3361pt>
+<figures/resources_plot.png, id=532, 525.76425pt x 368.3361pt>
 File: figures/resources_plot.png Graphic file (type png)
 <use figures/resources_plot.png>
-Package pdftex.def Info: figures/resources_plot.png  used on input line 759.
+Package pdftex.def Info: figures/resources_plot.png  used on input line 760.
 (pdftex.def)             Requested size: 430.00462pt x 301.25632pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1308,15 +1305,15 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 
 [27.27 <./figures/lut_dsp_bar_plot.png> <./figures/power_energy_plot.png>] [28.28 <./figures/resources_plot.png>]
 
-LaTeX Warning: Reference `app:dominance' on page 29 undefined on input line 785.
+LaTeX Warning: Reference `app:dominance' on page 29 undefined on input line 786.
 
 
-LaTeX Warning: Reference `app:lsbfloor' on page 29 undefined on input line 787.
+LaTeX Warning: Reference `app:lsbfloor' on page 29 undefined on input line 788.
 
-<figures/pareto_front_plot.png, id=552, 525.76425pt x 299.80005pt>
+<figures/pareto_front_plot.png, id=553, 525.76425pt x 299.80005pt>
 File: figures/pareto_front_plot.png Graphic file (type png)
 <use figures/pareto_front_plot.png>
-Package pdftex.def Info: figures/pareto_front_plot.png  used on input line 791.
+Package pdftex.def Info: figures/pareto_front_plot.png  used on input line 792.
 (pdftex.def)             Requested size: 387.00153pt x 220.67746pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1330,15 +1327,15 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-7.48303pt}.
 
 [29.29]
-<figures/radar_chart_plot.png, id=560, 442.0515pt x 254.6313pt>
+<figures/radar_chart_plot.png, id=561, 442.0515pt x 254.6313pt>
 File: figures/radar_chart_plot.png Graphic file (type png)
 <use figures/radar_chart_plot.png>
-Package pdftex.def Info: figures/radar_chart_plot.png  used on input line 801.
+Package pdftex.def Info: figures/radar_chart_plot.png  used on input line 802.
 (pdftex.def)             Requested size: 430.00462pt x 247.69919pt.
-<figures/pareto_score_plot.png, id=561, 513.71925pt x 234.1548pt>
+<figures/pareto_score_plot.png, id=562, 513.71925pt x 234.1548pt>
 File: figures/pareto_score_plot.png Graphic file (type png)
 <use figures/pareto_score_plot.png>
-Package pdftex.def Info: figures/pareto_score_plot.png  used on input line 808.
+Package pdftex.def Info: figures/pareto_score_plot.png  used on input line 809.
 (pdftex.def)             Requested size: 430.00462pt x 196.00626pt.
  [30.30 <./figures/pareto_front_plot.png> <./figures/radar_chart_plot.png>]
 Underfull \vbox (badness 1902) has occurred while \output is active []
@@ -1353,13 +1350,13 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 
 [31.31 <./figures/pareto_score_plot.png>]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 9.0pt on input line 880.
+(Font)              scaled to size 9.0pt on input line 881.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.6pt on input line 880.
+(Font)              scaled to size 6.6pt on input line 881.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 5.5pt on input line 880.
+(Font)              scaled to size 5.5pt on input line 881.
  [32.32{C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_fygcup.enc}]
-Overfull \hbox (5.75157pt too wide) in paragraph at lines 899--900
+Overfull \hbox (5.75157pt too wide) in paragraph at lines 900--901
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) tures (Di-rect LUT, LUT with Lin-ear In-ter-po-la-tion, Newton-Raphson, Gold-schmidt, and a hy-brid LUT-Interpolation/Newton-
  []
 
@@ -1394,14 +1391,14 @@ Package fancyhdr Warning: \headheight is too small (13.0pt):
 LaTeX Info: Redefining \tempurl on input line 540.
 )
 
-Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 923.
+Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 924.
 
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 10.95pt on input line 923.
+(Font)              scaled to size 10.95pt on input line 924.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 8.0pt on input line 923.
+(Font)              scaled to size 8.0pt on input line 924.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.1pt on input line 923.
+(Font)              scaled to size 6.1pt on input line 924.
 (C:\Users\knith\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\knith\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
@@ -1419,17 +1416,17 @@ Package rerunfilecheck Info: File `acmmanuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 37419F4C9DB211E4B3ABD33DDF32845F;7138.
  ) 
 Here is how much of TeX's memory you used:
- 22266 strings out of 467501
- 371908 string characters out of 5408550
+ 22269 strings out of 467501
+ 371983 string characters out of 5408550
  863375 words of memory out of 5000000
  50134 multiletter control sequences out of 15000+600000
- 844210 words of font info for 569 fonts, out of 8000000 for 9000
+ 844483 words of font info for 571 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  89i,17n,131p,2809b,823s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathMI7.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/LibertineMathRM.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinBiolinumT.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinBiolinumTB.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineT.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTB.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTZ.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/knith/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb>
-Output written on acmmanuscript.pdf (36 pages, 8843949 bytes).
+Output written on acmmanuscript.pdf (36 pages, 8845742 bytes).
 PDF statistics:
- 771 PDF objects out of 1000 (max. 8388607)
+ 772 PDF objects out of 1000 (max. 8388607)
  166 named destinations out of 1000 (max. 500000)
  130013 words of extra memory for PDF output out of 154059 (max. 10000000)
 

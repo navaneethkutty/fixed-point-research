@@ -300,7 +300,7 @@ The refinement factor and subsequent updates are
 F_i = 2 - D_i, \qquad N_{i+1} = N_i \times F_i, \qquad D_{i+1} = D_i \times F_i
 \label{eq:gold_update}
 \end{equation}
-As the iterations proceed, $D_i$ approaches unity and $N_i$ approaches $1/x$. The two multiplication paths can be evaluated in parallel within an iteration, providing greater hardware parallelism than the sequential multiplication structure of Newton-Raphson. This can reduce the critical path at the cost of additional multiplier resources. In this work, the Goldschmidt datapath is evaluated using two refinement iterations, with the $N_2$ value used as the final reciprocal estimate.
+As the iterations proceed, $D_i$ approaches unity and $N_i$ approaches $1/x$. The two multiplication paths can be evaluated in parallel within an iteration, providing greater hardware parallelism than the sequential multiplication structure of Newton-Raphson. This shortens the dependency chain without increasing the number of multiplications. In this work, the Goldschmidt datapath is evaluated using two refinement iterations, with the $N_2$ value used as the final reciprocal estimate.
 
 \subsection{Theoretical Error Analysis}
 
@@ -386,7 +386,7 @@ The interpolation architecture reduces the seed table to 11 address bits and add
 \subsection{Newton-Raphson}
 \label{sec:arch-nr}
 
-The Newton-Raphson architecture computes an 8-bit-address seed estimate $y_0$ from a coarse BRAM lookup table and applies two Newton-Raphson refinement iterations using Eq.~(\ref{eq:nr}). The first iteration computes $y_1 = y_0(2 - xy_0)$, while the second computes $y_2 = y_1(2 - xy_1)$, with $y_2$ used as the final reciprocal estimate. Each iteration consists of two sequential $32\times32$ fixed-point multiplications with a subtraction from the constant 2 between them, giving four sequential multiplications and two subtraction operations per reciprocal estimate. The datapath is implemented using the deeply pipelined \texttt{pipelined\_mult32x32\_signed} multiplier and the \texttt{reciprocal\_nr\_q8\_24} iteration-control structure. Because the four multiplications form a serial dependency chain across the two refinement iterations, the Newton-Raphson architecture has the deepest multiplier pipeline among the evaluated architectures, resulting in a 69-cycle pipeline at the target clock (Fig.~\ref{fig:newtonraphson}).
+The Newton-Raphson architecture computes an 8-bit-address seed estimate $y_0$ from a coarse BRAM lookup table and applies two Newton-Raphson refinement iterations using Eq.~(\ref{eq:nr}). The first iteration computes $y_1 = y_0(2 - xy_0)$, while the second computes $y_2 = y_1(2 - xy_1)$, with $y_2$ used as the final reciprocal estimate. Each iteration consists of two sequential $32\times32$ fixed-point multiplications with a subtraction from the constant 2 between them, giving four sequential multiplications and two subtraction operations per reciprocal estimate. The datapath is implemented using the deeply pipelined \texttt{pipelined\_mult32x32\_signed} multiplier, instantiated once per multiplication (four instances) so that a new input can be accepted every cycle, and the \texttt{reciprocal\_nr\_q8\_24} iteration-control structure. Because the four multiplications form a serial dependency chain across the two refinement iterations, the Newton-Raphson architecture has the deepest multiplier pipeline among the evaluated architectures, resulting in a 69-cycle pipeline at the target clock (Fig.~\ref{fig:newtonraphson}).
 
 \begin{figure}[H]
 \centering
@@ -399,7 +399,7 @@ The Newton-Raphson architecture computes an 8-bit-address seed estimate $y_0$ fr
 \subsection{Goldschmidt}
 \label{sec:arch-gs}
 
-The Goldschmidt architecture uses the same 8-bit-address seed table as Newton-Raphson but restructures the refinement as the mutually recursive numerator/denominator update of Eqs.~(\ref{eq:gold_init}) and~(\ref{eq:gold_update}). The two multiplications $F_i \times N_i$ and $F_i \times D_i$ within a given iteration do not depend on one another and can therefore be scheduled in parallel across two multiplier instances, rather than sequentially through one multiplier instance as in Newton-Raphson. This parallelism shortens the achievable pipeline depth per iteration (54 cycles versus 69 for Newton-Raphson at the same clock target) at the cost of a second parallel multiplier datapath. The final reciprocal estimate is read from the $N_i$ register once the iteration count is reached (Fig.~\ref{fig:goldschmidt}).
+The Goldschmidt architecture uses the same 8-bit-address seed table as Newton-Raphson but restructures the refinement as the mutually recursive numerator/denominator update of Eqs.~(\ref{eq:gold_init}) and~(\ref{eq:gold_update}). The two multiplications $F_i \times N_i$ and $F_i \times D_i$ within a given iteration do not depend on one another and can therefore be issued in the same cycle on two separate multiplier instances. Both Newton-Raphson and Goldschmidt instantiate four fully pipelined $32\times32$ multipliers (20 DSP48E1 slices in each design), so this parallelism does not add multiplier resources; it shortens the chain of dependent multiplications from four stages to three, and hence the pipeline from 69 to 54 cycles at the same clock target. The final reciprocal estimate is read from the $N_i$ register once the iteration count is reached (Fig.~\ref{fig:goldschmidt}).
 
 \begin{figure}[H]
 \centering
@@ -412,13 +412,13 @@ The Goldschmidt architecture uses the same 8-bit-address seed table as Newton-Ra
 \subsection{Hybrid LUT-Interpolation/Newton-Raphson}
 \label{sec:arch-hybrid}
 
-The Hybrid architecture (module name \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} in the Q8.24 configuration) combines LUT-Interpolation with a single Newton-Raphson refinement stage. It first generates an interpolated reciprocal estimate using a 9-bit-address LUT-and-interpolation stage, providing a finer initial approximation than the 8-bit-address seed LUTs used by the standalone iterative architectures. The interpolated estimate is then refined using a single Newton-Raphson iteration of Eq.~(\ref{eq:nr}), rather than applying the iteration directly to a coarse LUT output. Since the interpolated estimate has a smaller initial error, the refinement can achieve substantially higher accuracy while avoiding the deeper pipeline required by the standalone Newton-Raphson architecture. The complete hybrid design (Fig.~\ref{fig:hybrid}) comprises four constituent modules: \texttt{reciprocal\_interp9\_q8\_24} for the interpolation seed stage, \texttt{mult32x32\_pipe\_q8\_24} for the shared pipelined multiplier, \texttt{nr\_iterate\_q8\_24} for the single-iteration refinement, and \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} as the top-level integration wrapper.
+The Hybrid architecture (module name \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} in the Q8.24 configuration) combines LUT-Interpolation with a single Newton-Raphson refinement stage. It first generates an interpolated reciprocal estimate using a 9-bit-address LUT-and-interpolation stage, providing a finer initial approximation than the 8-bit-address seed LUTs used by the standalone iterative architectures. The interpolated estimate is then refined using a single Newton-Raphson iteration of Eq.~(\ref{eq:nr}), rather than applying the iteration directly to a coarse LUT output. Since the interpolated estimate has a smaller initial error, the refinement can achieve substantially higher accuracy while avoiding the deeper pipeline required by the standalone Newton-Raphson architecture. The complete hybrid design (Fig.~\ref{fig:hybrid}) comprises four constituent modules: \texttt{reciprocal\_interp9\_q8\_24} for the interpolation seed stage, \texttt{mult32x32\_pipe\_q8\_24} for the pipelined multiplier (instantiated once per refinement multiplication), \texttt{nr\_iterate\_q8\_24} for the single-iteration refinement, and \texttt{reciprocal\_hybrid9\_1nr\_q8\_24} as the top-level integration wrapper.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{figures/pipeline5.png}
 \caption{Hybrid LUT-Interpolation/Newton-Raphson reciprocal architecture.}
-\Description{Block diagram of a 9-bit-address interpolation stage, built from a table read, one multiplication and one addition, whose output feeds a single Newton-Raphson iteration of two multiplications and one subtraction. The multiplications share one pipelined multiplier module. The whole pipeline is 40 cycles deep.}
+\Description{Block diagram of a 9-bit-address interpolation stage, built from a table read, one multiplication and one addition, whose output feeds a single Newton-Raphson iteration of two multiplications and one subtraction. The two refinement multiplications use separate instances of one pipelined multiplier module. The whole pipeline is 40 cycles deep.}
 \label{fig:hybrid}
 \end{figure}
 
@@ -453,7 +453,7 @@ Hybrid & 3 & 2 & 2 & 9-bit address \\
 \subsection{Verification Methodology}
 \label{sec:verification}
 
-Functional correctness and numerical accuracy for all five architectures, in both fixed-point formats, were verified against a common double-precision software reference model computing $1/x$ directly. Each architecture was exercised over one million verification vectors swept uniformly across the input domain $x \in [0.5, 2.5]$, with the bit-accurate RTL simulation output compared against the reference value at matching precision. This uniform sweep is a dense sample of the input domain rather than an enumeration of every representable input. For each output sample, the signed error is defined in least-significant-bit (LSB) units as
+Functional correctness and numerical accuracy for all five architectures, in both fixed-point formats, were verified against a common double-precision software reference model computing $1/x$ directly. Each architecture was exercised over one million verification vectors swept uniformly across the input domain $x \in [0.5, 2.5]$, with the bit-accurate RTL simulation output compared against the reference value at matching precision. This uniform sweep is a dense sample of the input domain rather than an enumeration of every representable input: Q16.16 has only 131,073 representable inputs in $[0.5, 2.5]$, so the sweep repeats values, and the reported maxima are maxima over the sampled vectors rather than proven worst-case bounds. Vectors are applied on consecutive clock cycles with the valid signal held high, so the sweep also exercises the one-cycle initiation interval, and each valid output is compared with the reference value of the input at the same position in the in-order stream. For each output sample, the signed error is defined in least-significant-bit (LSB) units as
 \begin{equation}
 e[n] = y_{hw}[n] - \mathrm{round}\!\left(y_{ref}[n]\, 2^F\right)
 \label{eq:lsberror}
@@ -474,7 +474,7 @@ A related correctness (rather than timing) issue surfaced during this process: a
 
 \subsection{Power Estimation and Energy Derivation}
 
-Dynamic and static power values reported in Section~\ref{sec:power} were obtained from Vivado's post-implementation power analysis for each architecture/format combination. These values are tool-based estimates rather than direct measurements of board-level power consumption, and they do not rely on a validated switching-activity trace from the verification sweep. Because every evaluated architecture is fully pipelined to produce one valid output per clock cycle once its pipeline is filled, the sustained throughput of each architecture in operations per second is equal to its achieved $F_{\max}$. Energy per operation was subsequently derived from the reported total power and this throughput as
+Dynamic and static power values reported in Section~\ref{sec:power} were obtained from Vivado's post-implementation power analysis for each architecture/format combination. These values are tool-based estimates rather than direct measurements of board-level power consumption, and they do not rely on a validated switching-activity trace from the verification sweep. The analysis used Vivado's default settings: switching activity was estimated by the tool (vectorless analysis, with no SAIF or VCD back-annotation from simulation), and the default operating conditions were retained. The estimates therefore reflect tool-assumed rather than workload-derived activity, and are suitable for comparing architectures under identical assumptions rather than for predicting absolute board-level power. Because the derived energy per operation uses total power, it includes the device static power attributed to each core in isolation; the dynamic and static components are listed separately in Table~\ref{tab:power}. Because every evaluated architecture is fully pipelined to produce one valid output per clock cycle once its pipeline is filled, the sustained throughput of each architecture in operations per second is equal to its achieved $F_{\max}$. Energy per operation was subsequently derived from the reported total power and this throughput as
 \begin{equation}
 E_{op} = \frac{P_{total}}{F_{\max}}
 \label{eq:energyop}
@@ -484,7 +484,8 @@ This relationship treats the estimated total power as corresponding to operation
 L_{ns} = N_{cycles} \times T_{target}
 \label{eq:latency}
 \end{equation}
-using the target clock period from Table~\ref{tab:designparams} rather than the achieved period, so that latency reflects the architecture's designed pipeline depth independent of any timing margin achieved beyond the target frequency.
+using the target clock period from Table~\ref{tab:designparams} rather than the achieved period, so that latency reflects the architecture's designed pipeline depth independent of any timing margin achieved beyond the target frequency. The achieved $F_{\max}$ is derived from the post-route slack at the target period as $F_{\max} = 1/(T_{target} - \mathrm{WNS})$. Latency in nanoseconds is therefore a design-point quantity at the target clock, whereas throughput is evaluated at $F_{\max}$, and the two are reported separately rather than combined into one timing figure.
+% TODO(authors): state the clock frequency used in report_power (target vs. F_max), the activity assumption (vectorless vs. SAIF), voltage, temperature, and idle-cycle handling; add a common-frequency comparison table.
 
 \section{Experimental Results}
 \label{sec:results}
@@ -698,7 +699,7 @@ The corresponding Q16.16 error-distribution, worst-case, warm-up, and percentile
 \subsection{Power and Energy}
 \label{sec:power}
 
-Table~\ref{tab:power} and Fig.~\ref{fig:summary} report dynamic, static, and total power estimates together with the derived energy per operation (Eq.~(\ref{eq:energyop})) for all ten architecture/format combinations. The highest total power estimates (0.458 to 0.483~W) are observed for the two multiplier-intensive iterative architectures, which also exhibit the highest DSP and flip-flop utilization; combined with their long pipeline latency, they also have the highest energy per operation (1.167 to 1.219~nJ/op). In Q8.24 the Direct LUT architecture has the lowest energy per operation (0.346~nJ/op), reflecting both its minimal dynamic power estimate and its short pipeline; in Q16.16 the lowest value belongs to LUT-Interpolation (0.379~nJ/op, against 0.412~nJ/op for Direct LUT). Static power estimates vary only slightly (0.091 to 0.092~W) across the ten configurations.
+Table~\ref{tab:power} and Fig.~\ref{fig:summary} report dynamic, static, and total power estimates together with the derived energy per operation (Eq.~(\ref{eq:energyop})) for all ten architecture/format combinations. The highest total power estimates (0.458 to 0.483~W) are observed for the two multiplier-intensive iterative architectures, which also exhibit the highest DSP and flip-flop utilization; since energy per operation is the total power divided by the valid-output rate (Eq.~(\ref{eq:energyop})), they also have the highest energy per operation (1.167 to 1.219~nJ/op). In Q8.24 the Direct LUT architecture has the lowest energy per operation (0.346~nJ/op), reflecting its minimal dynamic power estimate; in Q16.16 the lowest value belongs to LUT-Interpolation (0.379~nJ/op, against 0.412~nJ/op for Direct LUT). Static power estimates vary only slightly (0.091 to 0.092~W) across the ten configurations.
 
 \begin{table}[H]
 \caption{Post-Implementation Power Estimates and Derived Energy}
@@ -773,7 +774,7 @@ The results of Section~\ref{sec:results} show that no single architecture domina
 \text{minimize} \; \{ E_{\max,rel},\, L_{ns},\, E_{op} \}
 \label{eq:paretomin}
 \end{equation}
-Hardware resource utilization (slice LUT, FF, DSP, BRAM) is deliberately reported separately (Table~\ref{tab:resources}) rather than folded into the Pareto objective set above. A composite resource metric would require assigning relative weights across four resource types with different device-level scarcity and cost characteristics (e.g., BRAM versus DSP), and any such weighting would introduce a design choice into what is intended to be an objective, data-driven comparison; a design's resource cost is instead read directly from Table~\ref{tab:resources} alongside its position on the Pareto front. Given this three-objective formulation, an architecture $A$ is said to dominate an architecture $B$ if $A$ is no worse than $B$ on all three objectives and strictly better on at least one:
+Hardware resource utilization (slice LUT, FF, DSP, BRAM) is deliberately reported separately (Table~\ref{tab:resources}) rather than folded into the Pareto objective set above. A composite resource metric would require assigning relative weights across four resource types with different device-level scarcity and cost characteristics (e.g., BRAM versus DSP), and any such weighting would introduce a design choice into what is intended to be an objective, data-driven comparison; a design's resource cost is instead read directly from Table~\ref{tab:resources} alongside its position on the Pareto front. The normalized metric comparison of Section~\ref{sec:scoreviz} is a descriptive visualization only and plays no role in the dominance analysis. Given this three-objective formulation, an architecture $A$ is said to dominate an architecture $B$ if $A$ is no worse than $B$ on all three objectives and strictly better on at least one:
 \begin{equation}
 A \succ B \iff \left(\forall k \in \{E_{rel}, L, E_{op}\} : A_k \le B_k\right) \land \left(\exists k : A_k < B_k\right)
 \label{eq:dominance}
@@ -782,9 +783,9 @@ An architecture is Pareto-optimal (non-dominated) if no other evaluated architec
 
 \subsection{Pareto Fronts}
 
-Fig.~\ref{fig:paretofront} plots each architecture's position in the latency-energy plane for both fixed-point formats, with marker size inversely related to maximum relative error: larger markers indicate lower maximum relative error. A single global marker-size scale is shared across both panels so that marker sizes are directly comparable between the Q8.24 and Q16.16 results rather than only within each format. Applying the dominance relation of Eq.~(\ref{eq:dominance}) strictly to all five architectures within each format shows that all five architectures are non-dominated in both Q8.24 and Q16.16: no evaluated architecture is simultaneously no worse than another architecture on all three objectives while being strictly better on at least one. Thus, each architecture represents a distinct trade-off point in the three-dimensional accuracy-latency-energy objective space, and the resulting Pareto set reflects different combinations of numerical accuracy, latency, and energy per operation rather than a single architecture dominating across all three objectives. The pairwise comparisons are listed in Appendix~\ref{app:dominance}.
+Fig.~\ref{fig:paretofront} plots each architecture's position in the latency-energy plane for both fixed-point formats, with marker size inversely related to maximum relative error: larger markers indicate lower maximum relative error. A single global marker-size scale is shared across both panels so that marker sizes are directly comparable between the Q8.24 and Q16.16 results rather than only within each format. Applying the dominance relation of Eq.~(\ref{eq:dominance}) strictly to all five architectures within each format shows that all five architectures are non-dominated among the evaluated configurations in both Q8.24 and Q16.16: no evaluated architecture is simultaneously no worse than another architecture on all three objectives while being strictly better on at least one. Thus, each architecture represents a distinct trade-off point in the three-dimensional accuracy-latency-energy objective space, and the resulting Pareto set reflects different combinations of numerical accuracy, latency, and energy per operation rather than a single architecture dominating across all three objectives. The pairwise comparisons are listed in Appendix~\ref{app:dominance}. This non-dominance holds only among the evaluated configurations; because the seed-table size, iteration count, and interpolation resolution are fixed, it does not establish optimality over the wider architecture design space.
 
-This strict result should be read with one qualification in Q16.16. The maximum relative errors of Newton-Raphson, Goldschmidt, and Hybrid in that format (0.003815\%, 0.003814\%, and 0.004118\%) differ by at most about 8\% and lie at the scale of a single output LSB (Appendix~\ref{app:lsbfloor}). The non-dominance of the Newton-Raphson/Hybrid and Goldschmidt/Hybrid pairs therefore rests on these small error differences, since Hybrid has lower latency and lower energy per operation than both. If errors within this LSB-scale tolerance are treated as equivalent, Hybrid would dominate both iterative architectures in Q16.16, and the non-dominated set in that format would reduce to Direct LUT, LUT-Interpolation, and Hybrid. In Q8.24 the corresponding error differences exceed an order of magnitude, and the five-architecture Pareto set is unaffected by such a tolerance.
+This strict result should be read with one qualification in Q16.16. The maximum relative errors of Newton-Raphson, Goldschmidt, and Hybrid in that format (0.003815\%, 0.003814\%, and 0.004118\%) differ by at most about 8\% and lie at the scale of a single output LSB (Appendix~\ref{app:lsbfloor}). The non-dominance of the Newton-Raphson/Hybrid and Goldschmidt/Hybrid pairs therefore rests on these small error differences, since Hybrid has lower latency and lower energy per operation than both. If errors within a tolerance of one output LSB are treated as equivalent (one LSB of Q16.16, $2^{-16}$, corresponds to a relative error of $7.6\times10^{-4}$\% at the worst-case point $x=0.5$), Hybrid would dominate both iterative architectures in Q16.16, and the non-dominated set in that format would reduce to Direct LUT, LUT-Interpolation, and Hybrid. In Q8.24 the corresponding error differences exceed an order of magnitude, and the five-architecture Pareto set is unaffected by such a tolerance.
 
 \begin{figure}[H]
 \centering
@@ -794,23 +795,27 @@ This strict result should be read with one qualification in Q16.16. The maximum 
 \label{fig:paretofront}
 \end{figure}
 
-% The radar / Pareto-score figure below is disabled: the paper defines no scalar "Pareto score",
-% and the analysis deliberately avoids weighting. Re-enable only after defining and justifying the score.
+\subsection{Normalized Metric Comparison}
+\label{sec:scoreviz}
+
+Fig.~\ref{fig:paretoradar} summarizes the relative standing of the ten configurations across all measured metrics, including the resource and power quantities that are excluded from the Pareto objectives of Eq.~(\ref{eq:paretomin}). It is a descriptive visualization: it does not determine non-dominance, and no weights or aggregation across metrics are applied. Let $\mathcal{C}$ denote the set of all ten architecture/format configurations, pooled across both formats, and let $v_m(c)$ be the value of metric $m$ for configuration $c \in \mathcal{C}$. Each metric is min--max normalized over $\mathcal{C}$ so that 1 is the best and 0 the worst observed value:
+\begin{equation}
+\tilde{v}_m(c) =
+\begin{cases}
+\dfrac{\max_{c'} v_m(c') - v_m(c)}{\max_{c'} v_m(c') - \min_{c'} v_m(c')}, & m \text{ lower-is-better},\\[2ex]
+\dfrac{v_m(c) - \min_{c'} v_m(c')}{\max_{c'} v_m(c') - \min_{c'} v_m(c')}, & m \text{ higher-is-better}.
+\end{cases}
+\label{eq:minmax}
+\end{equation}
+The plot shows $\tilde{v}_m(c)$ for the seven metrics $m \in \{F_{\max}, L_{ns}, N_{LUT}, N_{DSP}, P_{tot}, E_{op}, E_{\max,rel}\}$, where $N_{LUT}$ is the slice-LUT count and $N_{DSP}$ the DSP-slice count; $F_{\max}$ is the only higher-is-better metric. Two properties limit how it should be read. First, normalization is relative to the evaluated set, so adding or changing a configuration changes every normalized value. Second, $E_{\max,rel}$ is normalized linearly although it spans more than three orders of magnitude, so differences among the most accurate configurations are compressed toward 1 on that axis. The plot therefore indicates where each configuration lies relative to the others on each axis, not which configuration is preferable.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{figures/radar_chart_plot.png}
-\caption{Pareto score radar plot for the evaluated architectures.}
-\Description{Showcases a multi dimensional pareto tradeoff radar plot for both the q8.24 and q16.16 architectures.}
+\caption{Radar plot of min--max-normalized metrics (Eq.~(\ref{eq:minmax}); 1 is best) by architecture: Q8.24 (left) and Q16.16 (right).}
+\Description{Two radar plots, one per format, with seven axes for maximum frequency, latency, slice LUT count, DSP slice count, total power, energy per operation, and maximum relative error. Each architecture is drawn as a closed polygon of normalized scores between 0 and 1, where 1 is the best observed value.}
 \label{fig:paretoradar}
 \end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{figures/pareto_score_plot.png}
-\caption{Pareto score line plot for the evaluated architectures.}
-\Description{Pareto score line plot showing normalized Pareto scores for the evaluated architectures.}
-\label{fig:pareto_comparison}
-\end{figure}
-
 
 \subsection{Trade-off Analysis}
 
@@ -887,7 +892,7 @@ The reciprocal approximation architectures evaluated in this work are applicable
 
 Several limitations should be considered when interpreting and generalizing the results. First, all experiments use a single input domain, $x \in [0.5, 2.5]$. Although this range represents the bounded reciprocal domain considered in Section~\ref{sec:fixedpoint} and captures the characteristic error concentration near the lower bound discussed in Section~\ref{sec:accuracy}, the evaluation does not include alternative or non-uniform input distributions. Such distributions may alter the observed accuracy and performance trade-offs among the architectures.
 
-Second, the evaluation is limited to a single FPGA family, Xilinx Artix-7. The relative costs of BRAM, DSP, slice LUT, and FF resources are device-dependent; consequently, the specific resource-utilization trade-offs reported in Table~\ref{tab:resources} may differ on other FPGA families or vendor platforms. The timing and power characteristics may likewise change with the underlying device architecture and implementation resources. In addition, the reported power values are post-implementation tool estimates rather than board-level measurements, and the Hybrid architecture was evaluated against a less aggressive clock target than the other four architectures.
+Second, the evaluation is limited to a single FPGA family, Xilinx Artix-7. The relative costs of BRAM, DSP, slice LUT, and FF resources are device-dependent; consequently, the specific resource-utilization trade-offs reported in Table~\ref{tab:resources} may differ on other FPGA families or vendor platforms. The timing and power characteristics may likewise change with the underlying device architecture and implementation resources. In addition, the reported power values are post-implementation tool estimates obtained with default vectorless activity rather than board-level measurements or simulation-derived switching activity, so energy differences of a few percent between architectures, such as that between Newton-Raphson and Goldschmidt, should not be read as a firm ranking; and the Hybrid architecture was evaluated against a less aggressive clock target than the other four architectures.
 
 Third, the study does not include a direct comparison with vendor-supplied divider or reciprocal IP cores, such as Xilinx LogiCORE-class implementations, nor with CORDIC-based reciprocal/division computation \cite{Volder59,Andraka98}, which trades the multiplier-centric datapaths evaluated here for a shift-and-add rotation structure well suited to FPGA fabrics with limited DSP resources. Such comparisons would provide additional baselines for evaluating the custom architectures against off-the-shelf and multiplier-free solutions and are therefore left for future work.
 
@@ -902,7 +907,7 @@ The results demonstrate substantial differences in the hardware and numerical ch
 
 The comparison also demonstrates that fixed-point format selection has a direct interaction with reciprocal architecture. Q8.24 generally preserves substantially higher numerical accuracy for the iterative and hybrid architectures because of its larger fractional field, whereas Q16.16 reduces fractional precision and consequently increases the observed approximation error for these architectures. At the same time, the change in fractional precision does not produce a uniform hardware advantage across all architectures, illustrating that arithmetic precision, memory organization, pipeline structure, and FPGA resource mapping must be considered together when selecting a fixed-point reciprocal implementation.
 
-Across the evaluated designs, the maximum relative error spans more than three orders of magnitude, while latency spans more than an order of magnitude. Energy per operation varies by approximately $3.5\times$, from 0.346~nJ/op to 1.219~nJ/op. The three-objective Pareto analysis further shows that all five architectures are strictly non-dominated within each fixed-point format: each occupies a distinct point in the accuracy-latency-energy design space rather than being uniformly superseded by another evaluated architecture. In Q16.16, however, this result depends on error differences of at most about 8\% among the iterative and hybrid architectures, so it should be interpreted with that qualification. Reciprocal architecture selection is therefore application-dependent, with the appropriate implementation determined by the required balance among numerical precision, pipeline latency, throughput, energy, and FPGA resource availability.
+Across the evaluated designs, the maximum relative error spans more than three orders of magnitude, while latency spans more than an order of magnitude. Energy per operation varies by approximately $3.5\times$, from 0.346~nJ/op to 1.219~nJ/op. The three-objective Pareto analysis further shows that all five architectures are strictly non-dominated among the evaluated configurations within each fixed-point format: each occupies a distinct point in the accuracy-latency-energy design space rather than being uniformly superseded by another evaluated architecture. In Q16.16, however, this result depends on error differences of at most about 8\% among the iterative and hybrid architectures, so it should be interpreted with that qualification. Reciprocal architecture selection is therefore application-dependent, with the appropriate implementation determined by the required balance among numerical precision, pipeline latency, throughput, energy, and FPGA resource availability.
 
 Overall, the study provides a common evaluation framework for understanding these trade-offs across lookup-based, interpolated, iterative, and hybrid reciprocal architectures. Rather than identifying a universally optimal implementation, the results establish quantitative design points that can be used to select or further optimize a reciprocal architecture according to the constraints of a target FPGA application. Future work can extend this design space to additional FPGA families, alternative input distributions, vendor-supplied reciprocal/division IP, board-level power measurement, and systematic variation of seed-table resolution and iteration count to investigate configurations beyond the five evaluated architectures.
 
@@ -919,5 +924,109 @@ Artificial intelligence (AI) tools like Claude and Gemini were used as research-
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
+
+\appendix
+ 
+\section{Analytical Derivations and Cross-Checks}
+\label{app:derivations}
+ 
+This appendix collects short derivations supporting the error analysis of Section~\ref{sec:background} and compares the resulting closed-form quantities with the measurements in Table~\ref{tab:accuracy}.
+ 
+\subsection{Direct LUT: Exact Error Bounds}
+\label{app:directlut}
+ 
+Let the Direct LUT entry addressed by the top $N$ input bits store $1/x_i$, where $x_i = a + i\,\Delta x$ is the breakpoint at or below the input, $x_i \le x < x_i + \Delta x$, $a = 0.5$, and $\Delta x = 2/2^{N}$ (Eq.~(\ref{eq:deltax})). The relative error of the stored value is
+\begin{equation}
+\frac{\left|1/x_i - 1/x\right|}{1/x} = \frac{x - x_i}{x_i} \le \frac{\Delta x}{x_i} \le \frac{\Delta x}{a},
+\label{eq:app_lutrel}
+\end{equation}
+with the maximum at the lowest table cell, $x_i = a$. The corresponding absolute error is
+\begin{equation}
+\left|\frac{1}{x_i} - \frac{1}{x}\right| = \frac{x - x_i}{x\,x_i} < \frac{\Delta x}{x_i\,(x_i + \Delta x)} \le \frac{\Delta x}{a\,(a + \Delta x)},
+\label{eq:app_lutabs}
+\end{equation}
+which refines the first-order estimate $4\Delta x$ of Eq.~(\ref{eq:elut}). For $N = 12$, $\Delta x = 2^{-11}$, giving a maximum relative error of $2^{-10} = 0.09766\%$ and a maximum absolute error of $1.951\times10^{-3}$. Table~\ref{tab:app_lutcheck} compares these values with the measured Direct LUT results. The Q8.24 measurements agree with the closed-form values to within 0.1\%, consistent with truncating (left-breakpoint) addressing; the Q16.16 measurements are about 3\% lower, reflecting effects not captured by this model (address mapping and output quantization).
+ 
+\begin{table}[htbp]
+\caption{Direct LUT Worst-Case Error: Closed-Form Bound Versus Measurement}
+\label{tab:app_lutcheck}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Quantity} & \textbf{Bound} & \textbf{Q8.24} & \textbf{Q16.16} \\
+\midrule
+Max. relative error (\%) & 0.09766 & 0.097596 & 0.094787 \\
+Max. absolute error & $1.951\times10^{-3}$ & $1.950\times10^{-3}$ & $1.892\times10^{-3}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+\subsection{Convergence of the Iterative Architectures}
+\label{app:convergence}
+ 
+Define the relative deviation $\varepsilon_n = 1 - x\,y_n$. For Newton-Raphson, Eq.~(\ref{eq:nr}) gives $x\,y_{n+1} = (1-\varepsilon_n)(1+\varepsilon_n) = 1 - \varepsilon_n^2$, so $\varepsilon_{n+1} = \varepsilon_n^2$ and the relative error of $y_n$ equals $\varepsilon_n$.
+ 
+For Goldschmidt, let $D_i = 1 - \varepsilon_i$. Then $F_i = 2 - D_i = 1 + \varepsilon_i$ and
+\begin{equation}
+D_{i+1} = D_i F_i = 1 - \varepsilon_i^2, \qquad \frac{N_{i+1}}{D_{i+1}} = \frac{N_i F_i}{D_i F_i} = \frac{N_i}{D_i}.
+\label{eq:app_gold}
+\end{equation}
+Since $N_0/D_0 = y_0/(x\,y_0) = 1/x$, the ratio $N_i/D_i$ equals $1/x$ for all $i$, so $x\,N_i = D_i = 1 - \varepsilon_i$ and the relative error of $N_i$ equals $\varepsilon_i$. Hence $\varepsilon_{i+1} = \varepsilon_i^2$ as for Newton-Raphson.
+ 
+After $k$ iterations, $\varepsilon_k = \varepsilon_0^{\,2^k}$ in exact arithmetic. The two-iteration Newton-Raphson and Goldschmidt architectures therefore reach $\varepsilon_2 = \varepsilon_0^{4}$, and the hybrid architecture, with one iteration applied to an interpolated seed, reaches $\varepsilon_1 = \varepsilon_0^{2}$. Finite-precision rounding adds a further term of the order of one output LSB, which sets the accuracy floor examined next.
+ 
+\subsection{Output-Quantization Reference Level}
+\label{app:lsbfloor}
+ 
+Because the smallest reciprocal in the evaluated domain is $1/2.5 = 0.4$, a one-LSB output error is largest in relative terms at $x = 2.5$, where it equals
+\begin{equation}
+\varepsilon_{\mathrm{LSB}}(F) = \frac{2^{-F}}{0.4} = 2.5\times 2^{-F},
+\label{eq:app_lsb}
+\end{equation}
+i.e., $1.490\times10^{-5}\%$ for Q8.24 and $3.815\times10^{-3}\%$ for Q16.16. Table~\ref{tab:app_lsbfloor} expresses the measured maximum relative errors of Table~\ref{tab:accuracy} as multiples of this reference level. In Q16.16, Newton-Raphson and Goldschmidt sit at the reference level and the hybrid architecture is within 8\% of it, whereas in Q8.24 the Newton-Raphson, Goldschmidt, and hybrid architectures lie at roughly 1$\times$, 1.3$\times$, and 27$\times$ the reference level, respectively. The Newton-Raphson and Goldschmidt Q8.24 values are reported to two significant figures, so their ratios are approximate.
+ 
+\begin{table}[htbp]
+\caption{Measured Maximum Relative Error as a Multiple of the One-LSB Reference Level $\varepsilon_{\mathrm{LSB}}(F)$}
+\label{tab:app_lsbfloor}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Architecture} & \textbf{Q8.24} & \textbf{Q16.16} \\
+\midrule
+Direct LUT & $6.5\times10^{3}$ & 25 \\
+LUT-Interpolation & $7.0\times10^{2}$ & 2.4 \\
+Newton-Raphson & 1.0 & 1.0 \\
+Goldschmidt & 1.3 & 1.0 \\
+Hybrid & 27 & 1.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+\section{Pareto Dominance Verification}
+\label{app:dominance}
+ 
+Table~\ref{tab:app_dominance} lists, for every pair of architectures in each format, the objectives on which each member is strictly better under the three-objective formulation of Eq.~(\ref{eq:paretomin}): maximum relative error ($\varepsilon$), latency ($L$), and energy per operation ($E$). The abbreviations DL, LI, NR, GS, and HY denote Direct LUT, LUT-Interpolation, Newton-Raphson, Goldschmidt, and Hybrid, respectively. Under Eq.~(\ref{eq:dominance}), an architecture is dominated only if the other member of a pair is no worse on all three objectives; since each member of every pair below is strictly better on at least one objective, no pair exhibits dominance, and all five architectures are strictly non-dominated among the evaluated configurations in both formats.
+ 
+\begin{table}[htbp]
+\caption{Pairwise Pareto Comparison: Objectives on Which Each Architecture Is Strictly Better}
+\label{tab:app_dominance}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+& \multicolumn{2}{c}{\textbf{Q8.24}} & \multicolumn{2}{c}{\textbf{Q16.16}} \\
+\textbf{Pair} & \textbf{First better on} & \textbf{Second better on} & \textbf{First better on} & \textbf{Second better on} \\
+\midrule
+DL / LI & $L, E$ & $\varepsilon$ & $L$ & $E, \varepsilon$ \\
+DL / NR & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+DL / GS & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+DL / HY & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+LI / NR & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+LI / GS & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+LI / HY & $L, E$ & $\varepsilon$ & $L, E$ & $\varepsilon$ \\
+NR / GS & $E, \varepsilon$ & $L$ & $E$ & $L, \varepsilon$ \\
+NR / HY & $\varepsilon$ & $L, E$ & $\varepsilon$ & $L, E$ \\
+GS / HY & $\varepsilon$ & $L, E$ & $\varepsilon$ & $L, E$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+In Q16.16, the maximum relative errors of Newton-Raphson, Goldschmidt, and Hybrid (0.003815\%, 0.003814\%, and 0.004118\%) differ by at most 8\%, so the non-dominance of the NR/HY and GS/HY pairs in that format rests on error differences of this size. If errors within this LSB-scale tolerance (Table~\ref{tab:app_lsbfloor}) are treated as equal, Hybrid is no worse than Newton-Raphson and Goldschmidt on $\varepsilon$ and strictly better on $L$ and $E$, and would dominate both; the Q16.16 non-dominated set would then be DL, LI, and HY. The Q8.24 error differences for the same pairs exceed an order of magnitude and are unaffected by such a tolerance.
 
 \end{document}
